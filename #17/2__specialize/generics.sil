@@ -1,0 +1,82 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+@_specialize(exported: false, kind: full, where T == UInt16)
+func f<T>(_ v: T) -> String where T : BinaryInteger
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  %2 = integer_literal $Builtin.Int16, 9          // user: %3
+  %3 = struct $UInt16 (%2 : $Builtin.Int16)       // users: %5, %6
+  %4 = alloc_stack $UInt16                        // users: %10, %9, %7, %5
+  store %3 to %4 : $*UInt16                       // id: %5
+  debug_value %3 : $UInt16, let, name "v", argno 1 // id: %6
+  debug_value_addr %4 : $*UInt16, let, name "v", argno 1 // id: %7
+  // function_ref BinaryInteger.description.getter
+  %8 = function_ref @$sSzsE11descriptionSSvg : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %9
+  %9 = apply %8<UInt16>(%4) : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %11
+  dealloc_stack %4 : $*UInt16                     // id: %10
+  release_value %9 : $String                      // id: %11
+  %12 = integer_literal $Builtin.Int32, 0         // user: %13
+  %13 = struct $Int32 (%12 : $Builtin.Int32)      // user: %14
+  return %13 : $Int32                             // id: %14
+} // end sil function 'main'
+
+// f<A>(_:)
+sil hidden @$s8generics1fySSxSzRzlF : $@convention(thin) <T where T : BinaryInteger> (@in_guaranteed T) -> @owned String {
+// %0                                             // users: %13, %9, %7
+bb0(%0 : $*T):
+  %1 = metatype $@thick T.Type                    // user: %3
+  %2 = metatype $@thick UInt16.Type               // user: %4
+  %3 = unchecked_trivial_bit_cast %1 : $@thick T.Type to $Builtin.Word // user: %5
+  %4 = unchecked_trivial_bit_cast %2 : $@thick UInt16.Type to $Builtin.Word // user: %5
+  %5 = builtin "cmp_eq_Word"(%3 : $Builtin.Word, %4 : $Builtin.Word) : $Builtin.Int1 // user: %6
+  cond_br %5, bb3, bb1                            // id: %6
+
+bb1:                                              // Preds: bb0
+  debug_value_addr %0 : $*T, let, name "v", argno 1 // id: %7
+  %8 = witness_method $T, #CustomStringConvertible.description!getter.1 : <Self where Self : CustomStringConvertible> (Self) -> () -> String : $@convention(witness_method: CustomStringConvertible) <τ_0_0 where τ_0_0 : CustomStringConvertible> (@in_guaranteed τ_0_0) -> @owned String // user: %9
+  %9 = apply %8<T>(%0) : $@convention(witness_method: CustomStringConvertible) <τ_0_0 where τ_0_0 : CustomStringConvertible> (@in_guaranteed τ_0_0) -> @owned String // user: %10
+  br bb2(%9 : $String)                            // id: %10
+
+// %11                                            // user: %12
+bb2(%11 : $String):                               // Preds: bb3 bb1
+  return %11 : $String                            // id: %12
+
+bb3:                                              // Preds: bb0
+  %13 = unchecked_addr_cast %0 : $*T to $*UInt16  // user: %14
+  %14 = load %13 : $*UInt16                       // users: %17, %16
+  %15 = alloc_stack $UInt16                       // users: %21, %20, %18, %16
+  store %14 to %15 : $*UInt16                     // id: %16
+  debug_value %14 : $UInt16, let, name "v", argno 1 // id: %17
+  debug_value_addr %15 : $*UInt16, let, name "v", argno 1 // id: %18
+  // function_ref BinaryInteger.description.getter
+  %19 = function_ref @$sSzsE11descriptionSSvg : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %20
+  %20 = apply %19<UInt16>(%15) : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %22
+  dealloc_stack %15 : $*UInt16                    // id: %21
+  br bb2(%20 : $String)                           // id: %22
+} // end sil function '$s8generics1fySSxSzRzlF'
+
+// protocol witness for CustomStringConvertible.description.getter in conformance UInt16
+sil shared_external [transparent] [thunk] @$ss6UInt16Vs23CustomStringConvertiblessACP11descriptionSSvgTW : $@convention(witness_method: CustomStringConvertible) (@in_guaranteed UInt16) -> @owned String {
+// %0                                             // user: %2
+bb0(%0 : $*UInt16):
+  // function_ref BinaryInteger.description.getter
+  %1 = function_ref @$sSzsE11descriptionSSvg : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %2
+  %2 = apply %1<UInt16>(%0) : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %3
+  return %2 : $String                             // id: %3
+} // end sil function '$ss6UInt16Vs23CustomStringConvertiblessACP11descriptionSSvgTW'
+
+// BinaryInteger.description.getter
+sil @$sSzsE11descriptionSSvg : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String
+
+sil_witness_table public_external UInt16: CustomStringConvertible module Swift {
+  method #CustomStringConvertible.description!getter.1: <Self where Self : CustomStringConvertible> (Self) -> () -> String : @$ss6UInt16Vs23CustomStringConvertiblessACP11descriptionSSvgTW	// protocol witness for CustomStringConvertible.description.getter in conformance UInt16
+}
+
+
+

@@ -1,0 +1,45 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+func f(_ v: UInt16) -> String
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  %2 = integer_literal $Builtin.Int16, 9          // user: %3
+  %3 = struct $UInt16 (%2 : $Builtin.Int16)       // users: %6, %4
+  debug_value %3 : $UInt16, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $UInt16                        // users: %9, %8, %6
+  store %3 to %5 : $*UInt16                       // id: %6
+  // function_ref BinaryInteger.description.getter
+  %7 = function_ref @$sSzsE11descriptionSSvg : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %8
+  %8 = apply %7<UInt16>(%5) : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %10
+  dealloc_stack %5 : $*UInt16                     // id: %9
+  release_value %8 : $String                      // id: %10
+  %11 = integer_literal $Builtin.Int32, 0         // user: %12
+  %12 = struct $Int32 (%11 : $Builtin.Int32)      // user: %13
+  return %12 : $Int32                             // id: %13
+} // end sil function 'main'
+
+// f(_:)
+sil hidden @$s11nongenerics1fySSs6UInt16VF : $@convention(thin) (UInt16) -> @owned String {
+// %0                                             // users: %3, %1
+bb0(%0 : $UInt16):
+  debug_value %0 : $UInt16, let, name "v", argno 1 // id: %1
+  %2 = alloc_stack $UInt16                        // users: %3, %6, %5
+  store %0 to %2 : $*UInt16                       // id: %3
+  // function_ref BinaryInteger.description.getter
+  %4 = function_ref @$sSzsE11descriptionSSvg : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %5
+  %5 = apply %4<UInt16>(%2) : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String // user: %7
+  dealloc_stack %2 : $*UInt16                     // id: %6
+  return %5 : $String                             // id: %7
+} // end sil function '$s11nongenerics1fySSs6UInt16VF'
+
+// BinaryInteger.description.getter
+sil @$sSzsE11descriptionSSvg : $@convention(method) <τ_0_0 where τ_0_0 : BinaryInteger> (@in_guaranteed τ_0_0) -> @owned String
+
+
+

@@ -1,0 +1,303 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+class C {
+  @_hasStorage final let v: Int32 { get }
+  required init(_ v: Int32)
+  class func Factory<T>(_ v: T, _ s: C) -> Self where T : P
+  @objc deinit
+}
+
+class D : C {
+  override class func Factory<T>(_ v: T, _ s: C) -> Self where T : P
+  @objc deinit
+  required init(_ v: Int32)
+}
+
+protocol P {
+}
+
+extension Int16 : P {
+}
+
+@inline(never) func makeCorD() -> C
+
+@_hasStorage @_hasInitialValue let d: C { get }
+
+// d
+sil_global hidden [let] @$s11dynamicself1dAA1CCvp : $C
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  alloc_global @$s11dynamicself1dAA1CCvp          // id: %2
+  %3 = global_addr @$s11dynamicself1dAA1CCvp : $*C // user: %6
+  // function_ref makeCorD()
+  %4 = function_ref @$s11dynamicself8makeCorDAA1CCyF : $@convention(thin) () -> @owned C // user: %5
+  %5 = apply %4() : $@convention(thin) () -> @owned C // users: %26, %19, %30, %7, %6
+  store %5 to %3 : $*C                            // id: %6
+  %7 = value_metatype $@thick C.Type, %5 : $C     // users: %19, %24, %30, %22, %12, %29
+  %8 = integer_literal $Builtin.Int16, 9          // user: %9
+  %9 = struct $Int16 (%8 : $Builtin.Int16)        // users: %26, %19, %11
+  %10 = alloc_stack $Int16                        // users: %30, %11, %13
+  store %9 to %10 : $*Int16                       // id: %11
+  checked_cast_br [exact] %7 : $@thick C.Type to @thick C.Type, bb2, bb3 // id: %12
+
+bb1:                                              // Preds: bb2 bb4 bb5
+  dealloc_stack %10 : $*Int16                     // id: %13
+  %14 = integer_literal $Builtin.Int32, 0         // user: %15
+  %15 = struct $Int32 (%14 : $Builtin.Int32)      // user: %16
+  return %15 : $Int32                             // id: %16
+
+bb2(%17 : $@thick C.Type):                        // Preds: bb0
+  // function_ref specialized static C.Factory<A>(_:_:)
+  %18 = function_ref @$s11dynamicself1CC7FactoryyACXDx_ACtAA1PRzlFZs5Int16V_Tg5 : $@convention(method) (Int16, @guaranteed C, @thick C.Type) -> @owned C // user: %19
+  %19 = apply %18(%9, %5, %7) : $@convention(method) (Int16, @guaranteed C, @thick C.Type) -> @owned C // user: %20
+  strong_release %19 : $C                         // id: %20
+  br bb1                                          // id: %21
+
+bb3:                                              // Preds: bb0
+  checked_cast_br [exact] %7 : $@thick C.Type to @thick D.Type, bb4, bb5 // id: %22
+
+bb4(%23 : $@thick D.Type):                        // Preds: bb3
+  %24 = unchecked_trivial_bit_cast %7 : $@thick C.Type to $@thick D.Type // user: %26
+  // function_ref specialized static D.Factory<A>(_:_:)
+  %25 = function_ref @$s11dynamicself1DC7FactoryyACXDx_AA1CCtAA1PRzlFZs5Int16V_Tg5 : $@convention(method) (Int16, @guaranteed C, @thick D.Type) -> @owned D // user: %26
+  %26 = apply %25(%9, %5, %24) : $@convention(method) (Int16, @guaranteed C, @thick D.Type) -> @owned D // user: %27
+  strong_release %26 : $D                         // id: %27
+  br bb1                                          // id: %28
+
+bb5:                                              // Preds: bb3
+  %29 = class_method %7 : $@thick C.Type, #C.Factory!1 : <T where T : P> (C.Type) -> (T, C) -> @dynamic_self C, $@convention(method) <τ_0_0 where τ_0_0 : P> (@in_guaranteed τ_0_0, @guaranteed C, @thick C.Type) -> @owned C // user: %30
+  %30 = apply %29<Int16>(%10, %5, %7) : $@convention(method) <τ_0_0 where τ_0_0 : P> (@in_guaranteed τ_0_0, @guaranteed C, @thick C.Type) -> @owned C // user: %31
+  strong_release %30 : $C                         // id: %31
+  br bb1                                          // id: %32
+} // end sil function 'main'
+
+// C.v.getter
+sil hidden [transparent] @$s11dynamicself1CC1vs5Int32Vvg : $@convention(method) (@guaranteed C) -> Int32 {
+// %0                                             // users: %2, %1
+bb0(%0 : $C):
+  debug_value %0 : $C, let, name "self", argno 1  // id: %1
+  %2 = ref_element_addr %0 : $C, #C.v             // user: %3
+  %3 = load %2 : $*Int32                          // user: %4
+  return %3 : $Int32                              // id: %4
+} // end sil function '$s11dynamicself1CC1vs5Int32Vvg'
+
+// C.__allocating_init(_:)
+sil hidden [exact_self_class] @$s11dynamicself1CCyACs5Int32VcfC : $@convention(method) (Int32, @thick C.Type) -> @owned C {
+// %0                                             // users: %6, %3
+bb0(%0 : $Int32, %1 : $@thick C.Type):
+  %2 = alloc_ref $C                               // users: %7, %5, %4
+  debug_value %0 : $Int32, let, name "v", argno 1 // id: %3
+  debug_value %2 : $C, let, name "self", argno 2  // id: %4
+  %5 = ref_element_addr %2 : $C, #C.v             // user: %6
+  store %0 to %5 : $*Int32                        // id: %6
+  return %2 : $C                                  // id: %7
+} // end sil function '$s11dynamicself1CCyACs5Int32VcfC'
+
+// C.init(_:)
+sil hidden @$s11dynamicself1CCyACs5Int32Vcfc : $@convention(method) (Int32, @owned C) -> @owned C {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %4, %3
+bb0(%0 : $Int32, %1 : $C):
+  debug_value %0 : $Int32, let, name "v", argno 1 // id: %2
+  debug_value %1 : $C, let, name "self", argno 2  // id: %3
+  %4 = ref_element_addr %1 : $C, #C.v             // user: %5
+  store %0 to %4 : $*Int32                        // id: %5
+  return %1 : $C                                  // id: %6
+} // end sil function '$s11dynamicself1CCyACs5Int32Vcfc'
+
+// specialized static C.Factory<A>(_:_:)
+sil shared [signature_optimized_thunk] [always_inline] @$s11dynamicself1CC7FactoryyACXDx_ACtAA1PRzlFZs5Int16V_Tg5 : $@convention(method) (Int16, @guaranteed C, @thick C.Type) -> @owned C {
+// %2                                             // users: %3, %3
+bb0(%0 : $Int16, %1 : $C, %2 : $@thick C.Type):
+  %3 = unchecked_trivial_bit_cast %2 : $@thick C.Type to $@thick @dynamic_self C.Type // type-defs: %2; users: %5, %4
+  debug_value %3 : $@thick @dynamic_self C.Type, let, name "self", argno 3 // id: %4
+  %5 = upcast %3 : $@thick @dynamic_self C.Type to $@thick C.Type // users: %8, %19, %18
+  %6 = integer_literal $Builtin.Int32, 8          // user: %7
+  %7 = struct $Int32 (%6 : $Builtin.Int32)        // users: %19, %16, %13, %11
+  checked_cast_br [exact] %5 : $@thick C.Type to @thick D.Type, bb1, bb2 // id: %8
+
+bb1(%9 : $@thick D.Type):                         // Preds: bb0
+  %10 = alloc_ref $D                              // user: %12
+  debug_value %7 : $Int32, let, name "v", argno 1 // id: %11
+  %12 = upcast %10 : $D to $C                     // users: %17, %15, %14
+  debug_value %7 : $Int32, let, name "v", argno 1 // id: %13
+  debug_value %12 : $C, let, name "self", argno 2 // id: %14
+  %15 = ref_element_addr %12 : $C, #C.v           // user: %16
+  store %7 to %15 : $*Int32                       // id: %16
+  br bb3(%12 : $C)                                // id: %17
+
+bb2:                                              // Preds: bb0
+  %18 = class_method %5 : $@thick C.Type, #C.init!allocator.1 : (C.Type) -> (Int32) -> C, $@convention(method) (Int32, @thick C.Type) -> @owned C // user: %19
+  %19 = apply %18(%7, %5) : $@convention(method) (Int32, @thick C.Type) -> @owned C // user: %20
+  br bb3(%19 : $C)                                // id: %20
+
+// %21                                            // user: %22
+bb3(%21 : $C):                                    // Preds: bb2 bb1
+  return %21 : $C                                 // id: %22
+} // end sil function '$s11dynamicself1CC7FactoryyACXDx_ACtAA1PRzlFZs5Int16V_Tg5'
+
+// static C.Factory<A>(_:_:)
+sil hidden [signature_optimized_thunk] [always_inline] @$s11dynamicself1CC7FactoryyACXDx_ACtAA1PRzlFZ : $@convention(method) <T where T : P> (@in_guaranteed T, @guaranteed C, @thick C.Type) -> @owned C {
+// %2                                             // users: %3, %3
+bb0(%0 : $*T, %1 : $C, %2 : $@thick C.Type):
+  %3 = unchecked_trivial_bit_cast %2 : $@thick C.Type to $@thick @dynamic_self C.Type // type-defs: %2; users: %5, %4
+  debug_value %3 : $@thick @dynamic_self C.Type, let, name "self", argno 3 // id: %4
+  %5 = upcast %3 : $@thick @dynamic_self C.Type to $@thick C.Type // users: %8, %19, %18
+  %6 = integer_literal $Builtin.Int32, 8          // user: %7
+  %7 = struct $Int32 (%6 : $Builtin.Int32)        // users: %19, %16, %13, %11
+  checked_cast_br [exact] %5 : $@thick C.Type to @thick D.Type, bb1, bb2 // id: %8
+
+bb1(%9 : $@thick D.Type):                         // Preds: bb0
+  %10 = alloc_ref $D                              // user: %12
+  debug_value %7 : $Int32, let, name "v", argno 1 // id: %11
+  %12 = upcast %10 : $D to $C                     // users: %17, %15, %14
+  debug_value %7 : $Int32, let, name "v", argno 1 // id: %13
+  debug_value %12 : $C, let, name "self", argno 2 // id: %14
+  %15 = ref_element_addr %12 : $C, #C.v           // user: %16
+  store %7 to %15 : $*Int32                       // id: %16
+  br bb3(%12 : $C)                                // id: %17
+
+bb2:                                              // Preds: bb0
+  %18 = class_method %5 : $@thick C.Type, #C.init!allocator.1 : (C.Type) -> (Int32) -> C, $@convention(method) (Int32, @thick C.Type) -> @owned C // user: %19
+  %19 = apply %18(%7, %5) : $@convention(method) (Int32, @thick C.Type) -> @owned C // user: %20
+  br bb3(%19 : $C)                                // id: %20
+
+// %21                                            // user: %22
+bb3(%21 : $C):                                    // Preds: bb2 bb1
+  return %21 : $C                                 // id: %22
+} // end sil function '$s11dynamicself1CC7FactoryyACXDx_ACtAA1PRzlFZ'
+
+// C.deinit
+sil hidden @$s11dynamicself1CCfd : $@convention(method) (@guaranteed C) -> @owned Builtin.NativeObject {
+// %0                                             // users: %2, %1
+bb0(%0 : $C):
+  debug_value %0 : $C, let, name "self", argno 1  // id: %1
+  %2 = unchecked_ref_cast %0 : $C to $Builtin.NativeObject // user: %3
+  return %2 : $Builtin.NativeObject               // id: %3
+} // end sil function '$s11dynamicself1CCfd'
+
+// C.__deallocating_deinit
+sil hidden @$s11dynamicself1CCfD : $@convention(method) (@owned C) -> () {
+// %0                                             // users: %3, %2, %1
+bb0(%0 : $C):
+  debug_value %0 : $C, let, name "self", argno 1  // id: %1
+  debug_value %0 : $C, let, name "self", argno 1  // id: %2
+  dealloc_ref %0 : $C                             // id: %3
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+} // end sil function '$s11dynamicself1CCfD'
+
+// specialized static D.Factory<A>(_:_:)
+sil shared [signature_optimized_thunk] [always_inline] @$s11dynamicself1DC7FactoryyACXDx_AA1CCtAA1PRzlFZs5Int16V_Tg5 : $@convention(method) (Int16, @guaranteed C, @thick D.Type) -> @owned D {
+// %2                                             // users: %3, %3
+bb0(%0 : $Int16, %1 : $C, %2 : $@thick D.Type):
+  %3 = unchecked_trivial_bit_cast %2 : $@thick D.Type to $@thick @dynamic_self D.Type // type-defs: %2; users: %5, %4
+  debug_value %3 : $@thick @dynamic_self D.Type, let, name "self", argno 3 // id: %4
+  %5 = upcast %3 : $@thick @dynamic_self D.Type to $@thick D.Type // users: %9, %8
+  %6 = integer_literal $Builtin.Int32, 10         // user: %7
+  %7 = struct $Int32 (%6 : $Builtin.Int32)        // user: %9
+  %8 = class_method %5 : $@thick D.Type, #D.init!allocator.1 : (D.Type) -> (Int32) -> D, $@convention(method) (Int32, @thick D.Type) -> @owned D // user: %9
+  %9 = apply %8(%7, %5) : $@convention(method) (Int32, @thick D.Type) -> @owned D // user: %10
+  return %9 : $D                                  // id: %10
+} // end sil function '$s11dynamicself1DC7FactoryyACXDx_AA1CCtAA1PRzlFZs5Int16V_Tg5'
+
+// static D.Factory<A>(_:_:)
+sil hidden [signature_optimized_thunk] [always_inline] @$s11dynamicself1DC7FactoryyACXDx_AA1CCtAA1PRzlFZ : $@convention(method) <T where T : P> (@in_guaranteed T, @guaranteed C, @thick D.Type) -> @owned D {
+// %2                                             // users: %3, %3
+bb0(%0 : $*T, %1 : $C, %2 : $@thick D.Type):
+  %3 = unchecked_trivial_bit_cast %2 : $@thick D.Type to $@thick @dynamic_self D.Type // type-defs: %2; users: %5, %4
+  debug_value %3 : $@thick @dynamic_self D.Type, let, name "self", argno 3 // id: %4
+  %5 = upcast %3 : $@thick @dynamic_self D.Type to $@thick D.Type // users: %9, %8
+  %6 = integer_literal $Builtin.Int32, 10         // user: %7
+  %7 = struct $Int32 (%6 : $Builtin.Int32)        // user: %9
+  %8 = class_method %5 : $@thick D.Type, #D.init!allocator.1 : (D.Type) -> (Int32) -> D, $@convention(method) (Int32, @thick D.Type) -> @owned D // user: %9
+  %9 = apply %8(%7, %5) : $@convention(method) (Int32, @thick D.Type) -> @owned D // user: %10
+  return %9 : $D                                  // id: %10
+} // end sil function '$s11dynamicself1DC7FactoryyACXDx_AA1CCtAA1PRzlFZ'
+
+// D.deinit
+sil hidden @$s11dynamicself1DCfd : $@convention(method) (@guaranteed D) -> @owned Builtin.NativeObject {
+// %0                                             // users: %2, %1
+bb0(%0 : $D):
+  debug_value %0 : $D, let, name "self", argno 1  // id: %1
+  %2 = unchecked_ref_cast %0 : $D to $Builtin.NativeObject // user: %3
+  return %2 : $Builtin.NativeObject               // id: %3
+} // end sil function '$s11dynamicself1DCfd'
+
+// D.__deallocating_deinit
+sil hidden @$s11dynamicself1DCfD : $@convention(method) (@owned D) -> () {
+// %0                                             // users: %3, %2, %1
+bb0(%0 : $D):
+  debug_value %0 : $D, let, name "self", argno 1  // id: %1
+  debug_value %0 : $D, let, name "self", argno 1  // id: %2
+  dealloc_ref %0 : $D                             // id: %3
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+} // end sil function '$s11dynamicself1DCfD'
+
+// D.__allocating_init(_:)
+sil hidden [signature_optimized_thunk] [exact_self_class] [always_inline] @$s11dynamicself1DCyACs5Int32VcfC : $@convention(method) (Int32, @thick D.Type) -> @owned D {
+// %0                                             // users: %8, %5, %3
+bb0(%0 : $Int32, %1 : $@thick D.Type):
+  %2 = alloc_ref $D                               // users: %9, %4
+  debug_value %0 : $Int32, let, name "v", argno 1 // id: %3
+  %4 = upcast %2 : $D to $C                       // users: %7, %6
+  debug_value %0 : $Int32, let, name "v", argno 1 // id: %5
+  debug_value %4 : $C, let, name "self", argno 2  // id: %6
+  %7 = ref_element_addr %4 : $C, #C.v             // user: %8
+  store %0 to %7 : $*Int32                        // id: %8
+  return %2 : $D                                  // id: %9
+} // end sil function '$s11dynamicself1DCyACs5Int32VcfC'
+
+// D.init(_:)
+sil hidden @$s11dynamicself1DCyACs5Int32Vcfc : $@convention(method) (Int32, @owned D) -> @owned D {
+// %0                                             // users: %7, %4, %2
+// %1                                             // users: %8, %3
+bb0(%0 : $Int32, %1 : $D):
+  debug_value %0 : $Int32, let, name "v", argno 1 // id: %2
+  %3 = upcast %1 : $D to $C                       // users: %6, %5
+  debug_value %0 : $Int32, let, name "v", argno 1 // id: %4
+  debug_value %3 : $C, let, name "self", argno 2  // id: %5
+  %6 = ref_element_addr %3 : $C, #C.v             // user: %7
+  store %0 to %6 : $*Int32                        // id: %7
+  return %1 : $D                                  // id: %8
+} // end sil function '$s11dynamicself1DCyACs5Int32Vcfc'
+
+// makeCorD()
+sil hidden [noinline] @$s11dynamicself8makeCorDAA1CCyF : $@convention(thin) () -> @owned C {
+bb0:
+  %0 = integer_literal $Builtin.Int32, 7          // user: %1
+  %1 = struct $Int32 (%0 : $Builtin.Int32)        // users: %8, %5, %3
+  %2 = alloc_ref $D                               // user: %4
+  debug_value %1 : $Int32, let, name "v", argno 1 // id: %3
+  %4 = upcast %2 : $D to $C                       // users: %9, %7, %6
+  debug_value %1 : $Int32, let, name "v", argno 1 // id: %5
+  debug_value %4 : $C, let, name "self", argno 2  // id: %6
+  %7 = ref_element_addr %4 : $C, #C.v             // user: %8
+  store %1 to %7 : $*Int32                        // id: %8
+  return %4 : $C                                  // id: %9
+} // end sil function '$s11dynamicself8makeCorDAA1CCyF'
+
+sil_vtable C {
+  #C.init!allocator.1: (C.Type) -> (Int32) -> C : @$s11dynamicself1CCyACs5Int32VcfC	// C.__allocating_init(_:)
+  #C.Factory!1: <T where T : P> (C.Type) -> (T, C) -> @dynamic_self C : @$s11dynamicself1CC7FactoryyACXDx_ACtAA1PRzlFZ	// static C.Factory<A>(_:_:)
+  #C.deinit!deallocator.1: @$s11dynamicself1CCfD	// C.__deallocating_deinit
+}
+
+sil_vtable D {
+  #C.init!allocator.1: (C.Type) -> (Int32) -> C : @$s11dynamicself1DCyACs5Int32VcfC [override]	// D.__allocating_init(_:)
+  #C.Factory!1: <T where T : P> (C.Type) -> (T, C) -> @dynamic_self C : @$s11dynamicself1DC7FactoryyACXDx_AA1CCtAA1PRzlFZ [override]	// static D.Factory<A>(_:_:)
+  #D.deinit!deallocator.1: @$s11dynamicself1DCfD	// D.__deallocating_deinit
+}
+
+sil_witness_table hidden Int16: P module dynamicself {
+}
+
+
+

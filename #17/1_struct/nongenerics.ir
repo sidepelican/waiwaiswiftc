@@ -1,0 +1,250 @@
+; ModuleID = 'nongenerics.ir'
+source_filename = "nongenerics.ir"
+target datalayout = "e-m:o-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-apple-macosx10.15.0"
+
+%swift.vwtable = type { i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i64, i64, i32, i32 }
+%swift.type_metadata_record = type { i32 }
+%swift.type = type { i64 }
+%T11nongenerics1AV = type <{ %Ts5UInt8V, [1 x i8], %Ts6UInt16V }>
+%Ts5UInt8V = type <{ i8 }>
+%Ts6UInt16V = type <{ i16 }>
+%swift.opaque = type opaque
+%swift.metadata_response = type { %swift.type*, i64 }
+
+@"$s11nongenerics1AVWV" = internal constant %swift.vwtable { i8* bitcast (i8* (i8*, i8*, %swift.type*)* @__swift_memcpy4_2 to i8*), i8* bitcast (void (i8*, %swift.type*)* @__swift_noop_void_return to i8*), i8* bitcast (i8* (i8*, i8*, %swift.type*)* @__swift_memcpy4_2 to i8*), i8* bitcast (i8* (i8*, i8*, %swift.type*)* @__swift_memcpy4_2 to i8*), i8* bitcast (i8* (i8*, i8*, %swift.type*)* @__swift_memcpy4_2 to i8*), i8* bitcast (i8* (i8*, i8*, %swift.type*)* @__swift_memcpy4_2 to i8*), i8* bitcast (i32 (%swift.opaque*, i32, %swift.type*)* @"$s11nongenerics1AVwet" to i8*), i8* bitcast (void (%swift.opaque*, i32, i32, %swift.type*)* @"$s11nongenerics1AVwst" to i8*), i64 4, i64 4, i32 1, i32 0 }, align 8
+@0 = private constant [12 x i8] c"nongenerics\00"
+@"$s11nongenericsMXM" = linkonce_odr hidden constant <{ i32, i32, i32 }> <{ i32 0, i32 0, i32 trunc (i64 sub (i64 ptrtoint ([12 x i8]* @0 to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32 }>, <{ i32, i32, i32 }>* @"$s11nongenericsMXM", i32 0, i32 2) to i64)) to i32) }>, section "__TEXT,__const", align 4
+@1 = private constant [2 x i8] c"A\00"
+@"$s11nongenerics1AVMn" = hidden constant <{ i32, i32, i32, i32, i32, i32, i32 }> <{ i32 81, i32 trunc (i64 sub (i64 ptrtoint (<{ i32, i32, i32 }>* @"$s11nongenericsMXM" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32 }>, <{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn", i32 0, i32 1) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ([2 x i8]* @1 to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32 }>, <{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn", i32 0, i32 2) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint (%swift.metadata_response (i64)* @"$s11nongenerics1AVMa" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32 }>, <{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn", i32 0, i32 3) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32 }>, <{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn", i32 0, i32 4) to i64)) to i32), i32 2, i32 2 }>, section "__TEXT,__const", align 4
+@"$s11nongenerics1AVMf" = internal constant <{ i8**, i64, <{ i32, i32, i32, i32, i32, i32, i32 }>*, i32, i32 }> <{ i8** getelementptr inbounds (%swift.vwtable, %swift.vwtable* @"$s11nongenerics1AVWV", i32 0, i32 0), i64 512, <{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn", i32 0, i32 2 }>, align 8
+@"symbolic _____ 11nongenerics1AV" = linkonce_odr hidden constant <{ i8, i32, i8 }> <{ i8 1, i32 trunc (i64 sub (i64 ptrtoint (<{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i8, i32, i8 }>, <{ i8, i32, i8 }>* @"symbolic _____ 11nongenerics1AV", i32 0, i32 1) to i64)) to i32), i8 0 }>, section "__TEXT,__swift5_typeref, regular, no_dead_strip", align 2
+@"symbolic s5UInt8V" = linkonce_odr hidden constant <{ [8 x i8], i8 }> <{ [8 x i8] c"s5UInt8V", i8 0 }>, section "__TEXT,__swift5_typeref, regular, no_dead_strip", align 2
+@2 = private constant [4 x i8] c"pad\00", section "__TEXT,__swift5_reflstr, regular, no_dead_strip"
+@"symbolic s6UInt16V" = linkonce_odr hidden constant <{ [9 x i8], i8 }> <{ [9 x i8] c"s6UInt16V", i8 0 }>, section "__TEXT,__swift5_typeref, regular, no_dead_strip", align 2
+@3 = private constant [6 x i8] c"value\00", section "__TEXT,__swift5_reflstr, regular, no_dead_strip"
+@"$s11nongenerics1AVMF" = internal constant { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 } { i32 trunc (i64 sub (i64 ptrtoint (<{ i8, i32, i8 }>* @"symbolic _____ 11nongenerics1AV" to i64), i64 ptrtoint ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF" to i64)) to i32), i32 0, i16 0, i16 12, i32 2, i32 2, i32 trunc (i64 sub (i64 ptrtoint (<{ [8 x i8], i8 }>* @"symbolic s5UInt8V" to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF", i32 0, i32 6) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ([4 x i8]* @2 to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF", i32 0, i32 7) to i64)) to i32), i32 2, i32 trunc (i64 sub (i64 ptrtoint (<{ [9 x i8], i8 }>* @"symbolic s6UInt16V" to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF", i32 0, i32 9) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ([6 x i8]* @3 to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF", i32 0, i32 10) to i64)) to i32) }, section "__TEXT,__swift5_fieldmd, regular, no_dead_strip", align 4
+@"\01l_type_metadata_table" = private constant [1 x %swift.type_metadata_record] [%swift.type_metadata_record { i32 trunc (i64 sub (i64 ptrtoint (<{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn" to i64), i64 ptrtoint ([1 x %swift.type_metadata_record]* @"\01l_type_metadata_table" to i64)) to i32) }], section "__TEXT, __swift5_types, regular, no_dead_strip", align 4
+@__swift_reflection_version = linkonce_odr hidden constant i16 3
+@llvm.used = appending global [3 x i8*] [i8* bitcast ([1 x %swift.type_metadata_record]* @"\01l_type_metadata_table" to i8*), i8* bitcast ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF" to i8*), i8* bitcast (i16* @__swift_reflection_version to i8*)], section "llvm.metadata"
+
+@"$s11nongenerics1AVN" = hidden alias %swift.type, bitcast (i64* getelementptr inbounds (<{ i8**, i64, <{ i32, i32, i32, i32, i32, i32, i32 }>*, i32, i32 }>, <{ i8**, i64, <{ i32, i32, i32, i32, i32, i32, i32 }>*, i32, i32 }>* @"$s11nongenerics1AVMf", i32 0, i32 1) to %swift.type*)
+
+; Function Attrs: norecurse nounwind readnone
+define i32 @main(i32, i8** nocapture readnone) local_unnamed_addr #0 {
+entry:
+  ret i32 0
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i8 @"$s11nongenerics1AV3pads5UInt8Vvpfi"() local_unnamed_addr #0 {
+entry:
+  ret i8 -1
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i8 @"$s11nongenerics1AV3pads5UInt8Vvg"(i32) local_unnamed_addr #0 {
+entry:
+  %temp-coercion.coerced.sroa.0.0.extract.trunc = trunc i32 %0 to i8
+  ret i8 %temp-coercion.coerced.sroa.0.0.extract.trunc
+}
+
+; Function Attrs: norecurse nounwind writeonly
+define hidden swiftcc void @"$s11nongenerics1AV3pads5UInt8Vvs"(i8, %T11nongenerics1AV* nocapture swiftself dereferenceable(4)) local_unnamed_addr #1 {
+entry:
+  %.pad._value = getelementptr inbounds %T11nongenerics1AV, %T11nongenerics1AV* %1, i64 0, i32 0, i32 0
+  store i8 %0, i8* %.pad._value, align 2
+  ret void
+}
+
+; Function Attrs: noinline nounwind
+define hidden swiftcc { i8*, %Ts5UInt8V* } @"$s11nongenerics1AV3pads5UInt8VvM"(i8* noalias dereferenceable(32), %T11nongenerics1AV* nocapture swiftself dereferenceable(4)) local_unnamed_addr #2 {
+entry:
+  %.pad = getelementptr inbounds %T11nongenerics1AV, %T11nongenerics1AV* %1, i64 0, i32 0
+  %2 = insertvalue { i8*, %Ts5UInt8V* } { i8* bitcast (void (i8*, i1)* @"$s11nongenerics1AV3pads5UInt8VvM.resume.0" to i8*), %Ts5UInt8V* undef }, %Ts5UInt8V* %.pad, 1
+  ret { i8*, %Ts5UInt8V* } %2
+}
+
+define internal swiftcc void @"$s11nongenerics1AV3pads5UInt8VvM.resume.0"(i8* noalias nonnull dereferenceable(32), i1) #3 {
+entryresume.0:
+  ret void
+}
+
+declare swiftcc void @"$s11nongenerics1AVIetMl_TC"(i8* noalias dereferenceable(32), i1) #3
+
+; Function Attrs: nounwind
+declare noalias i8* @malloc(i64) #4
+
+; Function Attrs: nounwind
+declare void @free(i8* nocapture) #4
+
+; Function Attrs: nounwind
+declare token @llvm.coro.id.retcon.once(i32, i32, i8*, i8*, i8*, i8*) #4
+
+; Function Attrs: nounwind
+declare i8* @llvm.coro.begin(token, i8* writeonly) #4
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i16 @"$s11nongenerics1AV5values6UInt16Vvg"(i32) local_unnamed_addr #0 {
+entry:
+  %temp-coercion.coerced.sroa.41.0.extract.shift = lshr i32 %0, 16
+  %temp-coercion.coerced.sroa.41.0.extract.trunc = trunc i32 %temp-coercion.coerced.sroa.41.0.extract.shift to i16
+  ret i16 %temp-coercion.coerced.sroa.41.0.extract.trunc
+}
+
+; Function Attrs: norecurse nounwind writeonly
+define hidden swiftcc void @"$s11nongenerics1AV5values6UInt16Vvs"(i16, %T11nongenerics1AV* nocapture swiftself dereferenceable(4)) local_unnamed_addr #1 {
+entry:
+  %.value._value = getelementptr inbounds %T11nongenerics1AV, %T11nongenerics1AV* %1, i64 0, i32 2, i32 0
+  store i16 %0, i16* %.value._value, align 2
+  ret void
+}
+
+; Function Attrs: noinline nounwind
+define hidden swiftcc { i8*, %Ts6UInt16V* } @"$s11nongenerics1AV5values6UInt16VvM"(i8* noalias dereferenceable(32), %T11nongenerics1AV* nocapture swiftself dereferenceable(4)) local_unnamed_addr #2 {
+entry:
+  %.value = getelementptr inbounds %T11nongenerics1AV, %T11nongenerics1AV* %1, i64 0, i32 2
+  %2 = insertvalue { i8*, %Ts6UInt16V* } { i8* bitcast (void (i8*, i1)* @"$s11nongenerics1AV5values6UInt16VvM.resume.0" to i8*), %Ts6UInt16V* undef }, %Ts6UInt16V* %.value, 1
+  ret { i8*, %Ts6UInt16V* } %2
+}
+
+define internal swiftcc void @"$s11nongenerics1AV5values6UInt16VvM.resume.0"(i8* noalias nonnull dereferenceable(32), i1) #3 {
+entryresume.0:
+  ret void
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i8 @"$s11nongenerics1AV3pad5valueACs5UInt8V_s6UInt16VtcfcfA_"() local_unnamed_addr #0 {
+entry:
+  ret i8 -1
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i32 @"$s11nongenerics1AV3pad5valueACs5UInt8V_s6UInt16VtcfC"(i8, i16) local_unnamed_addr #0 {
+entry:
+  %temp-coercion.coerced.sroa.41.0.insert.ext = zext i16 %1 to i32
+  %temp-coercion.coerced.sroa.41.0.insert.shift = shl nuw i32 %temp-coercion.coerced.sroa.41.0.insert.ext, 16
+  %temp-coercion.coerced.sroa.0.0.insert.ext = zext i8 %0 to i32
+  %temp-coercion.coerced.sroa.0.0.insert.insert = or i32 %temp-coercion.coerced.sroa.41.0.insert.shift, %temp-coercion.coerced.sroa.0.0.insert.ext
+  ret i32 %temp-coercion.coerced.sroa.0.0.insert.insert
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i32 @"$s11nongenerics1fAA1AVyF"() local_unnamed_addr #0 {
+entry:
+  ret i32 393471
+}
+
+; Function Attrs: norecurse nounwind
+define linkonce_odr hidden i8* @__swift_memcpy4_2(i8*, i8*, %swift.type*) #5 {
+entry:
+  %3 = bitcast i8* %1 to i32*
+  %4 = bitcast i8* %0 to i32*
+  %5 = load i32, i32* %3, align 2
+  store i32 %5, i32* %4, align 2
+  ret i8* %0
+}
+
+; Function Attrs: norecurse nounwind
+define linkonce_odr hidden void @__swift_noop_void_return(i8*, %swift.type*) #5 {
+entry:
+  ret void
+}
+
+; Function Attrs: norecurse nounwind readonly
+define internal i32 @"$s11nongenerics1AVwet"(%swift.opaque* noalias nocapture readonly %value, i32 %numEmptyCases, %swift.type* nocapture readnone %A) #6 {
+entry:
+  %0 = icmp eq i32 %numEmptyCases, 0
+  br i1 %0, label %5, label %1
+
+; <label>:1:                                      ; preds = %entry
+  %2 = bitcast %swift.opaque* %value to %T11nongenerics1AV*
+  %.0..sroa_idx = getelementptr inbounds %T11nongenerics1AV, %T11nongenerics1AV* %2, i64 1, i32 0, i32 0
+  %.0.copyload2 = load i8, i8* %.0..sroa_idx, align 1
+  %3 = icmp eq i8 %.0.copyload2, 0
+  br i1 %3, label %5, label %4
+
+; <label>:4:                                      ; preds = %1
+  %.0..sroa_cast = bitcast %swift.opaque* %value to i32*
+  %.0.copyload = load i32, i32* %.0..sroa_cast, align 1
+  %phitmp = add i32 %.0.copyload, 1
+  br label %5
+
+; <label>:5:                                      ; preds = %entry, %1, %4
+  %6 = phi i32 [ %phitmp, %4 ], [ 0, %1 ], [ 0, %entry ]
+  ret i32 %6
+}
+
+; Function Attrs: norecurse nounwind writeonly
+define internal void @"$s11nongenerics1AVwst"(%swift.opaque* noalias nocapture %value, i32 %whichCase, i32 %numEmptyCases, %swift.type* nocapture readnone %A) #1 {
+entry:
+  %0 = bitcast %swift.opaque* %value to %T11nongenerics1AV*
+  %1 = bitcast %swift.opaque* %value to i8*
+  %2 = getelementptr inbounds i8, i8* %1, i64 4
+  %3 = icmp ne i32 %numEmptyCases, 0
+  %4 = icmp eq i32 %whichCase, 0
+  br i1 %4, label %5, label %8
+
+; <label>:5:                                      ; preds = %entry
+  br i1 %3, label %6, label %7
+
+; <label>:6:                                      ; preds = %5
+  store i8 0, i8* %2, align 2
+  br label %7
+
+; <label>:7:                                      ; preds = %10, %8, %5, %6
+  ret void
+
+; <label>:8:                                      ; preds = %entry
+  %9 = add i32 %whichCase, -1
+  %.0..sroa_cast = bitcast %swift.opaque* %value to i32*
+  store i32 %9, i32* %.0..sroa_cast, align 2
+  br i1 %3, label %10, label %7
+
+; <label>:10:                                     ; preds = %8
+  %.0..sroa_idx = getelementptr inbounds %T11nongenerics1AV, %T11nongenerics1AV* %0, i64 1, i32 0, i32 0
+  store i8 1, i8* %.0..sroa_idx, align 2
+  br label %7
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc %swift.metadata_response @"$s11nongenerics1AVMa"(i64) #0 {
+entry:
+  ret %swift.metadata_response { %swift.type* bitcast (i64* getelementptr inbounds (<{ i8**, i64, <{ i32, i32, i32, i32, i32, i32, i32 }>*, i32, i32 }>, <{ i8**, i64, <{ i32, i32, i32, i32, i32, i32, i32 }>*, i32, i32 }>* @"$s11nongenerics1AVMf", i32 0, i32 1) to %swift.type*), i64 0 }
+}
+
+attributes #0 = { norecurse nounwind readnone "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #1 = { norecurse nounwind writeonly "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #2 = { noinline nounwind "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #3 = { "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #4 = { nounwind }
+attributes #5 = { norecurse nounwind }
+attributes #6 = { norecurse nounwind readonly "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+
+!llvm.module.flags = !{!0, !1, !2, !3, !4, !5, !6, !7, !8}
+!swift.module.flags = !{!9}
+!llvm.asan.globals = !{!10, !11, !12, !13, !14, !15, !16, !17, !18, !19}
+!llvm.linker.options = !{!20, !21}
+
+!0 = !{i32 2, !"SDK Version", [2 x i32] [i32 10, i32 15]}
+!1 = !{i32 1, !"Objective-C Version", i32 2}
+!2 = !{i32 1, !"Objective-C Image Info Version", i32 0}
+!3 = !{i32 1, !"Objective-C Image Info Section", !"__DATA,__objc_imageinfo,regular,no_dead_strip"}
+!4 = !{i32 4, !"Objective-C Garbage Collection", i32 83953408}
+!5 = !{i32 1, !"Objective-C Class Properties", i32 64}
+!6 = !{i32 1, !"wchar_size", i32 4}
+!7 = !{i32 7, !"PIC Level", i32 2}
+!8 = !{i32 1, !"Swift Version", i32 7}
+!9 = !{!"standard-library", i1 false}
+!10 = !{<{ i32, i32, i32 }>* @"$s11nongenericsMXM", null, null, i1 false, i1 true}
+!11 = !{<{ i32, i32, i32, i32, i32, i32, i32 }>* @"$s11nongenerics1AVMn", null, null, i1 false, i1 true}
+!12 = !{<{ i8, i32, i8 }>* @"symbolic _____ 11nongenerics1AV", null, null, i1 false, i1 true}
+!13 = !{<{ [8 x i8], i8 }>* @"symbolic s5UInt8V", null, null, i1 false, i1 true}
+!14 = !{[4 x i8]* @2, null, null, i1 false, i1 true}
+!15 = !{<{ [9 x i8], i8 }>* @"symbolic s6UInt16V", null, null, i1 false, i1 true}
+!16 = !{[6 x i8]* @3, null, null, i1 false, i1 true}
+!17 = !{{ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s11nongenerics1AVMF", null, null, i1 false, i1 true}
+!18 = !{[1 x %swift.type_metadata_record]* @"\01l_type_metadata_table", null, null, i1 false, i1 true}
+!19 = distinct !{null, null, null, i1 false, i1 true}
+!20 = !{!"-lswiftCore"}
+!21 = !{!"-lobjc"}

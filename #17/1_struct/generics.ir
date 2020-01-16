@@ -1,0 +1,585 @@
+; ModuleID = 'generics.ir'
+source_filename = "generics.ir"
+target datalayout = "e-m:o-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-apple-macosx10.15.0"
+
+%swift.vwtable = type { i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i64, i64, i32, i32 }
+%swift.type_metadata_record = type { i32 }
+%swift.type = type { i64 }
+%T8generics1AV = type <{ %Ts5UInt8V }>
+%Ts5UInt8V = type <{ i8 }>
+%swift.opaque = type opaque
+%swift.metadata_response = type { %swift.type*, i64 }
+%swift.type_descriptor = type opaque
+%swift.refcounted = type { %swift.type*, i64 }
+
+@"$s8generics1AVWV" = internal constant %swift.vwtable { i8* bitcast (%swift.opaque* ([24 x i8]*, [24 x i8]*, %swift.type*)* @"$s8generics1AVwCP" to i8*), i8* bitcast (void (%swift.opaque*, %swift.type*)* @"$s8generics1AVwxx" to i8*), i8* bitcast (%swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)* @"$s8generics1AVwcp" to i8*), i8* bitcast (%swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)* @"$s8generics1AVwca" to i8*), i8* bitcast (%swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)* @"$s8generics1AVwtk" to i8*), i8* bitcast (%swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)* @"$s8generics1AVwta" to i8*), i8* bitcast (i32 (%swift.opaque*, i32, %swift.type*)* @"$s8generics1AVwet" to i8*), i8* bitcast (void (%swift.opaque*, i32, i32, %swift.type*)* @"$s8generics1AVwst" to i8*), i64 0, i64 0, i32 4194304, i32 0 }, align 8
+@0 = private constant [9 x i8] c"generics\00"
+@"$s8genericsMXM" = linkonce_odr hidden constant <{ i32, i32, i32 }> <{ i32 0, i32 0, i32 trunc (i64 sub (i64 ptrtoint ([9 x i8]* @0 to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32 }>, <{ i32, i32, i32 }>* @"$s8genericsMXM", i32 0, i32 2) to i64)) to i32) }>, section "__TEXT,__const", align 4
+@1 = private constant [2 x i8] c"A\00"
+@"$s8generics1AVMI" = internal global [16 x i8*] zeroinitializer, align 8
+@"$s8generics1AVMn" = hidden constant <{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }> <{ i32 209, i32 trunc (i64 sub (i64 ptrtoint (<{ i32, i32, i32 }>* @"$s8genericsMXM" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>, <{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn", i32 0, i32 1) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ([2 x i8]* @1 to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>, <{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn", i32 0, i32 2) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint (%swift.metadata_response (i64, %swift.type*)* @"$s8generics1AVMa" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>, <{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn", i32 0, i32 3) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>, <{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn", i32 0, i32 4) to i64)) to i32), i32 2, i32 3, i32 trunc (i64 sub (i64 ptrtoint ([16 x i8*]* @"$s8generics1AVMI" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>, <{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn", i32 0, i32 7) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint (<{ i32, i32, i32, i32 }>* @"$s8generics1AVMP" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>, <{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn", i32 0, i32 8) to i64)) to i32), i16 1, i16 0, i16 1, i16 0, i8 -128, i8 0, i8 0, i8 0 }>, section "__TEXT,__const", align 4
+@"$sBi8_WV" = external global i8*, align 8
+@"$s8generics1AVMP" = internal constant <{ i32, i32, i32, i32 }> <{ i32 trunc (i64 sub (i64 ptrtoint (%swift.type* (%swift.type_descriptor*, i8**, i8*)* @"$s8generics1AVMi" to i64), i64 ptrtoint (<{ i32, i32, i32, i32 }>* @"$s8generics1AVMP" to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint (%swift.metadata_response (%swift.type*, i8*, i8**)* @"$s8generics1AVMr" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32 }>, <{ i32, i32, i32, i32 }>* @"$s8generics1AVMP", i32 0, i32 1) to i64)) to i32), i32 1073741824, i32 trunc (i64 sub (i64 ptrtoint (%swift.vwtable* @"$s8generics1AVWV" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i32, i32, i32, i32 }>, <{ i32, i32, i32, i32 }>* @"$s8generics1AVMP", i32 0, i32 3) to i64)) to i32) }>, align 8
+@"symbolic _____ 8generics1AV" = linkonce_odr hidden constant <{ i8, i32, i8 }> <{ i8 1, i32 trunc (i64 sub (i64 ptrtoint (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn" to i64), i64 ptrtoint (i32* getelementptr inbounds (<{ i8, i32, i8 }>, <{ i8, i32, i8 }>* @"symbolic _____ 8generics1AV", i32 0, i32 1) to i64)) to i32), i8 0 }>, section "__TEXT,__swift5_typeref, regular, no_dead_strip", align 2
+@"symbolic s5UInt8V" = linkonce_odr hidden constant <{ [8 x i8], i8 }> <{ [8 x i8] c"s5UInt8V", i8 0 }>, section "__TEXT,__swift5_typeref, regular, no_dead_strip", align 2
+@2 = private constant [4 x i8] c"pad\00", section "__TEXT,__swift5_reflstr, regular, no_dead_strip"
+@"symbolic x" = linkonce_odr hidden constant <{ [1 x i8], i8 }> <{ [1 x i8] c"x", i8 0 }>, section "__TEXT,__swift5_typeref, regular, no_dead_strip", align 2
+@3 = private constant [6 x i8] c"value\00", section "__TEXT,__swift5_reflstr, regular, no_dead_strip"
+@"$s8generics1AVMF" = internal constant { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 } { i32 trunc (i64 sub (i64 ptrtoint (<{ i8, i32, i8 }>* @"symbolic _____ 8generics1AV" to i64), i64 ptrtoint ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF" to i64)) to i32), i32 0, i16 0, i16 12, i32 2, i32 2, i32 trunc (i64 sub (i64 ptrtoint (<{ [8 x i8], i8 }>* @"symbolic s5UInt8V" to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF", i32 0, i32 6) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ([4 x i8]* @2 to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF", i32 0, i32 7) to i64)) to i32), i32 2, i32 trunc (i64 sub (i64 ptrtoint (<{ [1 x i8], i8 }>* @"symbolic x" to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF", i32 0, i32 9) to i64)) to i32), i32 trunc (i64 sub (i64 ptrtoint ([6 x i8]* @3 to i64), i64 ptrtoint (i32* getelementptr inbounds ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }, { i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF", i32 0, i32 10) to i64)) to i32) }, section "__TEXT,__swift5_fieldmd, regular, no_dead_strip", align 4
+@"\01l_type_metadata_table" = private constant [1 x %swift.type_metadata_record] [%swift.type_metadata_record { i32 trunc (i64 sub (i64 ptrtoint (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn" to i64), i64 ptrtoint ([1 x %swift.type_metadata_record]* @"\01l_type_metadata_table" to i64)) to i32) }], section "__TEXT, __swift5_types, regular, no_dead_strip", align 4
+@__swift_reflection_version = linkonce_odr hidden constant i16 3
+@llvm.used = appending global [3 x i8*] [i8* bitcast ([1 x %swift.type_metadata_record]* @"\01l_type_metadata_table" to i8*), i8* bitcast ({ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF" to i8*), i8* bitcast (i16* @__swift_reflection_version to i8*)], section "llvm.metadata"
+
+; Function Attrs: norecurse nounwind readnone
+define i32 @main(i32, i8** nocapture readnone) local_unnamed_addr #0 {
+entry:
+  ret i32 0
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i8 @"$s8generics1AV3pads5UInt8Vvpfi"(%swift.type* nocapture readnone %T) local_unnamed_addr #0 {
+entry:
+  ret i8 -1
+}
+
+; Function Attrs: norecurse nounwind readonly
+define hidden swiftcc i8 @"$s8generics1AV3pads5UInt8Vvg"(%swift.type* nocapture readnone %"A<T>", %T8generics1AV* noalias nocapture readonly swiftself) local_unnamed_addr #1 {
+entry:
+  %.pad._value = getelementptr inbounds %T8generics1AV, %T8generics1AV* %0, i64 0, i32 0, i32 0
+  %1 = load i8, i8* %.pad._value, align 1
+  ret i8 %1
+}
+
+; Function Attrs: norecurse nounwind writeonly
+define hidden swiftcc void @"$s8generics1AV3pads5UInt8Vvs"(i8, %swift.type* nocapture readnone %"A<T>", %T8generics1AV* nocapture swiftself) local_unnamed_addr #2 {
+entry:
+  %.pad._value = getelementptr inbounds %T8generics1AV, %T8generics1AV* %1, i64 0, i32 0, i32 0
+  store i8 %0, i8* %.pad._value, align 1
+  ret void
+}
+
+; Function Attrs: noinline nounwind
+define hidden swiftcc { i8*, %Ts5UInt8V* } @"$s8generics1AV3pads5UInt8VvM"(i8* noalias dereferenceable(32), %swift.type* nocapture readnone %"A<T>", %T8generics1AV* nocapture swiftself) local_unnamed_addr #3 {
+entry:
+  %.pad = getelementptr inbounds %T8generics1AV, %T8generics1AV* %1, i64 0, i32 0
+  %2 = insertvalue { i8*, %Ts5UInt8V* } { i8* bitcast (void (i8*, i1)* @"$s8generics1AV3pads5UInt8VvM.resume.0" to i8*), %Ts5UInt8V* undef }, %Ts5UInt8V* %.pad, 1
+  ret { i8*, %Ts5UInt8V* } %2
+}
+
+define internal swiftcc void @"$s8generics1AV3pads5UInt8VvM.resume.0"(i8* noalias nonnull dereferenceable(32), i1) #4 {
+entryresume.0:
+  ret void
+}
+
+declare swiftcc void @"$s8generics1AVyxGlIetMl_TC"(i8* noalias dereferenceable(32), i1) #4
+
+; Function Attrs: nounwind
+declare noalias i8* @malloc(i64) #5
+
+; Function Attrs: nounwind
+declare void @free(i8* nocapture) #5
+
+; Function Attrs: nounwind
+declare token @llvm.coro.id.retcon.once(i32, i32, i8*, i8*, i8*, i8*) #5
+
+; Function Attrs: nounwind
+declare i8* @llvm.coro.begin(token, i8* writeonly) #5
+
+; Function Attrs: nounwind
+define hidden swiftcc void @"$s8generics1AV5valuexvg"(%swift.opaque* noalias nocapture sret, %swift.type* nocapture readonly %"A<T>", %T8generics1AV* noalias nocapture swiftself) local_unnamed_addr #6 {
+entry:
+  %2 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %3 = bitcast %swift.type* %2 to i32*
+  %4 = getelementptr inbounds i32, i32* %3, i64 1
+  %5 = load i32, i32* %4, align 8
+  %6 = sext i32 %5 to i64
+  %7 = getelementptr inbounds %T8generics1AV, %T8generics1AV* %1, i64 %6, i32 0, i32 0
+  %.value = bitcast i8* %7 to %swift.opaque*
+  %8 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %9 = bitcast %swift.type* %8 to %swift.type**
+  %T = load %swift.type*, %swift.type** %9, align 8, !invariant.load !22
+  %10 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %11 = bitcast %swift.type* %10 to i8***
+  %T.valueWitnesses = load i8**, i8*** %11, align 8, !invariant.load !22, !dereferenceable !23
+  %12 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 2
+  %13 = bitcast i8** %12 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %14 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %13, align 8, !invariant.load !22
+  %15 = tail call %swift.opaque* %14(%swift.opaque* noalias %0, %swift.opaque* noalias %.value, %swift.type* %T) #5
+  ret void
+}
+
+; Function Attrs: nounwind
+define hidden swiftcc void @"$s8generics1AV5valuexvs"(%swift.opaque* noalias nocapture, %swift.type* nocapture readonly %"A<T>", %T8generics1AV* nocapture swiftself) local_unnamed_addr #6 {
+entry:
+  %2 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %3 = bitcast %swift.type* %2 to i32*
+  %4 = getelementptr inbounds i32, i32* %3, i64 1
+  %5 = load i32, i32* %4, align 8
+  %6 = sext i32 %5 to i64
+  %7 = getelementptr inbounds %T8generics1AV, %T8generics1AV* %1, i64 %6, i32 0, i32 0
+  %.value = bitcast i8* %7 to %swift.opaque*
+  %8 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %9 = bitcast %swift.type* %8 to %swift.type**
+  %T = load %swift.type*, %swift.type** %9, align 8, !invariant.load !22
+  %10 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %11 = bitcast %swift.type* %10 to i8***
+  %T.valueWitnesses = load i8**, i8*** %11, align 8, !invariant.load !22, !dereferenceable !23
+  %12 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 5
+  %13 = bitcast i8** %12 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %14 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %13, align 8, !invariant.load !22
+  %15 = tail call %swift.opaque* %14(%swift.opaque* noalias %.value, %swift.opaque* noalias %0, %swift.type* %T) #5
+  ret void
+}
+
+; Function Attrs: noinline nounwind
+define hidden swiftcc { i8*, %swift.opaque* } @"$s8generics1AV5valuexvM"(i8* noalias dereferenceable(32), %swift.type* nocapture readonly %"A<T>", %T8generics1AV* nocapture swiftself) local_unnamed_addr #3 {
+entry:
+  %2 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %3 = bitcast %swift.type* %2 to i32*
+  %4 = getelementptr inbounds i32, i32* %3, i64 1
+  %5 = load i32, i32* %4, align 8
+  %6 = sext i32 %5 to i64
+  %7 = getelementptr inbounds %T8generics1AV, %T8generics1AV* %1, i64 %6, i32 0, i32 0
+  %8 = bitcast i8* %7 to %swift.opaque*
+  %9 = insertvalue { i8*, %swift.opaque* } { i8* bitcast (void (i8*, i1)* @"$s8generics1AV5valuexvM.resume.0" to i8*), %swift.opaque* undef }, %swift.opaque* %8, 1
+  ret { i8*, %swift.opaque* } %9
+}
+
+define internal swiftcc void @"$s8generics1AV5valuexvM.resume.0"(i8* noalias nonnull dereferenceable(32), i1) #4 {
+entryresume.0:
+  ret void
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i8 @"$s8generics1AV3pad5valueACyxGs5UInt8V_xtcfcfA_"(%swift.type* nocapture readnone %T) local_unnamed_addr #0 {
+entry:
+  ret i8 -1
+}
+
+; Function Attrs: nounwind
+define hidden swiftcc void @"$s8generics1AV3pad5valueACyxGs5UInt8V_xtcfC"(%T8generics1AV* noalias nocapture sret, i8, %swift.opaque* noalias nocapture, %swift.type* %T) local_unnamed_addr #6 {
+entry:
+  %generic.arguments.i = alloca { %swift.type* }, align 8
+  %.pad._value = getelementptr inbounds %T8generics1AV, %T8generics1AV* %0, i64 0, i32 0, i32 0
+  store i8 %1, i8* %.pad._value, align 1
+  %3 = bitcast { %swift.type* }* %generic.arguments.i to i8*
+  call void @llvm.lifetime.start.p0i8(i64 0, i8* nonnull %3) #5
+  %4 = getelementptr inbounds { %swift.type* }, { %swift.type* }* %generic.arguments.i, i64 0, i32 0
+  store %swift.type* %T, %swift.type** %4, align 8
+  %5 = call swiftcc %swift.metadata_response @swift_getGenericMetadata(i64 0, i8* nonnull %3, %swift.type_descriptor* bitcast (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn" to %swift.type_descriptor*)) #10
+  call void @llvm.lifetime.end.p0i8(i64 0, i8* nonnull %3) #5
+  %6 = extractvalue %swift.metadata_response %5, 0
+  %7 = getelementptr inbounds %swift.type, %swift.type* %6, i64 3
+  %8 = bitcast %swift.type* %7 to i32*
+  %9 = getelementptr inbounds i32, i32* %8, i64 1
+  %10 = load i32, i32* %9, align 8
+  %11 = sext i32 %10 to i64
+  %12 = getelementptr inbounds %T8generics1AV, %T8generics1AV* %0, i64 %11, i32 0, i32 0
+  %.value = bitcast i8* %12 to %swift.opaque*
+  %13 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %14 = bitcast %swift.type* %13 to i8***
+  %T.valueWitnesses = load i8**, i8*** %14, align 8, !invariant.load !22, !dereferenceable !23
+  %15 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 4
+  %16 = bitcast i8** %15 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %17 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %16, align 8, !invariant.load !22
+  %18 = call %swift.opaque* %17(%swift.opaque* noalias %.value, %swift.opaque* noalias %2, %swift.type* %T) #5
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+define hidden swiftcc %swift.metadata_response @"$s8generics1AVMa"(i64, %swift.type*) #7 {
+entry:
+  %generic.arguments = alloca { %swift.type* }, align 8
+  %2 = bitcast { %swift.type* }* %generic.arguments to i8*
+  call void @llvm.lifetime.start.p0i8(i64 0, i8* nonnull %2)
+  %3 = getelementptr inbounds { %swift.type* }, { %swift.type* }* %generic.arguments, i64 0, i32 0
+  store %swift.type* %1, %swift.type** %3, align 8
+  %4 = call swiftcc %swift.metadata_response @swift_getGenericMetadata(i64 %0, i8* nonnull %2, %swift.type_descriptor* bitcast (<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn" to %swift.type_descriptor*)) #10
+  call void @llvm.lifetime.end.p0i8(i64 0, i8* nonnull %2)
+  ret %swift.metadata_response %4
+}
+
+; Function Attrs: norecurse nounwind readnone
+define hidden swiftcc i32 @"$s8generics1fAA1AVys6UInt16VGyF"() local_unnamed_addr #0 {
+entry:
+  ret i32 393471
+}
+
+; Function Attrs: argmemonly nounwind
+declare void @llvm.lifetime.start.p0i8(i64, i8* nocapture) #8
+
+; Function Attrs: argmemonly nounwind
+declare void @llvm.lifetime.end.p0i8(i64, i8* nocapture) #8
+
+; Function Attrs: nounwind
+define internal %swift.type* @"$s8generics1AVMi"(%swift.type_descriptor*, i8**, i8*) #6 {
+entry:
+  %3 = tail call %swift.type* @swift_allocateGenericValueMetadata(%swift.type_descriptor* %0, i8** %1, i8* %2, i64 16)
+  ret %swift.type* %3
+}
+
+; Function Attrs: nounwind
+define internal swiftcc %swift.metadata_response @"$s8generics1AVMr"(%swift.type* %"A<T>", i8* nocapture readnone, i8** nocapture readnone) #6 {
+entry:
+  %classFields = alloca [2 x i8**], align 8
+  %2 = bitcast [2 x i8**]* %classFields to i8*
+  call void @llvm.lifetime.start.p0i8(i64 16, i8* nonnull %2)
+  %3 = getelementptr inbounds [2 x i8**], [2 x i8**]* %classFields, i64 0, i64 0
+  store i8** getelementptr (i8*, i8** @"$sBi8_WV", i64 8), i8*** %3, align 8
+  %4 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %5 = bitcast %swift.type* %4 to %swift.type**
+  %T = load %swift.type*, %swift.type** %5, align 8, !invariant.load !22
+  %6 = tail call swiftcc %swift.metadata_response @swift_checkMetadataState(i64 319, %swift.type* %T)
+  %7 = extractvalue %swift.metadata_response %6, 0
+  %8 = extractvalue %swift.metadata_response %6, 1
+  %9 = icmp ult i64 %8, 64
+  br i1 %9, label %dependency-satisfied, label %metadata-dependencies.cont
+
+dependency-satisfied:                             ; preds = %entry
+  %10 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %11 = bitcast %swift.type* %10 to i32*
+  %12 = getelementptr inbounds %swift.type, %swift.type* %7, i64 -1
+  %13 = bitcast %swift.type* %12 to i8***
+  %.valueWitnesses = load i8**, i8*** %13, align 8, !invariant.load !22, !dereferenceable !23
+  %14 = getelementptr inbounds i8*, i8** %.valueWitnesses, i64 8
+  %15 = getelementptr inbounds [2 x i8**], [2 x i8**]* %classFields, i64 0, i64 1
+  store i8** %14, i8*** %15, align 8
+  call void @swift_initStructMetadata(%swift.type* nonnull %"A<T>", i64 0, i64 2, i8*** nonnull %3, i32* nonnull %11)
+  call void @llvm.lifetime.end.p0i8(i64 16, i8* nonnull %2)
+  br label %metadata-dependencies.cont
+
+metadata-dependencies.cont:                       ; preds = %dependency-satisfied, %entry
+  %16 = phi %swift.type* [ %7, %entry ], [ null, %dependency-satisfied ]
+  %17 = phi i64 [ 63, %entry ], [ 0, %dependency-satisfied ]
+  %18 = insertvalue %swift.metadata_response undef, %swift.type* %16, 0
+  %19 = insertvalue %swift.metadata_response %18, i64 %17, 1
+  ret %swift.metadata_response %19
+}
+
+; Function Attrs: nounwind
+define internal %swift.opaque* @"$s8generics1AVwCP"([24 x i8]* noalias %dest, [24 x i8]* noalias %src, %swift.type* nocapture readonly %"A<T>") #6 {
+entry:
+  %0 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 -1
+  %1 = bitcast %swift.type* %0 to %swift.vwtable**
+  %"A<T>.valueWitnesses2" = load %swift.vwtable*, %swift.vwtable** %1, align 8, !invariant.load !22, !dereferenceable !23
+  %2 = getelementptr inbounds %swift.vwtable, %swift.vwtable* %"A<T>.valueWitnesses2", i64 0, i32 10
+  %flags = load i32, i32* %2, align 8, !invariant.load !22
+  %3 = and i32 %flags, 131072
+  %flags.isInline = icmp eq i32 %3, 0
+  br i1 %flags.isInline, label %dynamic-packing.direct, label %dynamic-packing.indirect
+
+dynamic-packing.indirect:                         ; preds = %entry
+  %4 = bitcast [24 x i8]* %dest to %swift.refcounted**
+  %5 = bitcast [24 x i8]* %src to %swift.refcounted**
+  %6 = load %swift.refcounted*, %swift.refcounted** %5, align 8
+  store %swift.refcounted* %6, %swift.refcounted** %4, align 8
+  %7 = and i32 %flags, 255
+  %flags.alignmentMask = zext i32 %7 to i64
+  %8 = add nuw nsw i64 %flags.alignmentMask, 16
+  %9 = xor i64 %flags.alignmentMask, -1
+  %10 = and i64 %8, %9
+  %11 = bitcast %swift.refcounted* %6 to i8*
+  %12 = getelementptr inbounds i8, i8* %11, i64 %10
+  %13 = bitcast i8* %12 to %swift.opaque*
+  %14 = bitcast %swift.opaque* %13 to %T8generics1AV*
+  %15 = tail call %swift.refcounted* @swift_retain(%swift.refcounted* returned %6) #5
+  br label %dynamic-packing.cont
+
+dynamic-packing.direct:                           ; preds = %entry
+  %object = bitcast [24 x i8]* %dest to %T8generics1AV*
+  %16 = getelementptr inbounds [24 x i8], [24 x i8]* %dest, i64 0, i64 0
+  %17 = getelementptr inbounds [24 x i8], [24 x i8]* %src, i64 0, i64 0
+  %18 = load i8, i8* %17, align 8
+  store i8 %18, i8* %16, align 8
+  %19 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %20 = bitcast %swift.type* %19 to i32*
+  %21 = getelementptr inbounds i32, i32* %20, i64 1
+  %22 = load i32, i32* %21, align 8
+  %23 = sext i32 %22 to i64
+  %24 = getelementptr inbounds [24 x i8], [24 x i8]* %dest, i64 0, i64 %23
+  %object.value = bitcast i8* %24 to %swift.opaque*
+  %25 = getelementptr inbounds [24 x i8], [24 x i8]* %src, i64 0, i64 %23
+  %object1.value = bitcast i8* %25 to %swift.opaque*
+  %26 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %27 = bitcast %swift.type* %26 to %swift.type**
+  %T = load %swift.type*, %swift.type** %27, align 8, !invariant.load !22
+  %28 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %29 = bitcast %swift.type* %28 to i8***
+  %T.valueWitnesses = load i8**, i8*** %29, align 8, !invariant.load !22, !dereferenceable !23
+  %30 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 2
+  %31 = bitcast i8** %30 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %32 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %31, align 8, !invariant.load !22
+  %33 = tail call %swift.opaque* %32(%swift.opaque* noalias %object.value, %swift.opaque* noalias %object1.value, %swift.type* %T) #5
+  br label %dynamic-packing.cont
+
+dynamic-packing.cont:                             ; preds = %dynamic-packing.direct, %dynamic-packing.indirect
+  %34 = phi %T8generics1AV* [ %14, %dynamic-packing.indirect ], [ %object, %dynamic-packing.direct ]
+  %35 = bitcast %T8generics1AV* %34 to %swift.opaque*
+  ret %swift.opaque* %35
+}
+
+; Function Attrs: nounwind
+declare %swift.refcounted* @swift_retain(%swift.refcounted* returned) local_unnamed_addr #5
+
+; Function Attrs: nounwind
+define internal void @"$s8generics1AVwxx"(%swift.opaque* noalias %object, %swift.type* nocapture readonly %"A<T>") #6 {
+entry:
+  %0 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %1 = bitcast %swift.type* %0 to i32*
+  %2 = getelementptr inbounds i32, i32* %1, i64 1
+  %3 = load i32, i32* %2, align 8
+  %4 = bitcast %swift.opaque* %object to i8*
+  %5 = sext i32 %3 to i64
+  %6 = getelementptr inbounds i8, i8* %4, i64 %5
+  %.value = bitcast i8* %6 to %swift.opaque*
+  %7 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %8 = bitcast %swift.type* %7 to %swift.type**
+  %T = load %swift.type*, %swift.type** %8, align 8, !invariant.load !22
+  %9 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %10 = bitcast %swift.type* %9 to i8***
+  %T.valueWitnesses = load i8**, i8*** %10, align 8, !invariant.load !22, !dereferenceable !23
+  %11 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 1
+  %12 = bitcast i8** %11 to void (%swift.opaque*, %swift.type*)**
+  %13 = load void (%swift.opaque*, %swift.type*)*, void (%swift.opaque*, %swift.type*)** %12, align 8, !invariant.load !22
+  tail call void %13(%swift.opaque* noalias %.value, %swift.type* %T) #5
+  ret void
+}
+
+; Function Attrs: nounwind
+define internal %swift.opaque* @"$s8generics1AVwcp"(%swift.opaque* noalias returned %dest, %swift.opaque* noalias %src, %swift.type* nocapture readonly %"A<T>") #6 {
+entry:
+  %0 = bitcast %swift.opaque* %dest to i8*
+  %1 = bitcast %swift.opaque* %src to i8*
+  %2 = load i8, i8* %1, align 1
+  store i8 %2, i8* %0, align 1
+  %3 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %4 = bitcast %swift.type* %3 to i32*
+  %5 = getelementptr inbounds i32, i32* %4, i64 1
+  %6 = load i32, i32* %5, align 8
+  %7 = sext i32 %6 to i64
+  %8 = getelementptr inbounds i8, i8* %0, i64 %7
+  %.value = bitcast i8* %8 to %swift.opaque*
+  %9 = getelementptr inbounds i8, i8* %1, i64 %7
+  %.value2 = bitcast i8* %9 to %swift.opaque*
+  %10 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %11 = bitcast %swift.type* %10 to %swift.type**
+  %T = load %swift.type*, %swift.type** %11, align 8, !invariant.load !22
+  %12 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %13 = bitcast %swift.type* %12 to i8***
+  %T.valueWitnesses = load i8**, i8*** %13, align 8, !invariant.load !22, !dereferenceable !23
+  %14 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 2
+  %15 = bitcast i8** %14 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %16 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %15, align 8, !invariant.load !22
+  %17 = tail call %swift.opaque* %16(%swift.opaque* noalias %.value, %swift.opaque* noalias %.value2, %swift.type* %T) #5
+  ret %swift.opaque* %dest
+}
+
+; Function Attrs: nounwind
+define internal %swift.opaque* @"$s8generics1AVwca"(%swift.opaque* returned %dest, %swift.opaque* %src, %swift.type* nocapture readonly %"A<T>") #6 {
+entry:
+  %.pad._value = bitcast %swift.opaque* %dest to i8*
+  %.pad1._value = bitcast %swift.opaque* %src to i8*
+  %0 = load i8, i8* %.pad1._value, align 1
+  store i8 %0, i8* %.pad._value, align 1
+  %1 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %2 = bitcast %swift.type* %1 to i32*
+  %3 = getelementptr inbounds i32, i32* %2, i64 1
+  %4 = load i32, i32* %3, align 8
+  %5 = sext i32 %4 to i64
+  %6 = getelementptr inbounds i8, i8* %.pad._value, i64 %5
+  %.value = bitcast i8* %6 to %swift.opaque*
+  %7 = getelementptr inbounds i8, i8* %.pad1._value, i64 %5
+  %.value2 = bitcast i8* %7 to %swift.opaque*
+  %8 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %9 = bitcast %swift.type* %8 to %swift.type**
+  %T = load %swift.type*, %swift.type** %9, align 8, !invariant.load !22
+  %10 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %11 = bitcast %swift.type* %10 to i8***
+  %T.valueWitnesses = load i8**, i8*** %11, align 8, !invariant.load !22, !dereferenceable !23
+  %12 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 3
+  %13 = bitcast i8** %12 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %14 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %13, align 8, !invariant.load !22
+  %15 = tail call %swift.opaque* %14(%swift.opaque* %.value, %swift.opaque* %.value2, %swift.type* %T) #5
+  ret %swift.opaque* %dest
+}
+
+; Function Attrs: nounwind
+define internal %swift.opaque* @"$s8generics1AVwtk"(%swift.opaque* noalias returned %dest, %swift.opaque* noalias %src, %swift.type* nocapture readonly %"A<T>") #6 {
+entry:
+  %0 = bitcast %swift.opaque* %dest to i8*
+  %1 = bitcast %swift.opaque* %src to i8*
+  %2 = load i8, i8* %1, align 1
+  store i8 %2, i8* %0, align 1
+  %3 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %4 = bitcast %swift.type* %3 to i32*
+  %5 = getelementptr inbounds i32, i32* %4, i64 1
+  %6 = load i32, i32* %5, align 8
+  %7 = sext i32 %6 to i64
+  %8 = getelementptr inbounds i8, i8* %0, i64 %7
+  %.value = bitcast i8* %8 to %swift.opaque*
+  %9 = getelementptr inbounds i8, i8* %1, i64 %7
+  %.value2 = bitcast i8* %9 to %swift.opaque*
+  %10 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %11 = bitcast %swift.type* %10 to %swift.type**
+  %T = load %swift.type*, %swift.type** %11, align 8, !invariant.load !22
+  %12 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %13 = bitcast %swift.type* %12 to i8***
+  %T.valueWitnesses = load i8**, i8*** %13, align 8, !invariant.load !22, !dereferenceable !23
+  %14 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 4
+  %15 = bitcast i8** %14 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %16 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %15, align 8, !invariant.load !22
+  %17 = tail call %swift.opaque* %16(%swift.opaque* noalias %.value, %swift.opaque* noalias %.value2, %swift.type* %T) #5
+  ret %swift.opaque* %dest
+}
+
+; Function Attrs: nounwind
+define internal %swift.opaque* @"$s8generics1AVwta"(%swift.opaque* noalias returned %dest, %swift.opaque* noalias %src, %swift.type* nocapture readonly %"A<T>") #6 {
+entry:
+  %.pad._value = bitcast %swift.opaque* %dest to i8*
+  %.pad1._value = bitcast %swift.opaque* %src to i8*
+  %0 = load i8, i8* %.pad1._value, align 1
+  store i8 %0, i8* %.pad._value, align 1
+  %1 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %2 = bitcast %swift.type* %1 to i32*
+  %3 = getelementptr inbounds i32, i32* %2, i64 1
+  %4 = load i32, i32* %3, align 8
+  %5 = sext i32 %4 to i64
+  %6 = getelementptr inbounds i8, i8* %.pad._value, i64 %5
+  %.value = bitcast i8* %6 to %swift.opaque*
+  %7 = getelementptr inbounds i8, i8* %.pad1._value, i64 %5
+  %.value2 = bitcast i8* %7 to %swift.opaque*
+  %8 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %9 = bitcast %swift.type* %8 to %swift.type**
+  %T = load %swift.type*, %swift.type** %9, align 8, !invariant.load !22
+  %10 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %11 = bitcast %swift.type* %10 to i8***
+  %T.valueWitnesses = load i8**, i8*** %11, align 8, !invariant.load !22, !dereferenceable !23
+  %12 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 5
+  %13 = bitcast i8** %12 to %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)**
+  %14 = load %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)*, %swift.opaque* (%swift.opaque*, %swift.opaque*, %swift.type*)** %13, align 8, !invariant.load !22
+  %15 = tail call %swift.opaque* %14(%swift.opaque* noalias %.value, %swift.opaque* noalias %.value2, %swift.type* %T) #5
+  ret %swift.opaque* %dest
+}
+
+; Function Attrs: nounwind readonly
+define internal i32 @"$s8generics1AVwet"(%swift.opaque* noalias readonly %value, i32 %numEmptyCases, %swift.type* readonly %"A<T>") #9 {
+entry:
+  %0 = tail call swiftcc i32 @swift_getEnumTagSinglePayloadGeneric(%swift.opaque* %value, i32 %numEmptyCases, %swift.type* %"A<T>", i32 (%swift.opaque*, i32, %swift.type*)* nonnull @__swift_get_extra_inhabitant_index)
+  ret i32 %0
+}
+
+; Function Attrs: nounwind readonly
+define private swiftcc i32 @__swift_get_extra_inhabitant_index(%swift.opaque* readonly, i32, %swift.type* nocapture readonly %"A<T>") #10 {
+entry:
+  %2 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %3 = bitcast %swift.type* %2 to i32*
+  %4 = getelementptr inbounds i32, i32* %3, i64 1
+  %5 = load i32, i32* %4, align 8
+  %6 = bitcast %swift.opaque* %0 to i8*
+  %7 = sext i32 %5 to i64
+  %8 = getelementptr inbounds i8, i8* %6, i64 %7
+  %.value = bitcast i8* %8 to %swift.opaque*
+  %9 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %10 = bitcast %swift.type* %9 to %swift.type**
+  %T = load %swift.type*, %swift.type** %10, align 8, !invariant.load !22
+  %11 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %12 = bitcast %swift.type* %11 to i8***
+  %T.valueWitnesses = load i8**, i8*** %12, align 8, !invariant.load !22, !dereferenceable !23
+  %13 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 6
+  %14 = bitcast i8** %13 to i32 (%swift.opaque*, i32, %swift.type*)**
+  %15 = load i32 (%swift.opaque*, i32, %swift.type*)*, i32 (%swift.opaque*, i32, %swift.type*)** %14, align 8, !invariant.load !22
+  %16 = tail call i32 %15(%swift.opaque* noalias %.value, i32 %1, %swift.type* %T) #10
+  ret i32 %16
+}
+
+; Function Attrs: nounwind readonly
+declare swiftcc i32 @swift_getEnumTagSinglePayloadGeneric(%swift.opaque*, i32, %swift.type*, i32 (%swift.opaque*, i32, %swift.type*)*) local_unnamed_addr #10
+
+; Function Attrs: nounwind
+define internal void @"$s8generics1AVwst"(%swift.opaque* noalias %value, i32 %whichCase, i32 %numEmptyCases, %swift.type* %"A<T>") #6 {
+entry:
+  tail call swiftcc void @swift_storeEnumTagSinglePayloadGeneric(%swift.opaque* %value, i32 %whichCase, i32 %numEmptyCases, %swift.type* %"A<T>", void (%swift.opaque*, i32, i32, %swift.type*)* nonnull @__swift_get_extra_inhabitant_index.1)
+  ret void
+}
+
+; Function Attrs: nounwind
+define private swiftcc void @__swift_get_extra_inhabitant_index.1(%swift.opaque*, i32, i32, %swift.type* nocapture readonly %"A<T>") #5 {
+entry:
+  %3 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 3
+  %4 = bitcast %swift.type* %3 to i32*
+  %5 = getelementptr inbounds i32, i32* %4, i64 1
+  %6 = load i32, i32* %5, align 8
+  %7 = bitcast %swift.opaque* %0 to i8*
+  %8 = sext i32 %6 to i64
+  %9 = getelementptr inbounds i8, i8* %7, i64 %8
+  %.value = bitcast i8* %9 to %swift.opaque*
+  %10 = getelementptr inbounds %swift.type, %swift.type* %"A<T>", i64 2
+  %11 = bitcast %swift.type* %10 to %swift.type**
+  %T = load %swift.type*, %swift.type** %11, align 8, !invariant.load !22
+  %12 = getelementptr inbounds %swift.type, %swift.type* %T, i64 -1
+  %13 = bitcast %swift.type* %12 to i8***
+  %T.valueWitnesses = load i8**, i8*** %13, align 8, !invariant.load !22, !dereferenceable !23
+  %14 = getelementptr inbounds i8*, i8** %T.valueWitnesses, i64 7
+  %15 = bitcast i8** %14 to void (%swift.opaque*, i32, i32, %swift.type*)**
+  %16 = load void (%swift.opaque*, i32, i32, %swift.type*)*, void (%swift.opaque*, i32, i32, %swift.type*)** %15, align 8, !invariant.load !22
+  tail call void %16(%swift.opaque* noalias %.value, i32 %1, i32 %1, %swift.type* %T) #5
+  ret void
+}
+
+; Function Attrs: nounwind
+declare swiftcc void @swift_storeEnumTagSinglePayloadGeneric(%swift.opaque*, i32, i32, %swift.type*, void (%swift.opaque*, i32, i32, %swift.type*)*) local_unnamed_addr #5
+
+; Function Attrs: nounwind
+declare %swift.type* @swift_allocateGenericValueMetadata(%swift.type_descriptor*, i8**, i8*, i64) local_unnamed_addr #5
+
+; Function Attrs: nounwind readonly
+declare swiftcc %swift.metadata_response @swift_checkMetadataState(i64, %swift.type*) local_unnamed_addr #10
+
+; Function Attrs: nounwind
+declare void @swift_initStructMetadata(%swift.type*, i64, i64, i8***, i32*) local_unnamed_addr #5
+
+; Function Attrs: nounwind readonly
+declare swiftcc %swift.metadata_response @swift_getGenericMetadata(i64, i8*, %swift.type_descriptor*) local_unnamed_addr #10
+
+attributes #0 = { norecurse nounwind readnone "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #1 = { norecurse nounwind readonly "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #2 = { norecurse nounwind writeonly "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #3 = { noinline nounwind "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #4 = { "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #5 = { nounwind }
+attributes #6 = { nounwind "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #7 = { nounwind readnone "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #8 = { argmemonly nounwind }
+attributes #9 = { nounwind readonly "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" }
+attributes #10 = { nounwind readonly }
+
+!llvm.module.flags = !{!0, !1, !2, !3, !4, !5, !6, !7, !8}
+!swift.module.flags = !{!9}
+!llvm.asan.globals = !{!10, !11, !12, !13, !14, !15, !16, !17, !18, !19}
+!llvm.linker.options = !{!20, !21}
+
+!0 = !{i32 2, !"SDK Version", [2 x i32] [i32 10, i32 15]}
+!1 = !{i32 1, !"Objective-C Version", i32 2}
+!2 = !{i32 1, !"Objective-C Image Info Version", i32 0}
+!3 = !{i32 1, !"Objective-C Image Info Section", !"__DATA,__objc_imageinfo,regular,no_dead_strip"}
+!4 = !{i32 4, !"Objective-C Garbage Collection", i32 83953408}
+!5 = !{i32 1, !"Objective-C Class Properties", i32 64}
+!6 = !{i32 1, !"wchar_size", i32 4}
+!7 = !{i32 7, !"PIC Level", i32 2}
+!8 = !{i32 1, !"Swift Version", i32 7}
+!9 = !{!"standard-library", i1 false}
+!10 = !{<{ i32, i32, i32 }>* @"$s8genericsMXM", null, null, i1 false, i1 true}
+!11 = !{<{ i32, i32, i32, i32, i32, i32, i32, i32, i32, i16, i16, i16, i16, i8, i8, i8, i8 }>* @"$s8generics1AVMn", null, null, i1 false, i1 true}
+!12 = !{<{ i8, i32, i8 }>* @"symbolic _____ 8generics1AV", null, null, i1 false, i1 true}
+!13 = !{<{ [8 x i8], i8 }>* @"symbolic s5UInt8V", null, null, i1 false, i1 true}
+!14 = !{[4 x i8]* @2, null, null, i1 false, i1 true}
+!15 = !{<{ [1 x i8], i8 }>* @"symbolic x", null, null, i1 false, i1 true}
+!16 = !{[6 x i8]* @3, null, null, i1 false, i1 true}
+!17 = !{{ i32, i32, i16, i16, i32, i32, i32, i32, i32, i32, i32 }* @"$s8generics1AVMF", null, null, i1 false, i1 true}
+!18 = !{[1 x %swift.type_metadata_record]* @"\01l_type_metadata_table", null, null, i1 false, i1 true}
+!19 = distinct !{null, null, null, i1 false, i1 true}
+!20 = !{!"-lswiftCore"}
+!21 = !{!"-lobjc"}
+!22 = !{}
+!23 = !{i64 96}

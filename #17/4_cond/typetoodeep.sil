@@ -1,0 +1,220 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+struct A<T> {
+  @_hasStorage var v: T { get set }
+  init(_ v: T)
+}
+
+func use<T>(_ v: T) -> T
+
+@_hasStorage @_hasInitialValue let a49: A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> { get }
+
+@_hasStorage @_hasInitialValue let a50: A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> { get }
+
+// a49
+sil_global hidden [let] @$s11typetoodeep3a49AA1AVyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADys5Int16VGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGvp : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// a50
+sil_global hidden [let] @$s11typetoodeep3a50AA1AVyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADys5Int16VGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGvp : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  alloc_global @$s11typetoodeep3a49AA1AVyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADys5Int16VGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGvp // id: %2
+  %3 = global_addr @$s11typetoodeep3a49AA1AVyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADys5Int16VGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGvp : $*A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // user: %104
+  %4 = integer_literal $Builtin.Int16, 9          // user: %5
+  %5 = struct $Int16 (%4 : $Builtin.Int16)        // users: %7, %6
+  debug_value %5 : $Int16, let, name "v", argno 1 // id: %6
+  %7 = struct $A<Int16> (%5 : $Int16)             // users: %9, %8
+  debug_value %7 : $A<Int16>, let, name "v", argno 1 // id: %8
+  %9 = struct $A<A<Int16>> (%7 : $A<Int16>)       // users: %11, %10
+  debug_value %9 : $A<A<Int16>>, let, name "v", argno 1 // id: %10
+  %11 = struct $A<A<A<Int16>>> (%9 : $A<A<Int16>>) // users: %13, %12
+  debug_value %11 : $A<A<A<Int16>>>, let, name "v", argno 1 // id: %12
+  %13 = struct $A<A<A<A<Int16>>>> (%11 : $A<A<A<Int16>>>) // users: %15, %14
+  debug_value %13 : $A<A<A<A<Int16>>>>, let, name "v", argno 1 // id: %14
+  %15 = struct $A<A<A<A<A<Int16>>>>> (%13 : $A<A<A<A<Int16>>>>) // users: %17, %16
+  debug_value %15 : $A<A<A<A<A<Int16>>>>>, let, name "v", argno 1 // id: %16
+  %17 = struct $A<A<A<A<A<A<Int16>>>>>> (%15 : $A<A<A<A<A<Int16>>>>>) // users: %19, %18
+  debug_value %17 : $A<A<A<A<A<A<Int16>>>>>>, let, name "v", argno 1 // id: %18
+  %19 = struct $A<A<A<A<A<A<A<Int16>>>>>>> (%17 : $A<A<A<A<A<A<Int16>>>>>>) // users: %21, %20
+  debug_value %19 : $A<A<A<A<A<A<A<Int16>>>>>>>, let, name "v", argno 1 // id: %20
+  %21 = struct $A<A<A<A<A<A<A<A<Int16>>>>>>>> (%19 : $A<A<A<A<A<A<A<Int16>>>>>>>) // users: %23, %22
+  debug_value %21 : $A<A<A<A<A<A<A<A<Int16>>>>>>>>, let, name "v", argno 1 // id: %22
+  %23 = struct $A<A<A<A<A<A<A<A<A<Int16>>>>>>>>> (%21 : $A<A<A<A<A<A<A<A<Int16>>>>>>>>) // users: %25, %24
+  debug_value %23 : $A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>, let, name "v", argno 1 // id: %24
+  %25 = struct $A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>> (%23 : $A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>) // users: %27, %26
+  debug_value %25 : $A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>, let, name "v", argno 1 // id: %26
+  %27 = struct $A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>> (%25 : $A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>) // users: %29, %28
+  debug_value %27 : $A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>, let, name "v", argno 1 // id: %28
+  %29 = struct $A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>> (%27 : $A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>) // users: %31, %30
+  debug_value %29 : $A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>, let, name "v", argno 1 // id: %30
+  %31 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>> (%29 : $A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>) // users: %33, %32
+  debug_value %31 : $A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>, let, name "v", argno 1 // id: %32
+  %33 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>> (%31 : $A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>) // users: %35, %34
+  debug_value %33 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %34
+  %35 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>> (%33 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>) // users: %37, %36
+  debug_value %35 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %36
+  %37 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>> (%35 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>) // users: %39, %38
+  debug_value %37 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %38
+  %39 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>> (%37 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>) // users: %41, %40
+  debug_value %39 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %40
+  %41 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>> (%39 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>) // users: %43, %42
+  debug_value %41 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %42
+  %43 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>> (%41 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>) // users: %45, %44
+  debug_value %43 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %44
+  %45 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>> (%43 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>) // users: %47, %46
+  debug_value %45 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %46
+  %47 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>> (%45 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>) // users: %49, %48
+  debug_value %47 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %48
+  %49 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>> (%47 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>) // users: %51, %50
+  debug_value %49 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %50
+  %51 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>> (%49 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>) // users: %53, %52
+  debug_value %51 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %52
+  %53 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>> (%51 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>) // users: %55, %54
+  debug_value %53 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %54
+  %55 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>> (%53 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>) // users: %57, %56
+  debug_value %55 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %56
+  %57 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>> (%55 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %59, %58
+  debug_value %57 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %58
+  %59 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>> (%57 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %61, %60
+  debug_value %59 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %60
+  %61 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%59 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %63, %62
+  debug_value %61 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %62
+  %63 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%61 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %65, %64
+  debug_value %63 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %64
+  %65 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%63 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %67, %66
+  debug_value %65 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %66
+  %67 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%65 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %69, %68
+  debug_value %67 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %68
+  %69 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%67 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %71, %70
+  debug_value %69 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %70
+  %71 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%69 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %73, %72
+  debug_value %71 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %72
+  %73 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%71 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %75, %74
+  debug_value %73 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %74
+  %75 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%73 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %77, %76
+  debug_value %75 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %76
+  %77 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%75 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %79, %78
+  debug_value %77 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %78
+  %79 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%77 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %81, %80
+  debug_value %79 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %80
+  %81 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%79 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %83, %82
+  debug_value %81 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %82
+  %83 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%81 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %85, %84
+  debug_value %83 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %84
+  %85 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%83 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %87, %86
+  debug_value %85 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %86
+  %87 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%85 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %89, %88
+  debug_value %87 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %88
+  %89 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%87 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %91, %90
+  debug_value %89 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %90
+  %91 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%89 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %93, %92
+  debug_value %91 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %92
+  %93 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%91 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %95, %94
+  debug_value %93 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %94
+  %95 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%93 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %97, %96
+  debug_value %95 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %96
+  %97 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%95 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %99, %98
+  debug_value %97 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %98
+  %99 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%97 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %101, %100
+  debug_value %99 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %100
+  %101 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%99 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %102, %103
+  debug_value %101 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %102
+  %103 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%101 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %108, %107, %104
+  store %103 to %3 : $*A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // id: %104
+  alloc_global @$s11typetoodeep3a50AA1AVyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADys5Int16VGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGvp // id: %105
+  %106 = global_addr @$s11typetoodeep3a50AA1AVyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADyADys5Int16VGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGvp : $*A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // user: %109
+  debug_value %103 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>, let, name "v", argno 1 // id: %107
+  %108 = struct $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> (%103 : $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) // users: %112, %109
+  store %108 to %106 : $*A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // id: %109
+  %110 = alloc_stack $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // users: %116, %114
+  %111 = alloc_stack $A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // users: %112, %115, %114
+  store %108 to %111 : $*A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // id: %112
+  // function_ref use<A>(_:)
+  %113 = function_ref @$s11typetoodeep3useyxxlF : $@convention(thin) <τ_0_0> (@in_guaranteed τ_0_0) -> @out τ_0_0 // user: %114
+  %114 = apply %113<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>(%110, %111) : $@convention(thin) <τ_0_0> (@in_guaranteed τ_0_0) -> @out τ_0_0
+  dealloc_stack %111 : $*A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // id: %115
+  dealloc_stack %110 : $*A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<A<Int16>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> // id: %116
+  %117 = integer_literal $Builtin.Int32, 0        // user: %118
+  %118 = struct $Int32 (%117 : $Builtin.Int32)    // user: %119
+  return %118 : $Int32                            // id: %119
+} // end sil function 'main'
+
+// A.v.getter
+sil hidden [transparent] @$s11typetoodeep1AV1vxvg : $@convention(method) <T> (@in_guaranteed A<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*A<T>):
+  debug_value_addr %1 : $*A<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*A<T>, #A.v      // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s11typetoodeep1AV1vxvg'
+
+// A.v.setter
+sil hidden [transparent] @$s11typetoodeep1AV1vxvs : $@convention(method) <T> (@in T, @inout A<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*A<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*A<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*A<T>, #A.v      // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s11typetoodeep1AV1vxvs'
+
+// A.v.modify
+sil hidden [transparent] @$s11typetoodeep1AV1vxvM : $@yield_once @convention(method) <T> (@inout A<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*A<T>):
+  debug_value_addr %0 : $*A<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*A<T>, #A.v      // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s11typetoodeep1AV1vxvM'
+
+// A.init(_:)
+sil hidden @$s11typetoodeep1AVyACyxGxcfC : $@convention(method) <T> (@in T, @thin A<T>.Type) -> @out A<T> {
+// %0                                             // user: %7
+// %1                                             // users: %6, %4
+bb0(%0 : $*A<T>, %1 : $*T, %2 : $@thin A<T>.Type):
+  %3 = alloc_stack $A<T>, var, name "self"        // users: %5, %7, %8, %9
+  debug_value_addr %1 : $*T, let, name "v", argno 1 // id: %4
+  %5 = struct_element_addr %3 : $*A<T>, #A.v      // user: %6
+  copy_addr [take] %1 to [initialization] %5 : $*T // id: %6
+  copy_addr %3 to [initialization] %0 : $*A<T>    // id: %7
+  destroy_addr %3 : $*A<T>                        // id: %8
+  dealloc_stack %3 : $*A<T>                       // id: %9
+  %10 = tuple ()                                  // user: %11
+  return %10 : $()                                // id: %11
+} // end sil function '$s11typetoodeep1AVyACyxGxcfC'
+
+// use<A>(_:)
+sil hidden @$s11typetoodeep3useyxxlF : $@convention(thin) <T> (@in_guaranteed T) -> @out T {
+// %0                                             // user: %3
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*T):
+  debug_value_addr %1 : $*T, let, name "v", argno 1 // id: %2
+  copy_addr %1 to [initialization] %0 : $*T       // id: %3
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+} // end sil function '$s11typetoodeep3useyxxlF'
+
+
+

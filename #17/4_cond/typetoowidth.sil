@@ -1,0 +1,1869 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+struct Int64x10 {
+  @_hasStorage @_hasInitialValue var int64x10: (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) { get set }
+  init(int64x10: (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) = (
+        Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0), Int64(0)
+    ))
+  init()
+}
+
+struct x10<T> {
+  @_hasStorage var v1: T { get set }
+  @_hasStorage var v2: T { get set }
+  @_hasStorage var v3: T { get set }
+  @_hasStorage var v4: T { get set }
+  @_hasStorage var v5: T { get set }
+  @_hasStorage var v6: T { get set }
+  @_hasStorage var v7: T { get set }
+  @_hasStorage var v8: T { get set }
+  @_hasStorage var v9: T { get set }
+  @_hasStorage var v10: T { get set }
+  init(_ v: T)
+}
+
+struct Int64x249 {
+  @_hasStorage @_hasInitialValue var int64x100: x10<Int64x10> { get set }
+  @_hasStorage @_hasInitialValue var int64x100_2: x10<Int64x10> { get set }
+  @_hasStorage @_hasInitialValue var int64x10_1: Int64x10 { get set }
+  @_hasStorage @_hasInitialValue var int64x10_2: Int64x10 { get set }
+  @_hasStorage @_hasInitialValue var int64x10_3: Int64x10 { get set }
+  @_hasStorage @_hasInitialValue var int64x10_4: Int64x10 { get set }
+  @_hasStorage @_hasInitialValue var int64x9: (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) { get set }
+  init(int64x100: x10<Int64x10> = x10(Int64x10()), int64x100_2: x10<Int64x10> = x10(Int64x10()), int64x10_1: Int64x10 = Int64x10(), int64x10_2: Int64x10 = Int64x10(), int64x10_3: Int64x10 = Int64x10(), int64x10_4: Int64x10 = Int64x10(), int64x9: (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) = (
+           Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0),Int64(0)
+       ))
+  init()
+}
+
+struct Width1992 {
+  @_hasStorage @_hasInitialValue var int64x249: Int64x249 { get set }
+  init(int64x249: Int64x249 = Int64x249())
+  init()
+}
+
+struct Width2000 {
+  @_hasStorage @_hasInitialValue var int64x249: Int64x249 { get set }
+  @_hasStorage @_hasInitialValue var int64: Int64 { get set }
+  @_hasStorage @_hasInitialValue var int64_2: Int64 { get set }
+  init(int64x249: Int64x249 = Int64x249(), int64: Int64 = Int64(0), int64_2: Int64 = Int64(0))
+  init()
+}
+
+func use<T>(_ v: T) -> T
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  %2 = integer_literal $Builtin.Int32, 0          // user: %3
+  %3 = struct $Int32 (%2 : $Builtin.Int32)        // user: %4
+  return %3 : $Int32                              // id: %4
+} // end sil function 'main'
+
+// variable initialization expression of Int64x10.int64x10
+sil hidden [transparent] @$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9Ftvpfi : $@convention(thin) () -> (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // user: %20
+  %2 = integer_literal $Builtin.Int64, 0          // user: %3
+  %3 = struct $Int64 (%2 : $Builtin.Int64)        // user: %20
+  %4 = integer_literal $Builtin.Int64, 0          // user: %5
+  %5 = struct $Int64 (%4 : $Builtin.Int64)        // user: %20
+  %6 = integer_literal $Builtin.Int64, 0          // user: %7
+  %7 = struct $Int64 (%6 : $Builtin.Int64)        // user: %20
+  %8 = integer_literal $Builtin.Int64, 0          // user: %9
+  %9 = struct $Int64 (%8 : $Builtin.Int64)        // user: %20
+  %10 = integer_literal $Builtin.Int64, 0         // user: %11
+  %11 = struct $Int64 (%10 : $Builtin.Int64)      // user: %20
+  %12 = integer_literal $Builtin.Int64, 0         // user: %13
+  %13 = struct $Int64 (%12 : $Builtin.Int64)      // user: %20
+  %14 = integer_literal $Builtin.Int64, 0         // user: %15
+  %15 = struct $Int64 (%14 : $Builtin.Int64)      // user: %20
+  %16 = integer_literal $Builtin.Int64, 0         // user: %17
+  %17 = struct $Int64 (%16 : $Builtin.Int64)      // user: %20
+  %18 = integer_literal $Builtin.Int64, 0         // user: %19
+  %19 = struct $Int64 (%18 : $Builtin.Int64)      // user: %20
+  %20 = tuple (%1 : $Int64, %3 : $Int64, %5 : $Int64, %7 : $Int64, %9 : $Int64, %11 : $Int64, %13 : $Int64, %15 : $Int64, %17 : $Int64, %19 : $Int64) // user: %21
+  return %20 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) // id: %21
+} // end sil function '$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9Ftvpfi'
+
+// Int64x10.int64x10.getter
+sil hidden [transparent] @$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9Ftvg : $@convention(method) (Int64x10) -> (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x10):
+  debug_value %0 : $Int64x10, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x10, #Int64x10.int64x10 // user: %3
+  return %2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) // id: %3
+} // end sil function '$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9Ftvg'
+
+// Int64x10.int64x10.setter
+sil hidden [transparent] @$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9Ftvs : $@convention(method) (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, @inout Int64x10) -> () {
+// %0                                             // user: %14
+// %1                                             // user: %16
+// %2                                             // user: %18
+// %3                                             // user: %20
+// %4                                             // user: %22
+// %5                                             // user: %24
+// %6                                             // user: %26
+// %7                                             // user: %28
+// %8                                             // user: %30
+// %9                                             // user: %32
+// %10                                            // users: %12, %11
+bb0(%0 : $Int64, %1 : $Int64, %2 : $Int64, %3 : $Int64, %4 : $Int64, %5 : $Int64, %6 : $Int64, %7 : $Int64, %8 : $Int64, %9 : $Int64, %10 : $*Int64x10):
+  debug_value_addr %10 : $*Int64x10, var, name "self", argno 2 // id: %11
+  %12 = struct_element_addr %10 : $*Int64x10, #Int64x10.int64x10 // users: %31, %29, %27, %25, %23, %21, %19, %17, %15, %13
+  %13 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 0 // user: %14
+  store %0 to %13 : $*Int64                       // id: %14
+  %15 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 1 // user: %16
+  store %1 to %15 : $*Int64                       // id: %16
+  %17 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 2 // user: %18
+  store %2 to %17 : $*Int64                       // id: %18
+  %19 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 3 // user: %20
+  store %3 to %19 : $*Int64                       // id: %20
+  %21 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 4 // user: %22
+  store %4 to %21 : $*Int64                       // id: %22
+  %23 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 5 // user: %24
+  store %5 to %23 : $*Int64                       // id: %24
+  %25 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 6 // user: %26
+  store %6 to %25 : $*Int64                       // id: %26
+  %27 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 7 // user: %28
+  store %7 to %27 : $*Int64                       // id: %28
+  %29 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 8 // user: %30
+  store %8 to %29 : $*Int64                       // id: %30
+  %31 = tuple_element_addr %12 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 9 // user: %32
+  store %9 to %31 : $*Int64                       // id: %32
+  %33 = tuple ()                                  // user: %34
+  return %33 : $()                                // id: %34
+} // end sil function '$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9Ftvs'
+
+// Int64x10.int64x10.modify
+sil hidden [transparent] @$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9FtvM : $@yield_once @convention(method) (@inout Int64x10) -> @yields @inout (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x10):
+  debug_value_addr %0 : $*Int64x10, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x10, #Int64x10.int64x10 // user: %3
+  yield %2 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), resume bb1, unwind bb2 // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth8Int64x10V8int64x10s5Int64V_A9FtvM'
+
+// default argument 0 of Int64x10.init(int64x10:)
+sil hidden @$s12typetoowidth8Int64x10V8int64x10ACs5Int64V_A9Ft_tcfcfA_ : $@convention(thin) () -> (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  return %2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) // id: %3
+} // end sil function '$s12typetoowidth8Int64x10V8int64x10ACs5Int64V_A9Ft_tcfcfA_'
+
+// Int64x10.init(int64x10:)
+sil hidden @$s12typetoowidth8Int64x10V8int64x10ACs5Int64V_A9Ft_tcfC : $@convention(method) (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, @thin Int64x10.Type) -> Int64x10 {
+// %0                                             // user: %11
+// %1                                             // user: %11
+// %2                                             // user: %11
+// %3                                             // user: %11
+// %4                                             // user: %11
+// %5                                             // user: %11
+// %6                                             // user: %11
+// %7                                             // user: %11
+// %8                                             // user: %11
+// %9                                             // user: %11
+bb0(%0 : $Int64, %1 : $Int64, %2 : $Int64, %3 : $Int64, %4 : $Int64, %5 : $Int64, %6 : $Int64, %7 : $Int64, %8 : $Int64, %9 : $Int64, %10 : $@thin Int64x10.Type):
+  %11 = tuple (%0 : $Int64, %1 : $Int64, %2 : $Int64, %3 : $Int64, %4 : $Int64, %5 : $Int64, %6 : $Int64, %7 : $Int64, %8 : $Int64, %9 : $Int64) // user: %12
+  %12 = struct $Int64x10 (%11 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %13
+  return %12 : $Int64x10                          // id: %13
+} // end sil function '$s12typetoowidth8Int64x10V8int64x10ACs5Int64V_A9Ft_tcfC'
+
+// Int64x10.init()
+sil hidden @$s12typetoowidth8Int64x10VACycfC : $@convention(method) (@thin Int64x10.Type) -> Int64x10 {
+bb0(%0 : $@thin Int64x10.Type):
+  %1 = integer_literal $Builtin.Int64, 0          // user: %2
+  %2 = struct $Int64 (%1 : $Builtin.Int64)        // users: %3, %3, %3, %3, %3, %3, %3, %3, %3, %3
+  %3 = tuple (%2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64) // user: %4
+  %4 = struct $Int64x10 (%3 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %5
+  return %4 : $Int64x10                           // id: %5
+} // end sil function '$s12typetoowidth8Int64x10VACycfC'
+
+// x10.v1.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v1xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v1 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v1xvg'
+
+// x10.v1.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v1xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v1 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v1xvs'
+
+// x10.v1.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v1xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v1 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v1xvM'
+
+// x10.v2.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v2xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v2 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v2xvg'
+
+// x10.v2.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v2xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v2 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v2xvs'
+
+// x10.v2.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v2xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v2 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v2xvM'
+
+// x10.v3.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v3xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v3 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v3xvg'
+
+// x10.v3.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v3xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v3 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v3xvs'
+
+// x10.v3.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v3xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v3 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v3xvM'
+
+// x10.v4.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v4xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v4 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v4xvg'
+
+// x10.v4.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v4xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v4 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v4xvs'
+
+// x10.v4.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v4xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v4 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v4xvM'
+
+// x10.v5.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v5xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v5 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v5xvg'
+
+// x10.v5.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v5xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v5 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v5xvs'
+
+// x10.v5.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v5xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v5 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v5xvM'
+
+// x10.v6.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v6xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v6 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v6xvg'
+
+// x10.v6.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v6xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v6 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v6xvs'
+
+// x10.v6.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v6xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v6 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v6xvM'
+
+// x10.v7.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v7xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v7 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v7xvg'
+
+// x10.v7.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v7xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v7 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v7xvs'
+
+// x10.v7.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v7xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v7 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v7xvM'
+
+// x10.v8.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v8xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v8 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v8xvg'
+
+// x10.v8.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v8xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v8 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v8xvs'
+
+// x10.v8.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v8xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v8 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v8xvM'
+
+// x10.v9.getter
+sil hidden [transparent] @$s12typetoowidth3x10V2v9xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v9 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V2v9xvg'
+
+// x10.v9.setter
+sil hidden [transparent] @$s12typetoowidth3x10V2v9xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v9 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V2v9xvs'
+
+// x10.v9.modify
+sil hidden [transparent] @$s12typetoowidth3x10V2v9xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v9 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V2v9xvM'
+
+// x10.v10.getter
+sil hidden [transparent] @$s12typetoowidth3x10V3v10xvg : $@convention(method) <T> (@in_guaranteed x10<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %1 : $*x10<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*x10<T>, #x10.v10 // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s12typetoowidth3x10V3v10xvg'
+
+// x10.v10.setter
+sil hidden [transparent] @$s12typetoowidth3x10V3v10xvs : $@convention(method) <T> (@in T, @inout x10<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*x10<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*x10<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*x10<T>, #x10.v10 // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s12typetoowidth3x10V3v10xvs'
+
+// x10.v10.modify
+sil hidden [transparent] @$s12typetoowidth3x10V3v10xvM : $@yield_once @convention(method) <T> (@inout x10<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*x10<T>):
+  debug_value_addr %0 : $*x10<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*x10<T>, #x10.v10 // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth3x10V3v10xvM'
+
+// x10.init(_:)
+sil hidden @$s12typetoowidth3x10VyACyxGxcfC : $@convention(method) <T> (@in T, @thin x10<T>.Type) -> @out x10<T> {
+// %0                                             // user: %25
+// %1                                             // users: %24, %22, %20, %18, %16, %14, %12, %10, %8, %6, %4
+bb0(%0 : $*x10<T>, %1 : $*T, %2 : $@thin x10<T>.Type):
+  %3 = alloc_stack $x10<T>, var, name "self"      // users: %5, %7, %9, %11, %13, %15, %17, %19, %21, %23, %25, %26, %27
+  debug_value_addr %1 : $*T, let, name "v", argno 1 // id: %4
+  %5 = struct_element_addr %3 : $*x10<T>, #x10.v1 // user: %6
+  copy_addr %1 to [initialization] %5 : $*T       // id: %6
+  %7 = struct_element_addr %3 : $*x10<T>, #x10.v2 // user: %8
+  copy_addr %1 to [initialization] %7 : $*T       // id: %8
+  %9 = struct_element_addr %3 : $*x10<T>, #x10.v3 // user: %10
+  copy_addr %1 to [initialization] %9 : $*T       // id: %10
+  %11 = struct_element_addr %3 : $*x10<T>, #x10.v4 // user: %12
+  copy_addr %1 to [initialization] %11 : $*T      // id: %12
+  %13 = struct_element_addr %3 : $*x10<T>, #x10.v5 // user: %14
+  copy_addr %1 to [initialization] %13 : $*T      // id: %14
+  %15 = struct_element_addr %3 : $*x10<T>, #x10.v6 // user: %16
+  copy_addr %1 to [initialization] %15 : $*T      // id: %16
+  %17 = struct_element_addr %3 : $*x10<T>, #x10.v7 // user: %18
+  copy_addr %1 to [initialization] %17 : $*T      // id: %18
+  %19 = struct_element_addr %3 : $*x10<T>, #x10.v8 // user: %20
+  copy_addr %1 to [initialization] %19 : $*T      // id: %20
+  %21 = struct_element_addr %3 : $*x10<T>, #x10.v9 // user: %22
+  copy_addr %1 to [initialization] %21 : $*T      // id: %22
+  %23 = struct_element_addr %3 : $*x10<T>, #x10.v10 // user: %24
+  copy_addr [take] %1 to [initialization] %23 : $*T // id: %24
+  copy_addr %3 to [initialization] %0 : $*x10<T>  // id: %25
+  destroy_addr %3 : $*x10<T>                      // id: %26
+  dealloc_stack %3 : $*x10<T>                     // id: %27
+  %28 = tuple ()                                  // user: %29
+  return %28 : $()                                // id: %29
+} // end sil function '$s12typetoowidth3x10VyACyxGxcfC'
+
+// variable initialization expression of Int64x249.int64x100
+sil hidden [transparent] @$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvpfi : $@convention(thin) () -> x10<Int64x10> {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %4, %7, %9, %11, %13, %15, %17, %19, %21, %23, %25
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %28
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  return %26 : $x10<Int64x10>                     // id: %28
+} // end sil function '$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvpfi'
+
+// Int64x249.int64x100.getter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvg : $@convention(method) (Int64x249) -> x10<Int64x10> {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x249):
+  debug_value %0 : $Int64x249, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x249, #Int64x249.int64x100 // user: %3
+  return %2 : $x10<Int64x10>                      // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvg'
+
+// Int64x249.int64x100.setter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvs : $@convention(method) (x10<Int64x10>, @inout Int64x249) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $x10<Int64x10>, %1 : $*Int64x249):
+  debug_value %0 : $x10<Int64x10>, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Int64x249, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Int64x249, #Int64x249.int64x100 // user: %5
+  store %0 to %4 : $*x10<Int64x10>                // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvs'
+
+// Int64x249.int64x100.modify
+sil hidden [transparent] @$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvM : $@yield_once @convention(method) (@inout Int64x249) -> @yields @inout x10<Int64x10> {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x249):
+  debug_value_addr %0 : $*Int64x249, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x249, #Int64x249.int64x100 // user: %3
+  yield %2 : $*x10<Int64x10>, resume bb1, unwind bb2 // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Int64x249V9int64x100AA3x10VyAA8Int64x10VGvM'
+
+// variable initialization expression of Int64x249.int64x100_2
+sil hidden [transparent] @$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvpfi : $@convention(thin) () -> x10<Int64x10> {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %4, %7, %9, %11, %13, %15, %17, %19, %21, %23, %25
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %28
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  return %26 : $x10<Int64x10>                     // id: %28
+} // end sil function '$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvpfi'
+
+// Int64x249.int64x100_2.getter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvg : $@convention(method) (Int64x249) -> x10<Int64x10> {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x249):
+  debug_value %0 : $Int64x249, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x249, #Int64x249.int64x100_2 // user: %3
+  return %2 : $x10<Int64x10>                      // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvg'
+
+// Int64x249.int64x100_2.setter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvs : $@convention(method) (x10<Int64x10>, @inout Int64x249) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $x10<Int64x10>, %1 : $*Int64x249):
+  debug_value %0 : $x10<Int64x10>, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Int64x249, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Int64x249, #Int64x249.int64x100_2 // user: %5
+  store %0 to %4 : $*x10<Int64x10>                // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvs'
+
+// Int64x249.int64x100_2.modify
+sil hidden [transparent] @$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvM : $@yield_once @convention(method) (@inout Int64x249) -> @yields @inout x10<Int64x10> {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x249):
+  debug_value_addr %0 : $*Int64x249, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x249, #Int64x249.int64x100_2 // user: %3
+  yield %2 : $*x10<Int64x10>, resume bb1, unwind bb2 // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Int64x249V11int64x100_2AA3x10VyAA8Int64x10VGvM'
+
+// variable initialization expression of Int64x249.int64x10_1
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10Vvpfi : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10Vvpfi'
+
+// Int64x249.int64x10_1.getter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10Vvg : $@convention(method) (Int64x249) -> Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x249):
+  debug_value %0 : $Int64x249, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x249, #Int64x249.int64x10_1 // user: %3
+  return %2 : $Int64x10                           // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10Vvg'
+
+// Int64x249.int64x10_1.setter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10Vvs : $@convention(method) (Int64x10, @inout Int64x249) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $Int64x10, %1 : $*Int64x249):
+  debug_value %0 : $Int64x10, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Int64x249, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Int64x249, #Int64x249.int64x10_1 // user: %5
+  store %0 to %4 : $*Int64x10                     // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10Vvs'
+
+// Int64x249.int64x10_1.modify
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10VvM : $@yield_once @convention(method) (@inout Int64x249) -> @yields @inout Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x249):
+  debug_value_addr %0 : $*Int64x249, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x249, #Int64x249.int64x10_1 // user: %3
+  yield %2 : $*Int64x10, resume bb1, unwind bb2   // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_1AA8Int64x10VvM'
+
+// variable initialization expression of Int64x249.int64x10_2
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10Vvpfi : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10Vvpfi'
+
+// Int64x249.int64x10_2.getter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10Vvg : $@convention(method) (Int64x249) -> Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x249):
+  debug_value %0 : $Int64x249, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x249, #Int64x249.int64x10_2 // user: %3
+  return %2 : $Int64x10                           // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10Vvg'
+
+// Int64x249.int64x10_2.setter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10Vvs : $@convention(method) (Int64x10, @inout Int64x249) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $Int64x10, %1 : $*Int64x249):
+  debug_value %0 : $Int64x10, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Int64x249, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Int64x249, #Int64x249.int64x10_2 // user: %5
+  store %0 to %4 : $*Int64x10                     // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10Vvs'
+
+// Int64x249.int64x10_2.modify
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10VvM : $@yield_once @convention(method) (@inout Int64x249) -> @yields @inout Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x249):
+  debug_value_addr %0 : $*Int64x249, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x249, #Int64x249.int64x10_2 // user: %3
+  yield %2 : $*Int64x10, resume bb1, unwind bb2   // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_2AA8Int64x10VvM'
+
+// variable initialization expression of Int64x249.int64x10_3
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10Vvpfi : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10Vvpfi'
+
+// Int64x249.int64x10_3.getter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10Vvg : $@convention(method) (Int64x249) -> Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x249):
+  debug_value %0 : $Int64x249, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x249, #Int64x249.int64x10_3 // user: %3
+  return %2 : $Int64x10                           // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10Vvg'
+
+// Int64x249.int64x10_3.setter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10Vvs : $@convention(method) (Int64x10, @inout Int64x249) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $Int64x10, %1 : $*Int64x249):
+  debug_value %0 : $Int64x10, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Int64x249, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Int64x249, #Int64x249.int64x10_3 // user: %5
+  store %0 to %4 : $*Int64x10                     // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10Vvs'
+
+// Int64x249.int64x10_3.modify
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10VvM : $@yield_once @convention(method) (@inout Int64x249) -> @yields @inout Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x249):
+  debug_value_addr %0 : $*Int64x249, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x249, #Int64x249.int64x10_3 // user: %3
+  yield %2 : $*Int64x10, resume bb1, unwind bb2   // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_3AA8Int64x10VvM'
+
+// variable initialization expression of Int64x249.int64x10_4
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10Vvpfi : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10Vvpfi'
+
+// Int64x249.int64x10_4.getter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10Vvg : $@convention(method) (Int64x249) -> Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x249):
+  debug_value %0 : $Int64x249, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x249, #Int64x249.int64x10_4 // user: %3
+  return %2 : $Int64x10                           // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10Vvg'
+
+// Int64x249.int64x10_4.setter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10Vvs : $@convention(method) (Int64x10, @inout Int64x249) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $Int64x10, %1 : $*Int64x249):
+  debug_value %0 : $Int64x10, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Int64x249, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Int64x249, #Int64x249.int64x10_4 // user: %5
+  store %0 to %4 : $*Int64x10                     // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10Vvs'
+
+// Int64x249.int64x10_4.modify
+sil hidden [transparent] @$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10VvM : $@yield_once @convention(method) (@inout Int64x249) -> @yields @inout Int64x10 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x249):
+  debug_value_addr %0 : $*Int64x249, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x249, #Int64x249.int64x10_4 // user: %3
+  yield %2 : $*Int64x10, resume bb1, unwind bb2   // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Int64x249V10int64x10_4AA8Int64x10VvM'
+
+// variable initialization expression of Int64x249.int64x9
+sil hidden [transparent] @$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8Ftvpfi : $@convention(thin) () -> (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // user: %18
+  %2 = integer_literal $Builtin.Int64, 0          // user: %3
+  %3 = struct $Int64 (%2 : $Builtin.Int64)        // user: %18
+  %4 = integer_literal $Builtin.Int64, 0          // user: %5
+  %5 = struct $Int64 (%4 : $Builtin.Int64)        // user: %18
+  %6 = integer_literal $Builtin.Int64, 0          // user: %7
+  %7 = struct $Int64 (%6 : $Builtin.Int64)        // user: %18
+  %8 = integer_literal $Builtin.Int64, 0          // user: %9
+  %9 = struct $Int64 (%8 : $Builtin.Int64)        // user: %18
+  %10 = integer_literal $Builtin.Int64, 0         // user: %11
+  %11 = struct $Int64 (%10 : $Builtin.Int64)      // user: %18
+  %12 = integer_literal $Builtin.Int64, 0         // user: %13
+  %13 = struct $Int64 (%12 : $Builtin.Int64)      // user: %18
+  %14 = integer_literal $Builtin.Int64, 0         // user: %15
+  %15 = struct $Int64 (%14 : $Builtin.Int64)      // user: %18
+  %16 = integer_literal $Builtin.Int64, 0         // user: %17
+  %17 = struct $Int64 (%16 : $Builtin.Int64)      // user: %18
+  %18 = tuple (%1 : $Int64, %3 : $Int64, %5 : $Int64, %7 : $Int64, %9 : $Int64, %11 : $Int64, %13 : $Int64, %15 : $Int64, %17 : $Int64) // user: %19
+  return %18 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) // id: %19
+} // end sil function '$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8Ftvpfi'
+
+// Int64x249.int64x9.getter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8Ftvg : $@convention(method) (Int64x249) -> (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+// %0                                             // users: %2, %1
+bb0(%0 : $Int64x249):
+  debug_value %0 : $Int64x249, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Int64x249, #Int64x249.int64x9 // user: %3
+  return %2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8Ftvg'
+
+// Int64x249.int64x9.setter
+sil hidden [transparent] @$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8Ftvs : $@convention(method) (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, @inout Int64x249) -> () {
+// %0                                             // user: %13
+// %1                                             // user: %15
+// %2                                             // user: %17
+// %3                                             // user: %19
+// %4                                             // user: %21
+// %5                                             // user: %23
+// %6                                             // user: %25
+// %7                                             // user: %27
+// %8                                             // user: %29
+// %9                                             // users: %11, %10
+bb0(%0 : $Int64, %1 : $Int64, %2 : $Int64, %3 : $Int64, %4 : $Int64, %5 : $Int64, %6 : $Int64, %7 : $Int64, %8 : $Int64, %9 : $*Int64x249):
+  debug_value_addr %9 : $*Int64x249, var, name "self", argno 2 // id: %10
+  %11 = struct_element_addr %9 : $*Int64x249, #Int64x249.int64x9 // users: %28, %26, %24, %22, %20, %18, %16, %14, %12
+  %12 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 0 // user: %13
+  store %0 to %12 : $*Int64                       // id: %13
+  %14 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 1 // user: %15
+  store %1 to %14 : $*Int64                       // id: %15
+  %16 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 2 // user: %17
+  store %2 to %16 : $*Int64                       // id: %17
+  %18 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 3 // user: %19
+  store %3 to %18 : $*Int64                       // id: %19
+  %20 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 4 // user: %21
+  store %4 to %20 : $*Int64                       // id: %21
+  %22 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 5 // user: %23
+  store %5 to %22 : $*Int64                       // id: %23
+  %24 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 6 // user: %25
+  store %6 to %24 : $*Int64                       // id: %25
+  %26 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 7 // user: %27
+  store %7 to %26 : $*Int64                       // id: %27
+  %28 = tuple_element_addr %11 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), 8 // user: %29
+  store %8 to %28 : $*Int64                       // id: %29
+  %30 = tuple ()                                  // user: %31
+  return %30 : $()                                // id: %31
+} // end sil function '$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8Ftvs'
+
+// Int64x249.int64x9.modify
+sil hidden [transparent] @$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8FtvM : $@yield_once @convention(method) (@inout Int64x249) -> @yields @inout (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Int64x249):
+  debug_value_addr %0 : $*Int64x249, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Int64x249, #Int64x249.int64x9 // user: %3
+  yield %2 : $*(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64), resume bb1, unwind bb2 // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Int64x249V7int64x9s5Int64V_A8FtvM'
+
+// default argument 0 of Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA_ : $@convention(thin) () -> x10<Int64x10> {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %4, %7, %9, %11, %13, %15, %17, %19, %21, %23, %25
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %28
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  return %26 : $x10<Int64x10>                     // id: %28
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA_'
+
+// default argument 1 of Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA0_ : $@convention(thin) () -> x10<Int64x10> {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %4, %7, %9, %11, %13, %15, %17, %19, %21, %23, %25
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %28
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  return %26 : $x10<Int64x10>                     // id: %28
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA0_'
+
+// default argument 2 of Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA1_ : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA1_'
+
+// default argument 3 of Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA2_ : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA2_'
+
+// default argument 4 of Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA3_ : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA3_'
+
+// default argument 5 of Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA4_ : $@convention(thin) () -> Int64x10 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %4
+  return %3 : $Int64x10                           // id: %4
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA4_'
+
+// default argument 6 of Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA5_ : $@convention(thin) () -> (Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  return %2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64) // id: %3
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfcfA5_'
+
+// Int64x249.init(int64x100:int64x100_2:int64x10_1:int64x10_2:int64x10_3:int64x10_4:int64x9:)
+sil hidden @$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfC : $@convention(method) (x10<Int64x10>, x10<Int64x10>, Int64x10, Int64x10, Int64x10, Int64x10, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, @thin Int64x249.Type) -> Int64x249 {
+// %0                                             // user: %17
+// %1                                             // user: %17
+// %2                                             // user: %17
+// %3                                             // user: %17
+// %4                                             // user: %17
+// %5                                             // user: %17
+// %6                                             // user: %16
+// %7                                             // user: %16
+// %8                                             // user: %16
+// %9                                             // user: %16
+// %10                                            // user: %16
+// %11                                            // user: %16
+// %12                                            // user: %16
+// %13                                            // user: %16
+// %14                                            // user: %16
+bb0(%0 : $x10<Int64x10>, %1 : $x10<Int64x10>, %2 : $Int64x10, %3 : $Int64x10, %4 : $Int64x10, %5 : $Int64x10, %6 : $Int64, %7 : $Int64, %8 : $Int64, %9 : $Int64, %10 : $Int64, %11 : $Int64, %12 : $Int64, %13 : $Int64, %14 : $Int64, %15 : $@thin Int64x249.Type):
+  %16 = tuple (%6 : $Int64, %7 : $Int64, %8 : $Int64, %9 : $Int64, %10 : $Int64, %11 : $Int64, %12 : $Int64, %13 : $Int64, %14 : $Int64) // user: %17
+  %17 = struct $Int64x249 (%0 : $x10<Int64x10>, %1 : $x10<Int64x10>, %2 : $Int64x10, %3 : $Int64x10, %4 : $Int64x10, %5 : $Int64x10, %16 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %18
+  return %17 : $Int64x249                         // id: %18
+} // end sil function '$s12typetoowidth9Int64x249V9int64x1000C2_210int64x10_10D2_20D2_30D2_47int64x9AcA3x10VyAA8Int64x10VG_Ao4Ns5Int64V_A8QttcfC'
+
+// Int64x249.init()
+sil hidden @$s12typetoowidth9Int64x249VACycfC : $@convention(method) (@thin Int64x249.Type) -> Int64x249 {
+bb0(%0 : $@thin Int64x249.Type):
+  %1 = integer_literal $Builtin.Int64, 0          // user: %2
+  %2 = struct $Int64 (%1 : $Builtin.Int64)        // users: %53, %53, %53, %53, %53, %53, %53, %53, %53, %3, %3, %3, %3, %3, %3, %3, %3, %3, %3
+  %3 = tuple (%2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64) // user: %4
+  %4 = struct $Int64x10 (%3 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %54, %54, %54, %54, %50, %48, %46, %44, %42, %40, %38, %36, %34, %32, %29, %5, %8, %10, %12, %14, %16, %18, %20, %22, %24, %26
+  debug_value %4 : $Int64x10, let, name "v", argno 1 // id: %5
+  %6 = alloc_stack $x10<Int64x10>, var, name "self" // users: %28, %27, %25, %23, %21, %19, %17, %15, %13, %11, %9, %7
+  %7 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v1 // user: %8
+  store %4 to %7 : $*Int64x10                     // id: %8
+  %9 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v2 // user: %10
+  store %4 to %9 : $*Int64x10                     // id: %10
+  %11 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v3 // user: %12
+  store %4 to %11 : $*Int64x10                    // id: %12
+  %13 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v4 // user: %14
+  store %4 to %13 : $*Int64x10                    // id: %14
+  %15 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v5 // user: %16
+  store %4 to %15 : $*Int64x10                    // id: %16
+  %17 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v6 // user: %18
+  store %4 to %17 : $*Int64x10                    // id: %18
+  %19 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v7 // user: %20
+  store %4 to %19 : $*Int64x10                    // id: %20
+  %21 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v8 // user: %22
+  store %4 to %21 : $*Int64x10                    // id: %22
+  %23 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v9 // user: %24
+  store %4 to %23 : $*Int64x10                    // id: %24
+  %25 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v10 // user: %26
+  store %4 to %25 : $*Int64x10                    // id: %26
+  %27 = load %6 : $*x10<Int64x10>                 // user: %54
+  dealloc_stack %6 : $*x10<Int64x10>              // id: %28
+  debug_value %4 : $Int64x10, let, name "v", argno 1 // id: %29
+  %30 = alloc_stack $x10<Int64x10>, var, name "self" // users: %52, %51, %49, %47, %45, %43, %41, %39, %37, %35, %33, %31
+  %31 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v1 // user: %32
+  store %4 to %31 : $*Int64x10                    // id: %32
+  %33 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v2 // user: %34
+  store %4 to %33 : $*Int64x10                    // id: %34
+  %35 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v3 // user: %36
+  store %4 to %35 : $*Int64x10                    // id: %36
+  %37 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v4 // user: %38
+  store %4 to %37 : $*Int64x10                    // id: %38
+  %39 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v5 // user: %40
+  store %4 to %39 : $*Int64x10                    // id: %40
+  %41 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v6 // user: %42
+  store %4 to %41 : $*Int64x10                    // id: %42
+  %43 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v7 // user: %44
+  store %4 to %43 : $*Int64x10                    // id: %44
+  %45 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v8 // user: %46
+  store %4 to %45 : $*Int64x10                    // id: %46
+  %47 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v9 // user: %48
+  store %4 to %47 : $*Int64x10                    // id: %48
+  %49 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v10 // user: %50
+  store %4 to %49 : $*Int64x10                    // id: %50
+  %51 = load %30 : $*x10<Int64x10>                // user: %54
+  dealloc_stack %30 : $*x10<Int64x10>             // id: %52
+  %53 = tuple (%2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64) // user: %54
+  %54 = struct $Int64x249 (%27 : $x10<Int64x10>, %51 : $x10<Int64x10>, %4 : $Int64x10, %4 : $Int64x10, %4 : $Int64x10, %4 : $Int64x10, %53 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %55
+  return %54 : $Int64x249                         // id: %55
+} // end sil function '$s12typetoowidth9Int64x249VACycfC'
+
+// variable initialization expression of Width1992.int64x249
+sil hidden [transparent] @$s12typetoowidth9Width1992V9int64x249AA9Int64x249Vvpfi : $@convention(thin) () -> Int64x249 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %52, %52, %52, %52, %52, %52, %52, %52, %52, %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %53, %53, %53, %53, %49, %47, %45, %43, %41, %39, %37, %35, %33, %31, %28, %25, %23, %21, %19, %17, %15, %13, %11, %9, %7, %4
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %53
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %28
+  %29 = alloc_stack $x10<Int64x10>, var, name "self" // users: %51, %50, %48, %46, %44, %42, %40, %38, %36, %34, %32, %30
+  %30 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v1 // user: %31
+  store %3 to %30 : $*Int64x10                    // id: %31
+  %32 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v2 // user: %33
+  store %3 to %32 : $*Int64x10                    // id: %33
+  %34 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v3 // user: %35
+  store %3 to %34 : $*Int64x10                    // id: %35
+  %36 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v4 // user: %37
+  store %3 to %36 : $*Int64x10                    // id: %37
+  %38 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v5 // user: %39
+  store %3 to %38 : $*Int64x10                    // id: %39
+  %40 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v6 // user: %41
+  store %3 to %40 : $*Int64x10                    // id: %41
+  %42 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v7 // user: %43
+  store %3 to %42 : $*Int64x10                    // id: %43
+  %44 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v8 // user: %45
+  store %3 to %44 : $*Int64x10                    // id: %45
+  %46 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v9 // user: %47
+  store %3 to %46 : $*Int64x10                    // id: %47
+  %48 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v10 // user: %49
+  store %3 to %48 : $*Int64x10                    // id: %49
+  %50 = load %29 : $*x10<Int64x10>                // user: %53
+  dealloc_stack %29 : $*x10<Int64x10>             // id: %51
+  %52 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %53
+  %53 = struct $Int64x249 (%26 : $x10<Int64x10>, %50 : $x10<Int64x10>, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %52 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %54
+  return %53 : $Int64x249                         // id: %54
+} // end sil function '$s12typetoowidth9Width1992V9int64x249AA9Int64x249Vvpfi'
+
+// Width1992.int64x249.getter
+sil hidden [transparent] @$s12typetoowidth9Width1992V9int64x249AA9Int64x249Vvg : $@convention(method) (Width1992) -> Int64x249 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Width1992):
+  debug_value %0 : $Width1992, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Width1992, #Width1992.int64x249 // user: %3
+  return %2 : $Int64x249                          // id: %3
+} // end sil function '$s12typetoowidth9Width1992V9int64x249AA9Int64x249Vvg'
+
+// Width1992.int64x249.setter
+sil hidden [transparent] @$s12typetoowidth9Width1992V9int64x249AA9Int64x249Vvs : $@convention(method) (Int64x249, @inout Width1992) -> () {
+// %0                                             // users: %4, %2
+// %1                                             // users: %5, %3
+bb0(%0 : $Int64x249, %1 : $*Width1992):
+  debug_value %0 : $Int64x249, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Width1992, var, name "self", argno 2 // id: %3
+  %4 = struct $Width1992 (%0 : $Int64x249)        // user: %5
+  store %4 to %1 : $*Width1992                    // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Width1992V9int64x249AA9Int64x249Vvs'
+
+// Width1992.int64x249.modify
+sil hidden [transparent] @$s12typetoowidth9Width1992V9int64x249AA9Int64x249VvM : $@yield_once @convention(method) (@inout Width1992) -> @yields @inout Int64x249 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Width1992):
+  debug_value_addr %0 : $*Width1992, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Width1992, #Width1992.int64x249 // user: %3
+  yield %2 : $*Int64x249, resume bb1, unwind bb2  // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Width1992V9int64x249AA9Int64x249VvM'
+
+// default argument 0 of Width1992.init(int64x249:)
+sil hidden @$s12typetoowidth9Width1992V9int64x249AcA9Int64x249V_tcfcfA_ : $@convention(thin) () -> Int64x249 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %52, %52, %52, %52, %52, %52, %52, %52, %52, %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %53, %53, %53, %53, %49, %47, %45, %43, %41, %39, %37, %35, %33, %31, %28, %25, %23, %21, %19, %17, %15, %13, %11, %9, %7, %4
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %53
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %28
+  %29 = alloc_stack $x10<Int64x10>, var, name "self" // users: %51, %50, %48, %46, %44, %42, %40, %38, %36, %34, %32, %30
+  %30 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v1 // user: %31
+  store %3 to %30 : $*Int64x10                    // id: %31
+  %32 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v2 // user: %33
+  store %3 to %32 : $*Int64x10                    // id: %33
+  %34 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v3 // user: %35
+  store %3 to %34 : $*Int64x10                    // id: %35
+  %36 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v4 // user: %37
+  store %3 to %36 : $*Int64x10                    // id: %37
+  %38 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v5 // user: %39
+  store %3 to %38 : $*Int64x10                    // id: %39
+  %40 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v6 // user: %41
+  store %3 to %40 : $*Int64x10                    // id: %41
+  %42 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v7 // user: %43
+  store %3 to %42 : $*Int64x10                    // id: %43
+  %44 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v8 // user: %45
+  store %3 to %44 : $*Int64x10                    // id: %45
+  %46 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v9 // user: %47
+  store %3 to %46 : $*Int64x10                    // id: %47
+  %48 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v10 // user: %49
+  store %3 to %48 : $*Int64x10                    // id: %49
+  %50 = load %29 : $*x10<Int64x10>                // user: %53
+  dealloc_stack %29 : $*x10<Int64x10>             // id: %51
+  %52 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %53
+  %53 = struct $Int64x249 (%26 : $x10<Int64x10>, %50 : $x10<Int64x10>, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %52 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %54
+  return %53 : $Int64x249                         // id: %54
+} // end sil function '$s12typetoowidth9Width1992V9int64x249AcA9Int64x249V_tcfcfA_'
+
+// Width1992.init(int64x249:)
+sil hidden @$s12typetoowidth9Width1992V9int64x249AcA9Int64x249V_tcfC : $@convention(method) (Int64x249, @thin Width1992.Type) -> Width1992 {
+// %0                                             // user: %2
+bb0(%0 : $Int64x249, %1 : $@thin Width1992.Type):
+  %2 = struct $Width1992 (%0 : $Int64x249)        // user: %3
+  return %2 : $Width1992                          // id: %3
+} // end sil function '$s12typetoowidth9Width1992V9int64x249AcA9Int64x249V_tcfC'
+
+// Width1992.init()
+sil hidden @$s12typetoowidth9Width1992VACycfC : $@convention(method) (@thin Width1992.Type) -> Width1992 {
+bb0(%0 : $@thin Width1992.Type):
+  %1 = integer_literal $Builtin.Int64, 0          // user: %2
+  %2 = struct $Int64 (%1 : $Builtin.Int64)        // users: %53, %53, %53, %53, %53, %53, %53, %53, %53, %3, %3, %3, %3, %3, %3, %3, %3, %3, %3
+  %3 = tuple (%2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64) // user: %4
+  %4 = struct $Int64x10 (%3 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %54, %54, %54, %54, %50, %48, %46, %44, %42, %40, %38, %36, %34, %32, %29, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %5
+  debug_value %4 : $Int64x10, let, name "v", argno 1 // id: %5
+  %6 = alloc_stack $x10<Int64x10>, var, name "self" // users: %28, %27, %25, %23, %21, %19, %17, %15, %13, %11, %9, %7
+  %7 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v1 // user: %8
+  store %4 to %7 : $*Int64x10                     // id: %8
+  %9 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v2 // user: %10
+  store %4 to %9 : $*Int64x10                     // id: %10
+  %11 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v3 // user: %12
+  store %4 to %11 : $*Int64x10                    // id: %12
+  %13 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v4 // user: %14
+  store %4 to %13 : $*Int64x10                    // id: %14
+  %15 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v5 // user: %16
+  store %4 to %15 : $*Int64x10                    // id: %16
+  %17 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v6 // user: %18
+  store %4 to %17 : $*Int64x10                    // id: %18
+  %19 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v7 // user: %20
+  store %4 to %19 : $*Int64x10                    // id: %20
+  %21 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v8 // user: %22
+  store %4 to %21 : $*Int64x10                    // id: %22
+  %23 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v9 // user: %24
+  store %4 to %23 : $*Int64x10                    // id: %24
+  %25 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v10 // user: %26
+  store %4 to %25 : $*Int64x10                    // id: %26
+  %27 = load %6 : $*x10<Int64x10>                 // user: %54
+  dealloc_stack %6 : $*x10<Int64x10>              // id: %28
+  debug_value %4 : $Int64x10, let, name "v", argno 1 // id: %29
+  %30 = alloc_stack $x10<Int64x10>, var, name "self" // users: %52, %51, %49, %47, %45, %43, %41, %39, %37, %35, %33, %31
+  %31 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v1 // user: %32
+  store %4 to %31 : $*Int64x10                    // id: %32
+  %33 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v2 // user: %34
+  store %4 to %33 : $*Int64x10                    // id: %34
+  %35 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v3 // user: %36
+  store %4 to %35 : $*Int64x10                    // id: %36
+  %37 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v4 // user: %38
+  store %4 to %37 : $*Int64x10                    // id: %38
+  %39 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v5 // user: %40
+  store %4 to %39 : $*Int64x10                    // id: %40
+  %41 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v6 // user: %42
+  store %4 to %41 : $*Int64x10                    // id: %42
+  %43 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v7 // user: %44
+  store %4 to %43 : $*Int64x10                    // id: %44
+  %45 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v8 // user: %46
+  store %4 to %45 : $*Int64x10                    // id: %46
+  %47 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v9 // user: %48
+  store %4 to %47 : $*Int64x10                    // id: %48
+  %49 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v10 // user: %50
+  store %4 to %49 : $*Int64x10                    // id: %50
+  %51 = load %30 : $*x10<Int64x10>                // user: %54
+  dealloc_stack %30 : $*x10<Int64x10>             // id: %52
+  %53 = tuple (%2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64) // user: %54
+  %54 = struct $Int64x249 (%27 : $x10<Int64x10>, %51 : $x10<Int64x10>, %4 : $Int64x10, %4 : $Int64x10, %4 : $Int64x10, %4 : $Int64x10, %53 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %55
+  %55 = struct $Width1992 (%54 : $Int64x249)      // user: %56
+  return %55 : $Width1992                         // id: %56
+} // end sil function '$s12typetoowidth9Width1992VACycfC'
+
+// variable initialization expression of Width2000.int64x249
+sil hidden [transparent] @$s12typetoowidth9Width2000V9int64x249AA9Int64x249Vvpfi : $@convention(thin) () -> Int64x249 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %52, %52, %52, %52, %52, %52, %52, %52, %52, %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %53, %53, %53, %53, %49, %47, %45, %43, %41, %39, %37, %35, %33, %31, %28, %25, %23, %21, %19, %17, %15, %13, %11, %9, %7, %4
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %53
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %28
+  %29 = alloc_stack $x10<Int64x10>, var, name "self" // users: %51, %50, %48, %46, %44, %42, %40, %38, %36, %34, %32, %30
+  %30 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v1 // user: %31
+  store %3 to %30 : $*Int64x10                    // id: %31
+  %32 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v2 // user: %33
+  store %3 to %32 : $*Int64x10                    // id: %33
+  %34 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v3 // user: %35
+  store %3 to %34 : $*Int64x10                    // id: %35
+  %36 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v4 // user: %37
+  store %3 to %36 : $*Int64x10                    // id: %37
+  %38 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v5 // user: %39
+  store %3 to %38 : $*Int64x10                    // id: %39
+  %40 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v6 // user: %41
+  store %3 to %40 : $*Int64x10                    // id: %41
+  %42 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v7 // user: %43
+  store %3 to %42 : $*Int64x10                    // id: %43
+  %44 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v8 // user: %45
+  store %3 to %44 : $*Int64x10                    // id: %45
+  %46 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v9 // user: %47
+  store %3 to %46 : $*Int64x10                    // id: %47
+  %48 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v10 // user: %49
+  store %3 to %48 : $*Int64x10                    // id: %49
+  %50 = load %29 : $*x10<Int64x10>                // user: %53
+  dealloc_stack %29 : $*x10<Int64x10>             // id: %51
+  %52 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %53
+  %53 = struct $Int64x249 (%26 : $x10<Int64x10>, %50 : $x10<Int64x10>, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %52 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %54
+  return %53 : $Int64x249                         // id: %54
+} // end sil function '$s12typetoowidth9Width2000V9int64x249AA9Int64x249Vvpfi'
+
+// Width2000.int64x249.getter
+sil hidden [transparent] @$s12typetoowidth9Width2000V9int64x249AA9Int64x249Vvg : $@convention(method) (Width2000) -> Int64x249 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Width2000):
+  debug_value %0 : $Width2000, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Width2000, #Width2000.int64x249 // user: %3
+  return %2 : $Int64x249                          // id: %3
+} // end sil function '$s12typetoowidth9Width2000V9int64x249AA9Int64x249Vvg'
+
+// Width2000.int64x249.setter
+sil hidden [transparent] @$s12typetoowidth9Width2000V9int64x249AA9Int64x249Vvs : $@convention(method) (Int64x249, @inout Width2000) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $Int64x249, %1 : $*Width2000):
+  debug_value %0 : $Int64x249, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Width2000, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Width2000, #Width2000.int64x249 // user: %5
+  store %0 to %4 : $*Int64x249                    // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Width2000V9int64x249AA9Int64x249Vvs'
+
+// Width2000.int64x249.modify
+sil hidden [transparent] @$s12typetoowidth9Width2000V9int64x249AA9Int64x249VvM : $@yield_once @convention(method) (@inout Width2000) -> @yields @inout Int64x249 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Width2000):
+  debug_value_addr %0 : $*Width2000, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Width2000, #Width2000.int64x249 // user: %3
+  yield %2 : $*Int64x249, resume bb1, unwind bb2  // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Width2000V9int64x249AA9Int64x249VvM'
+
+// variable initialization expression of Width2000.int64
+sil hidden [transparent] @$s12typetoowidth9Width2000V5int64s5Int64Vvpfi : $@convention(thin) () -> Int64 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // user: %2
+  return %1 : $Int64                              // id: %2
+} // end sil function '$s12typetoowidth9Width2000V5int64s5Int64Vvpfi'
+
+// Width2000.int64.getter
+sil hidden [transparent] @$s12typetoowidth9Width2000V5int64s5Int64Vvg : $@convention(method) (Width2000) -> Int64 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Width2000):
+  debug_value %0 : $Width2000, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Width2000, #Width2000.int64 // user: %3
+  return %2 : $Int64                              // id: %3
+} // end sil function '$s12typetoowidth9Width2000V5int64s5Int64Vvg'
+
+// Width2000.int64.setter
+sil hidden [transparent] @$s12typetoowidth9Width2000V5int64s5Int64Vvs : $@convention(method) (Int64, @inout Width2000) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $Int64, %1 : $*Width2000):
+  debug_value %0 : $Int64, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Width2000, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Width2000, #Width2000.int64 // user: %5
+  store %0 to %4 : $*Int64                        // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Width2000V5int64s5Int64Vvs'
+
+// Width2000.int64.modify
+sil hidden [transparent] @$s12typetoowidth9Width2000V5int64s5Int64VvM : $@yield_once @convention(method) (@inout Width2000) -> @yields @inout Int64 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Width2000):
+  debug_value_addr %0 : $*Width2000, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Width2000, #Width2000.int64 // user: %3
+  yield %2 : $*Int64, resume bb1, unwind bb2      // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Width2000V5int64s5Int64VvM'
+
+// variable initialization expression of Width2000.int64_2
+sil hidden [transparent] @$s12typetoowidth9Width2000V7int64_2s5Int64Vvpfi : $@convention(thin) () -> Int64 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // user: %2
+  return %1 : $Int64                              // id: %2
+} // end sil function '$s12typetoowidth9Width2000V7int64_2s5Int64Vvpfi'
+
+// Width2000.int64_2.getter
+sil hidden [transparent] @$s12typetoowidth9Width2000V7int64_2s5Int64Vvg : $@convention(method) (Width2000) -> Int64 {
+// %0                                             // users: %2, %1
+bb0(%0 : $Width2000):
+  debug_value %0 : $Width2000, let, name "self", argno 1 // id: %1
+  %2 = struct_extract %0 : $Width2000, #Width2000.int64_2 // user: %3
+  return %2 : $Int64                              // id: %3
+} // end sil function '$s12typetoowidth9Width2000V7int64_2s5Int64Vvg'
+
+// Width2000.int64_2.setter
+sil hidden [transparent] @$s12typetoowidth9Width2000V7int64_2s5Int64Vvs : $@convention(method) (Int64, @inout Width2000) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $Int64, %1 : $*Width2000):
+  debug_value %0 : $Int64, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*Width2000, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*Width2000, #Width2000.int64_2 // user: %5
+  store %0 to %4 : $*Int64                        // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s12typetoowidth9Width2000V7int64_2s5Int64Vvs'
+
+// Width2000.int64_2.modify
+sil hidden [transparent] @$s12typetoowidth9Width2000V7int64_2s5Int64VvM : $@yield_once @convention(method) (@inout Width2000) -> @yields @inout Int64 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*Width2000):
+  debug_value_addr %0 : $*Width2000, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*Width2000, #Width2000.int64_2 // user: %3
+  yield %2 : $*Int64, resume bb1, unwind bb2      // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s12typetoowidth9Width2000V7int64_2s5Int64VvM'
+
+// default argument 0 of Width2000.init(int64x249:int64:int64_2:)
+sil hidden @$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfcfA_ : $@convention(thin) () -> Int64x249 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // users: %52, %52, %52, %52, %52, %52, %52, %52, %52, %2, %2, %2, %2, %2, %2, %2, %2, %2, %2
+  %2 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %3
+  %3 = struct $Int64x10 (%2 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %53, %53, %53, %53, %49, %47, %45, %43, %41, %39, %37, %35, %33, %31, %28, %25, %23, %21, %19, %17, %15, %13, %11, %9, %7, %4
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %4
+  %5 = alloc_stack $x10<Int64x10>, var, name "self" // users: %27, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %6
+  %6 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v1 // user: %7
+  store %3 to %6 : $*Int64x10                     // id: %7
+  %8 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v2 // user: %9
+  store %3 to %8 : $*Int64x10                     // id: %9
+  %10 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v3 // user: %11
+  store %3 to %10 : $*Int64x10                    // id: %11
+  %12 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v4 // user: %13
+  store %3 to %12 : $*Int64x10                    // id: %13
+  %14 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v5 // user: %15
+  store %3 to %14 : $*Int64x10                    // id: %15
+  %16 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v6 // user: %17
+  store %3 to %16 : $*Int64x10                    // id: %17
+  %18 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v7 // user: %19
+  store %3 to %18 : $*Int64x10                    // id: %19
+  %20 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v8 // user: %21
+  store %3 to %20 : $*Int64x10                    // id: %21
+  %22 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v9 // user: %23
+  store %3 to %22 : $*Int64x10                    // id: %23
+  %24 = struct_element_addr %5 : $*x10<Int64x10>, #x10.v10 // user: %25
+  store %3 to %24 : $*Int64x10                    // id: %25
+  %26 = load %5 : $*x10<Int64x10>                 // user: %53
+  dealloc_stack %5 : $*x10<Int64x10>              // id: %27
+  debug_value %3 : $Int64x10, let, name "v", argno 1 // id: %28
+  %29 = alloc_stack $x10<Int64x10>, var, name "self" // users: %51, %50, %48, %46, %44, %42, %40, %38, %36, %34, %32, %30
+  %30 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v1 // user: %31
+  store %3 to %30 : $*Int64x10                    // id: %31
+  %32 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v2 // user: %33
+  store %3 to %32 : $*Int64x10                    // id: %33
+  %34 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v3 // user: %35
+  store %3 to %34 : $*Int64x10                    // id: %35
+  %36 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v4 // user: %37
+  store %3 to %36 : $*Int64x10                    // id: %37
+  %38 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v5 // user: %39
+  store %3 to %38 : $*Int64x10                    // id: %39
+  %40 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v6 // user: %41
+  store %3 to %40 : $*Int64x10                    // id: %41
+  %42 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v7 // user: %43
+  store %3 to %42 : $*Int64x10                    // id: %43
+  %44 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v8 // user: %45
+  store %3 to %44 : $*Int64x10                    // id: %45
+  %46 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v9 // user: %47
+  store %3 to %46 : $*Int64x10                    // id: %47
+  %48 = struct_element_addr %29 : $*x10<Int64x10>, #x10.v10 // user: %49
+  store %3 to %48 : $*Int64x10                    // id: %49
+  %50 = load %29 : $*x10<Int64x10>                // user: %53
+  dealloc_stack %29 : $*x10<Int64x10>             // id: %51
+  %52 = tuple (%1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64, %1 : $Int64) // user: %53
+  %53 = struct $Int64x249 (%26 : $x10<Int64x10>, %50 : $x10<Int64x10>, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %3 : $Int64x10, %52 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %54
+  return %53 : $Int64x249                         // id: %54
+} // end sil function '$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfcfA_'
+
+// default argument 1 of Width2000.init(int64x249:int64:int64_2:)
+sil hidden @$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfcfA0_ : $@convention(thin) () -> Int64 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // user: %2
+  return %1 : $Int64                              // id: %2
+} // end sil function '$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfcfA0_'
+
+// default argument 2 of Width2000.init(int64x249:int64:int64_2:)
+sil hidden @$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfcfA1_ : $@convention(thin) () -> Int64 {
+bb0:
+  %0 = integer_literal $Builtin.Int64, 0          // user: %1
+  %1 = struct $Int64 (%0 : $Builtin.Int64)        // user: %2
+  return %1 : $Int64                              // id: %2
+} // end sil function '$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfcfA1_'
+
+// Width2000.init(int64x249:int64:int64_2:)
+sil hidden @$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfC : $@convention(method) (Int64x249, Int64, Int64, @thin Width2000.Type) -> Width2000 {
+// %0                                             // user: %4
+// %1                                             // user: %4
+// %2                                             // user: %4
+bb0(%0 : $Int64x249, %1 : $Int64, %2 : $Int64, %3 : $@thin Width2000.Type):
+  %4 = struct $Width2000 (%0 : $Int64x249, %1 : $Int64, %2 : $Int64) // user: %5
+  return %4 : $Width2000                          // id: %5
+} // end sil function '$s12typetoowidth9Width2000V9int64x2495int640D2_2AcA9Int64x249V_s5Int64VAJtcfC'
+
+// Width2000.init()
+sil hidden @$s12typetoowidth9Width2000VACycfC : $@convention(method) (@thin Width2000.Type) -> Width2000 {
+bb0(%0 : $@thin Width2000.Type):
+  %1 = integer_literal $Builtin.Int64, 0          // user: %2
+  %2 = struct $Int64 (%1 : $Builtin.Int64)        // users: %55, %55, %53, %53, %53, %53, %53, %53, %53, %53, %53, %3, %3, %3, %3, %3, %3, %3, %3, %3, %3
+  %3 = tuple (%2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64) // user: %4
+  %4 = struct $Int64x10 (%3 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // users: %54, %54, %54, %54, %50, %48, %46, %44, %42, %40, %38, %36, %34, %32, %29, %26, %24, %22, %20, %18, %16, %14, %12, %10, %8, %5
+  debug_value %4 : $Int64x10, let, name "v", argno 1 // id: %5
+  %6 = alloc_stack $x10<Int64x10>, var, name "self" // users: %28, %27, %25, %23, %21, %19, %17, %15, %13, %11, %9, %7
+  %7 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v1 // user: %8
+  store %4 to %7 : $*Int64x10                     // id: %8
+  %9 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v2 // user: %10
+  store %4 to %9 : $*Int64x10                     // id: %10
+  %11 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v3 // user: %12
+  store %4 to %11 : $*Int64x10                    // id: %12
+  %13 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v4 // user: %14
+  store %4 to %13 : $*Int64x10                    // id: %14
+  %15 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v5 // user: %16
+  store %4 to %15 : $*Int64x10                    // id: %16
+  %17 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v6 // user: %18
+  store %4 to %17 : $*Int64x10                    // id: %18
+  %19 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v7 // user: %20
+  store %4 to %19 : $*Int64x10                    // id: %20
+  %21 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v8 // user: %22
+  store %4 to %21 : $*Int64x10                    // id: %22
+  %23 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v9 // user: %24
+  store %4 to %23 : $*Int64x10                    // id: %24
+  %25 = struct_element_addr %6 : $*x10<Int64x10>, #x10.v10 // user: %26
+  store %4 to %25 : $*Int64x10                    // id: %26
+  %27 = load %6 : $*x10<Int64x10>                 // user: %54
+  dealloc_stack %6 : $*x10<Int64x10>              // id: %28
+  debug_value %4 : $Int64x10, let, name "v", argno 1 // id: %29
+  %30 = alloc_stack $x10<Int64x10>, var, name "self" // users: %52, %51, %49, %47, %45, %43, %41, %39, %37, %35, %33, %31
+  %31 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v1 // user: %32
+  store %4 to %31 : $*Int64x10                    // id: %32
+  %33 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v2 // user: %34
+  store %4 to %33 : $*Int64x10                    // id: %34
+  %35 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v3 // user: %36
+  store %4 to %35 : $*Int64x10                    // id: %36
+  %37 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v4 // user: %38
+  store %4 to %37 : $*Int64x10                    // id: %38
+  %39 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v5 // user: %40
+  store %4 to %39 : $*Int64x10                    // id: %40
+  %41 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v6 // user: %42
+  store %4 to %41 : $*Int64x10                    // id: %42
+  %43 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v7 // user: %44
+  store %4 to %43 : $*Int64x10                    // id: %44
+  %45 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v8 // user: %46
+  store %4 to %45 : $*Int64x10                    // id: %46
+  %47 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v9 // user: %48
+  store %4 to %47 : $*Int64x10                    // id: %48
+  %49 = struct_element_addr %30 : $*x10<Int64x10>, #x10.v10 // user: %50
+  store %4 to %49 : $*Int64x10                    // id: %50
+  %51 = load %30 : $*x10<Int64x10>                // user: %54
+  dealloc_stack %30 : $*x10<Int64x10>             // id: %52
+  %53 = tuple (%2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64, %2 : $Int64) // user: %54
+  %54 = struct $Int64x249 (%27 : $x10<Int64x10>, %51 : $x10<Int64x10>, %4 : $Int64x10, %4 : $Int64x10, %4 : $Int64x10, %4 : $Int64x10, %53 : $(Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64, Int64)) // user: %55
+  %55 = struct $Width2000 (%54 : $Int64x249, %2 : $Int64, %2 : $Int64) // user: %56
+  return %55 : $Width2000                         // id: %56
+} // end sil function '$s12typetoowidth9Width2000VACycfC'
+
+// use<A>(_:)
+sil hidden @$s12typetoowidth3useyxxlF : $@convention(thin) <T> (@in_guaranteed T) -> @out T {
+// %0                                             // user: %3
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*T):
+  debug_value_addr %1 : $*T, let, name "v", argno 1 // id: %2
+  copy_addr %1 to [initialization] %0 : $*T       // id: %3
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+} // end sil function '$s12typetoowidth3useyxxlF'
+
+
+

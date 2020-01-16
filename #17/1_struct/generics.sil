@@ -1,0 +1,102 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+struct A<T> {
+  @_hasStorage var value: T { get set }
+  init(value: T)
+}
+
+@inline(never) func f(_ v: A<UInt16>) -> A<UInt16>
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  %2 = integer_literal $Builtin.Int16, 6          // user: %3
+  %3 = struct $UInt16 (%2 : $Builtin.Int16)       // user: %4
+  %4 = struct $A<UInt16> (%3 : $UInt16)           // user: %6
+  // function_ref f(_:)
+  %5 = function_ref @$s8generics1fyAA1AVys6UInt16VGAGF : $@convention(thin) (A<UInt16>) -> A<UInt16> // user: %6
+  %6 = apply %5(%4) : $@convention(thin) (A<UInt16>) -> A<UInt16>
+  %7 = integer_literal $Builtin.Int32, 0          // user: %8
+  %8 = struct $Int32 (%7 : $Builtin.Int32)        // user: %9
+  return %8 : $Int32                              // id: %9
+} // end sil function 'main'
+
+// A.value.getter
+sil hidden [transparent] @$s8generics1AV5valuexvg : $@convention(method) <T> (@in_guaranteed A<T>) -> @out T {
+// %0                                             // user: %4
+// %1                                             // users: %3, %2
+bb0(%0 : $*T, %1 : $*A<T>):
+  debug_value_addr %1 : $*A<T>, let, name "self", argno 1 // id: %2
+  %3 = struct_element_addr %1 : $*A<T>, #A.value  // user: %4
+  copy_addr %3 to [initialization] %0 : $*T       // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s8generics1AV5valuexvg'
+
+// A.value.setter
+sil hidden [transparent] @$s8generics1AV5valuexvs : $@convention(method) <T> (@in T, @inout A<T>) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %6, %3
+bb0(%0 : $*T, %1 : $*A<T>):
+  debug_value_addr %0 : $*T, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*A<T>, var, name "self", argno 2 // id: %3
+  %4 = alloc_stack $T                             // users: %8, %7, %5
+  copy_addr [take] %0 to [initialization] %4 : $*T // id: %5
+  %6 = struct_element_addr %1 : $*A<T>, #A.value  // user: %7
+  copy_addr [take] %4 to %6 : $*T                 // id: %7
+  dealloc_stack %4 : $*T                          // id: %8
+  %9 = tuple ()                                   // user: %10
+  return %9 : $()                                 // id: %10
+} // end sil function '$s8generics1AV5valuexvs'
+
+// A.value.modify
+sil hidden [transparent] @$s8generics1AV5valuexvM : $@yield_once @convention(method) <T> (@inout A<T>) -> @yields @inout T {
+// %0                                             // users: %2, %1
+bb0(%0 : $*A<T>):
+  debug_value_addr %0 : $*A<T>, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*A<T>, #A.value  // user: %3
+  yield %2 : $*T, resume bb1, unwind bb2          // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s8generics1AV5valuexvM'
+
+// A.init(value:)
+sil hidden @$s8generics1AV5valueACyxGx_tcfC : $@convention(method) <T> (@in T, @thin A<T>.Type) -> @out A<T> {
+// %0                                             // user: %3
+// %1                                             // user: %4
+bb0(%0 : $*A<T>, %1 : $*T, %2 : $@thin A<T>.Type):
+  %3 = struct_element_addr %0 : $*A<T>, #A.value  // user: %4
+  copy_addr [take] %1 to [initialization] %3 : $*T // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$s8generics1AV5valueACyxGx_tcfC'
+
+// f(_:)
+sil hidden [noinline] @$s8generics1fyAA1AVys6UInt16VGAGF : $@convention(thin) (A<UInt16>) -> A<UInt16> {
+// %0                                             // users: %2, %1
+bb0(%0 : $A<UInt16>):
+  debug_value %0 : $A<UInt16>, let, name "v", argno 1 // id: %1
+  %2 = struct_extract %0 : $A<UInt16>, #A.value   // user: %3
+  %3 = struct_extract %2 : $UInt16, #UInt16._value // user: %6
+  %4 = integer_literal $Builtin.Int16, 1          // user: %6
+  %5 = integer_literal $Builtin.Int1, -1          // user: %6
+  %6 = builtin "uadd_with_overflow_Int16"(%3 : $Builtin.Int16, %4 : $Builtin.Int16, %5 : $Builtin.Int1) : $(Builtin.Int16, Builtin.Int1) // users: %8, %7
+  %7 = tuple_extract %6 : $(Builtin.Int16, Builtin.Int1), 0 // user: %10
+  %8 = tuple_extract %6 : $(Builtin.Int16, Builtin.Int1), 1 // user: %9
+  cond_fail %8 : $Builtin.Int1, "arithmetic overflow" // id: %9
+  %10 = struct $UInt16 (%7 : $Builtin.Int16)      // user: %11
+  %11 = struct $A<UInt16> (%10 : $UInt16)         // user: %12
+  return %11 : $A<UInt16>                         // id: %12
+} // end sil function '$s8generics1fyAA1AVys6UInt16VGAGF'
+
+
+

@@ -1,0 +1,137 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+struct A {
+  @_hasStorage @_hasInitialValue var pad: UInt8 { get set }
+  @_hasStorage var value: UInt16 { get set }
+  init(pad: UInt8 = 0xFF, value: UInt16)
+}
+
+func f() -> A
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  %2 = integer_literal $Builtin.Int32, 0          // user: %3
+  %3 = struct $Int32 (%2 : $Builtin.Int32)        // user: %4
+  return %3 : $Int32                              // id: %4
+} // end sil function 'main'
+
+// variable initialization expression of A.pad
+sil hidden [transparent] @$s11nongenerics1AV3pads5UInt8Vvpfi : $@convention(thin) () -> UInt8 {
+bb0:
+  %0 = integer_literal $Builtin.Int8, -1          // user: %1
+  %1 = struct $UInt8 (%0 : $Builtin.Int8)         // user: %2
+  return %1 : $UInt8                              // id: %2
+} // end sil function '$s11nongenerics1AV3pads5UInt8Vvpfi'
+
+// A.pad.getter
+sil hidden [transparent] @$s11nongenerics1AV3pads5UInt8Vvg : $@convention(method) (A) -> UInt8 {
+// %0                                             // users: %2, %1
+bb0(%0 : $A):
+  debug_value %0 : $A, let, name "self", argno 1  // id: %1
+  %2 = struct_extract %0 : $A, #A.pad             // user: %3
+  return %2 : $UInt8                              // id: %3
+} // end sil function '$s11nongenerics1AV3pads5UInt8Vvg'
+
+// A.pad.setter
+sil hidden [transparent] @$s11nongenerics1AV3pads5UInt8Vvs : $@convention(method) (UInt8, @inout A) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $UInt8, %1 : $*A):
+  debug_value %0 : $UInt8, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*A, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*A, #A.pad       // user: %5
+  store %0 to %4 : $*UInt8                        // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s11nongenerics1AV3pads5UInt8Vvs'
+
+// A.pad.modify
+sil hidden [transparent] @$s11nongenerics1AV3pads5UInt8VvM : $@yield_once @convention(method) (@inout A) -> @yields @inout UInt8 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*A):
+  debug_value_addr %0 : $*A, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*A, #A.pad       // user: %3
+  yield %2 : $*UInt8, resume bb1, unwind bb2      // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s11nongenerics1AV3pads5UInt8VvM'
+
+// A.value.getter
+sil hidden [transparent] @$s11nongenerics1AV5values6UInt16Vvg : $@convention(method) (A) -> UInt16 {
+// %0                                             // users: %2, %1
+bb0(%0 : $A):
+  debug_value %0 : $A, let, name "self", argno 1  // id: %1
+  %2 = struct_extract %0 : $A, #A.value           // user: %3
+  return %2 : $UInt16                             // id: %3
+} // end sil function '$s11nongenerics1AV5values6UInt16Vvg'
+
+// A.value.setter
+sil hidden [transparent] @$s11nongenerics1AV5values6UInt16Vvs : $@convention(method) (UInt16, @inout A) -> () {
+// %0                                             // users: %5, %2
+// %1                                             // users: %4, %3
+bb0(%0 : $UInt16, %1 : $*A):
+  debug_value %0 : $UInt16, let, name "value", argno 1 // id: %2
+  debug_value_addr %1 : $*A, var, name "self", argno 2 // id: %3
+  %4 = struct_element_addr %1 : $*A, #A.value     // user: %5
+  store %0 to %4 : $*UInt16                       // id: %5
+  %6 = tuple ()                                   // user: %7
+  return %6 : $()                                 // id: %7
+} // end sil function '$s11nongenerics1AV5values6UInt16Vvs'
+
+// A.value.modify
+sil hidden [transparent] @$s11nongenerics1AV5values6UInt16VvM : $@yield_once @convention(method) (@inout A) -> @yields @inout UInt16 {
+// %0                                             // users: %2, %1
+bb0(%0 : $*A):
+  debug_value_addr %0 : $*A, var, name "self", argno 1 // id: %1
+  %2 = struct_element_addr %0 : $*A, #A.value     // user: %3
+  yield %2 : $*UInt16, resume bb1, unwind bb2     // id: %3
+
+bb1:                                              // Preds: bb0
+  %4 = tuple ()                                   // user: %5
+  return %4 : $()                                 // id: %5
+
+bb2:                                              // Preds: bb0
+  unwind                                          // id: %6
+} // end sil function '$s11nongenerics1AV5values6UInt16VvM'
+
+// default argument 0 of A.init(pad:value:)
+sil hidden @$s11nongenerics1AV3pad5valueACs5UInt8V_s6UInt16VtcfcfA_ : $@convention(thin) () -> UInt8 {
+bb0:
+  %0 = integer_literal $Builtin.Int8, -1          // user: %1
+  %1 = struct $UInt8 (%0 : $Builtin.Int8)         // user: %2
+  return %1 : $UInt8                              // id: %2
+} // end sil function '$s11nongenerics1AV3pad5valueACs5UInt8V_s6UInt16VtcfcfA_'
+
+// A.init(pad:value:)
+sil hidden @$s11nongenerics1AV3pad5valueACs5UInt8V_s6UInt16VtcfC : $@convention(method) (UInt8, UInt16, @thin A.Type) -> A {
+// %0                                             // user: %3
+// %1                                             // user: %3
+bb0(%0 : $UInt8, %1 : $UInt16, %2 : $@thin A.Type):
+  %3 = struct $A (%0 : $UInt8, %1 : $UInt16)      // user: %4
+  return %3 : $A                                  // id: %4
+} // end sil function '$s11nongenerics1AV3pad5valueACs5UInt8V_s6UInt16VtcfC'
+
+// f()
+sil hidden @$s11nongenerics1fAA1AVyF : $@convention(thin) () -> A {
+bb0:
+  %0 = integer_literal $Builtin.Int16, 6          // user: %1
+  %1 = struct $UInt16 (%0 : $Builtin.Int16)       // user: %4
+  %2 = integer_literal $Builtin.Int8, -1          // user: %3
+  %3 = struct $UInt8 (%2 : $Builtin.Int8)         // user: %4
+  %4 = struct $A (%3 : $UInt8, %1 : $UInt16)      // users: %6, %5
+  debug_value %4 : $A, let, name "a"              // id: %5
+  return %4 : $A                                  // id: %6
+} // end sil function '$s11nongenerics1fAA1AVyF'
+
+
+
