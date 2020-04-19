@@ -186,12 +186,14 @@ bb0:
 
 ---
 
-# 具体的なSILOptimizerにおける最適化プロセス
+# 特殊化されるための条件を調べる
 
+- 特殊化は実行時パフォーマンスの観点で積極的に行われてほしい
+- SILOptimizerの実装を見て、特殊化のための条件を調べる
 
-このへんで行われてる
-- GenericSpecializer.cpp
-- Generics.cpp
+- 具体的な実装はこのへん
+  - GenericSpecializer.cpp
+  - Generics.cpp
 
 ---
 
@@ -204,7 +206,10 @@ bb0:
 1. 特殊化に成功した`apply`の呼び出し先を新しい関数に置き換えて、既存の呼び出しを削除
 
 <br>
-特殊化できない呼び出しとは？
+
+> 特殊化できないものを除外する
+
+特殊化できないものとは？
 
 ---
 
@@ -213,8 +218,8 @@ bb0:
 いろいろな条件がある
 
 - 呼び出し先の実装が参照不可能（外部モジュールなど）
-- 特殊なアノテーションがついてる 
 
+- 特殊なアノテーションがついてる 
 ```swift
 @_semantics(optimize.sil.specialize.generic.never)
 func f<T>() {}
@@ -250,9 +255,9 @@ dynamic func f<T>() {}
 
 #### archetype（実行時に決まる型）があって失敗する例
 
-- protocolのほう（前ページ左）は特殊化に失敗する
 - classのほう（前ページ右）は特殊化に成功する
   - 事前にdevirtualizeが適用されてよりシンプルなコードになっているため
+  - これは1月ごろの挙動で、現在のmaster(364d2dc2)ではdevirtualizeが行われなくなっていて特殊化できなくなった
 
 ```swift
 // 特殊化までにこのようなコードに変形されている
@@ -271,6 +276,8 @@ func g() -> Bool {
 ---
 
 #### 型が複雑すぎる
+
+- 型パラがネストを含め50個以上ある
 
 ```swift
 struct A<T> {
@@ -291,6 +298,27 @@ let a50 = A(a49)
 use(a49) // ← 特殊化される
 use(a50) // ← されない
 ```
+
+---
+
+#### 型が複雑すぎる
+
+- 要素2000個以上のタプル
+
+```swift
+typealias Width1999 = (Int8,Int8,Int8,Int8, ...  ,Int8)
+
+func use<T>(_ v: T.Type) -> Int8 {
+    9
+}
+
+func f() -> Int8 {
+    use(Width1999.self) // ← 特殊化されない
+}
+```
+
+$ swiftc -O typetoowidth1998.swift 
+$ swiftc -O typetoowidth1999.swift 
 
 ---
 
