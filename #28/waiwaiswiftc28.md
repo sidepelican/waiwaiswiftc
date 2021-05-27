@@ -626,3 +626,11 @@ mock.fooHandler = build { _ in // @PublisherBuilderのスコープを展開す�
   Just(1)
 }
 ```
+
+---
+
+## おわり
+
+その他のケースにも対応した最終的な`PublisherBuilder`はこちらに公開されています。
+
+https://github.com/sidepelican/PublisherBuilder
