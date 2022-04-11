@@ -102,7 +102,7 @@ SwiftGen以外は全てSwiftSyntaxを用いている
 
 ```swift
 public struct Foo: Codable {
-    public var bar: URL
+    public var bar: URL?
     public var baz: [String]
 }
 ```
@@ -112,7 +112,7 @@ public struct Foo: Codable {
 
 ```typescript
 export type Foo = {
-    bar: string;
+    bar?: string;
     baz: string[];
 };
 ```
@@ -227,12 +227,19 @@ case "email":
 
 # CodableToTypeScript
 
-## 実装詳細
+- SwiftサーバとTypeScriptクライアントな環境において、Swift側の型定義を変更するだけでTS側もコンパイルエラーになってくれる🎉
+    - enumのcaseの網羅や値付きenumが使えるのは他にない利点
+    - `.proto`や`.graphql`などの専用の定義ファイルは不要で、Swiftで書ける
 
+- `SwiftTypeReader`で読み取った情報を素朴に変換している(※)
 
+<!-- _footer: （※ 実際はGenericsやoptionalなど複雑なところもある）-->
 
 ---
 
+# CallableKit
+
+---
 
 # CallableKit
 
