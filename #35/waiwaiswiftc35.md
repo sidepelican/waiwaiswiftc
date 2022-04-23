@@ -213,7 +213,7 @@ export function FilterItemDecode(json: FilterItemJSON): FilterItem {
 使用例:
 
 ```typescript
-switch (filter.kind) { // ← kindがあると網羅チェックとキャストができる
+switch (filter.kind) {
 case "name":
     const name = filter.name._0; // .nameをエラー無しに参照できる
     ...
@@ -227,13 +227,51 @@ case "email":
 
 # CodableToTypeScript
 
-- SwiftサーバとTypeScriptクライアントな環境において、Swift側の型定義を変更するだけでTS側もコンパイルエラーになってくれる🎉
-    - enumのcaseの網羅や値付きenumが使えるのは他にない利点
+- SwiftサーバとTypeScriptクライアントな環境において、Swift側の型定義を変更するだけでTS側もコンパイルエラーになってくれる💪
+    - enumのcaseを型に表したり値付きenumが使えて便利
     - `.proto`や`.graphql`などの専用の定義ファイルは不要で、Swiftで書ける
 
-- `SwiftTypeReader`で読み取った情報を素朴に変換している(※)
+- `[T]`を`T[]`に変換したり、`T?`を`T|undefined`として変換できる
+- （ある程度は）Genericsにも対応
 
-<!-- _footer: （※ 実際はGenericsやoptionalなど複雑なところもある）-->
+--- 
+
+# 使い方
+
+- CodableToTypeScript単体はライブラリなので、自前でコード生成用ターゲットを作ってそこから使う
+
+```swift
+// Package.swift
+.package(url: "https://github.com/omochi/CodableToTypeScript", branch: "main"),
+
+...
+
+.executableTarget(
+    name: "CodeGenStage2",
+    dependencies: [
+        "CodableToTypeScript",
+    ]
+),
+```
+
+--- 
+
+# 使い方
+
+```swift
+// main.swift
+import SwiftTypeReader
+import CodableToTypeScript
+
+let module = try SwiftTypeReader.Reader().read(file: ...).module
+let generate = CodableToTypeScript.CodeGenerator(typeMap: .default)
+for swiftType in module.types {
+    let tsCode = try generate(type: swiftType)
+    _ = tsCode.description // TypeScriptコードそのままの文字列になっている
+}
+```
+
+SwiftTypeReaderで読み取った型をCodableToTypeScriptに渡す
 
 ---
 
@@ -244,16 +282,117 @@ case "email":
 # CallableKit
 
 - サーバ上のSwift関数をクライアントから実行するためのスタブを生成
-
-例:
+- 定義ファイルから複数のソースを生成
+    - サーバ用のルーティング用コード
+    - クライアント用のリクエスト用コード
+- 雰囲気はgRPCと同じ
+    - gRPCよりはかなり薄くて、通信の詳細などは規定せずあくまでインターフェースを定義するだけ
+- Swift Distributed Actorsのように、サーバ上のasync関数を呼び出せるようにする
 
 ---
 
-## 実装詳細
+# CallableKit
+
+例: 定義ファイル
+
+```swift
+public protocol EchoService {
+    func hello(request: EchoHelloRequest) async throws -> EchoHelloResponse
+}
+
+public struct EchoHelloRequest: Codable, Sendable {
+    public var name: String
+}
+
+public struct EchoHelloResponse: Codable, Sendable {
+    public var message: String
+}
+```
+
+---
+
+# CallableKit
+
+例: サーバ用ルーティング実装（生成コード）
+(VaporかつJSONでやりとりする場合)
+
+```swift
+import APIDefinition // 定義ファイルはそのままモジュールとしても利用する
+import Vapor
+
+struct EchoServiceProvider<RequestHandler: RawRequestHandler, Service: EchoServiceProtocol>: RouteCollection {
+    var requestHandler: RequestHandler
+    var serviceBuilder: (Request) -> Service
+    init(handler: RequestHandler, builder: @escaping (Request) -> Service) {
+        self.requestHandler = handler
+        self.serviceBuilder = builder
+    }
+
+    func boot(routes: RoutesBuilder) throws {
+        routes.group("Echo") { group in
+            group.post("hello", use: requestHandler.makeHandler(serviceBuilder) { s in
+                try await s.hello()
+            })
+        }
+    }
+}
+```
+
+- `RouteCollection`なので、Vaporの`RoutesBuilder`にそのままregisterできる
+
+---
+
+# CallableKit
+
+例: クライアント用スタブ実装（生成コード）
+
+```swift
+import APIDefinition
+
+public struct EchoServiceStub: EchoServiceProtocol, Sendable {
+    private let client: StubClientProtocol
+    public init(client: StubClientProtocol) {
+        self.client = client
+    }
+
+    public func hello(request: EchoHelloRequest) async throws -> EchoHelloResponse {
+        return try await client.send(path: "Echo/hello")
+    }
+}
+```
+
+- 生成コードの役割は型をつけるだけなので、送信部分の実装詳細には関与していない
+
+---
+
+## パッケージ構造
+
+```c
+.
+├── APIDefinition
+│   └── Sources
+│       └── APIDefinition // 定義だけで実装はなし
+│           └── Echo.swift    
+├── APIServer
+│   └── Sources
+│       ├── Service // Serviceの具体的な実装。依存にサーバ用モジュールはなし
+│       │   └── EchoService.swift    
+│       └── Server // Vaporに依存し、サーバを起動する
+│           ├── EchoProvider.gen.swift
+│           └── main.swift
+├── ClientApp
+│   └── Sources
+│       └── APIClient
+│           └── EchoStub.gen.swift    
+```
+
+---
 
 - 通信方式には依存しておらず、通信部分の実装は状況に応じて決める
 - 現在はREST風でJSONをやりとりし、HTTPの通信にVaporを利用している
 	- Vaporに直接依存していないので、将来的にVaporを剥がすことが容易
+    - シリアライズにprotobufなども採用可能
+        - 現在は扱いやすさの点でJSONにしてる
 
 ---
 
@@ -261,10 +400,63 @@ case "email":
 
 - CodableToTypeScriptと組み合わせて、TypeScriptクライアントもコード生成
 
+---
+
+## Typescript版クライアント
+
+例: TS版クライアント用スタブ実装（生成コード）
+```typescript
+import { IRawClient } from "./common.gen";
+
+export interface IEchoClient {
+  hello(request: EchoHelloRequest): Promise<EchoHelloResponse>
+}
+
+class EchoClient implements IEchoClient {
+  rawClient: IRawClient;
+
+  constructor(rawClient: IRawClient) {
+    this.rawClient = rawClient;
+  }
+
+  async hello(request: EchoHelloRequest): Promise<EchoHelloResponse> {
+    return await this.rawClient.fetch({}, "Echo/hello") as EchoHelloResponse
+  }
+}
+
+export const buildEchoClient = (raw: IRawClient): IEchoClient => new EchoClient(raw);
+
+export type EchoHelloRequest = {
+    name: string;
+};
+
+export type EchoHelloResponse = {
+    message: string;
+};
+```
 
 
+---
+
+- CodableToTypeScript
+    - Swiftの型をTypeScriptの型に変換できる
+- CallableKit
+    - Swift protocolを任意の言語のinterfaceに変換できる
+
+**→ WebAssembly × TypeScriptにも応用可能**
+
+---
 
 
+# WasmCallableKit
+
+---
+
+# WasmCallableKit
+
+- Swift関数をWasmから呼び出せるクライアントから実行するためのスタブを生成
+
+例:
 
 
 
