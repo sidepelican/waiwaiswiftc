@@ -388,11 +388,14 @@ public struct EchoServiceStub: EchoServiceProtocol, Sendable {
 
 ---
 
-- 通信方式には依存しておらず、通信部分の実装は状況に応じて決める
-- 現在はREST風でJSONをやりとりし、HTTPの通信にVaporを利用している
-	- Vaporに直接依存していないので、将来的にVaporを剥がすことが容易
-    - シリアライズにprotobufなども採用可能
-        - 現在は扱いやすさの点でJSONにしてる
+- クライアントは普通のasync関数を呼び出すかのようにAPIを叩ける
+
+```swift
+try await echoService.hello(request: .init(name: "Foo"))
+```
+
+- 現在はHTTPの通信にVaporを利用しているが、直接依存しているわけではないので将来的にVaporを剥がすことが容易
+- クライアントではただのprotocolとして見えているため、モック実装などへの差し替えが容易
 
 ---
 
@@ -435,7 +438,6 @@ export type EchoHelloResponse = {
 };
 ```
 
-
 ---
 
 - CodableToTypeScript
@@ -454,14 +456,162 @@ export type EchoHelloResponse = {
 
 # WasmCallableKit
 
-- Swift関数をWasmから呼び出せるクライアントから実行するためのスタブを生成
+- WasmビルドされたSwift関数をTSから呼び出せる
 
-例:
+例: 
+
+<div class=codegenbox>
+<div class=code>
+
+```swift
+// WasmExports.swift
+protocol WasmExports {
+    static func hello(name: String) -> String
+}
+```
+```swift
+// main.swift
+struct Foo: WasmExports {
+    static func hello(name: String) -> String {
+        "Hello, \(name) from Swift"
+    }
+}
+WasmCallableKit.setFunctionList(Foo.functionList)
+```
+</div>
+<p class=arrow>→</p>
+<div class=code>
+
+```typescript
+export type FooExports = {
+    hello: (name: string) => string,
+};
+```
+```typescript
+console.log(swift.hello("world"))
+// > Hello, world from Swift
+```
+</div>
+</div>
+
+---
+
+- もちろん、CodableToTypeScriptで変換できるSwiftの型なら何でもやりとりできる
 
 
+```swift
+protocol WasmExports {
+    static func newGame() -> GameID
+    static func putFence(game: GameID, position: FencePoint) throws
+    static func movePawn(game: GameID, position: PawnPoint) throws
+    static func aiNext(game: GameID) throws
+    static func currentBoard(game: GameID) throws -> Board
+    static func deleteGame(game: GameID)
+}
+```
 
+<div style="width: 100%; text-align: center">
+↓
+</div>
 
+```typescript
+export type WasmLibExports = {
+  newGame: () => GameID,
+  putFence: (game: GameID, position: FencePoint) => void,
+  movePawn: (game: GameID, position: PawnPoint) => void,
+  aiNext: (game: GameID) => void,
+  currentBoard: (game: GameID) => Board,
+  deleteGame: (game: GameID) => void,
+};
+```
 
+---
 
+## WasmCallableKitの仕組み
 
+- 文字列をやりとりできるように最低限のランタイムライブラリの用意
+    - Wasmはそのままだと数値型しか直接やりとりできない
+- SwiftTypeReaderとCodableToTypeScriptでTS用の型定義
+- JS ⇔ Swift間で引数と返り値をJSON文字列としてやりとりする
 
+<span style="font-size: 18px; margin-top: auto">
+
+tsランタイム: https://github.com/sidepelican/WasmCallableKit/blob/main/Codegen/Sources/Codegen/templates/SwiftRuntime.ts
+
+swiftランタイム: https://github.com/sidepelican/WasmCallableKit/blob/main/Sources/WasmCallableKit/WasmCallableKit.swift
+</span>
+
+---
+
+## JavaScriptKitとの比較？
+
+- JavaScriptKitはSwiftからJS関数を呼び、SwiftがJSを利用する形になっている。これはReactのような、JSフレームワークからSwiftを利用したい場合に使いづらかった
+- あとは単純にやってみたかった
+
+## 課題
+
+- 関数を呼び出すたびにJSON文字列との変換が入るのでめちゃくちゃ遅い
+    - Reactの場合、1ビルド中に100回程度関数を呼び出すとそのオーバヘッドだけで遅延を体感できる
+- シリアライズをより軽量な方法で行う、数値型はそのまま渡す、などの工夫が必要そう
+
+---
+
+## 使用例
+
+Swift Quoridor: https://swiftwasmquoridor.iceman5499.work
+
+- Quoridor（コリドール）というボードゲームとそのAIをSwiftで実装
+- UIだけReact
+- リポジトリ: https://github.com/sidepelican/SwiftWasmQuoridor
+
+---
+
+# Cloud Functions for Firebase上でSwift関数を実行
+
+```ts
+export const hello = functions.https.onRequest(async (request, response) => {
+  const name = request.query["name"] as string ?? "world";
+  response.send(swift.hello(name));
+});
+```
+
+---
+
+# Cloud Functions for Firebase上でSwift関数を実行
+
+1. WASIのセットアップ
+    - Cloud Functions上のNodeではWASIが利用できない（`--experimental-wasi-unstablre-preview0`を有効にする方法がない？）ので、 `@wasmer/wasi`を使ってWASIを構築する
+```typescript
+const wasi = new WASI();
+```
+
+---
+
+2. 通常のWebAssembly利用時のボイラープレート通りにセットアップ
+
+```typescript
+const swift = new SwiftRuntime();
+const wasmPath = path.join(__dirname, 'Gen/MySwiftLib.wasm');
+const module = new WebAssembly.Module(fs.readFileSync(wasmPath));
+const instance = new WebAssembly.Instance(module, {
+  ...wasi.getImports(module),
+  ...swift.callableKitImpodrts,
+});
+swift.setInstance(instance);
+wasi.start(instance);
+return bindMySwiftLib(swift);
+```
+
+---
+
+## Cloud Functions for FirebaseでSwiftWasmを使うことは実用的か？
+
+- Webと違い、バイナリサイズを（そこまで）気にしなくて良い
+- NIOがないため、既存のサーバ用Swiftコードの多くが利用できない
+    - NIOのWasm対応はかなり厳しいらしい
+    - https://github.com/apple/swift-nio/pull/1404#issuecomment-587357512
+    - AsyncHTTPClientなどの基本的なHTTPクライアントが利用できない
+- Firebase Admin SDKのSwift版がないので、大変
+- 用途はかなり限定されそう
+
+---
