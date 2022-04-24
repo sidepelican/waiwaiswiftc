@@ -22,7 +22,7 @@ size: 16:9
 
 ## わいわいswiftc #35
 
-# サーバ上のasync関数をクライアントから呼び出すコード生成技術
+# 夢が広がる！コード生成でどこでもSwift
 
 Twitter @iceman5499
 
@@ -277,6 +277,10 @@ SwiftTypeReaderで読み取った型をCodableToTypeScriptに渡す
 
 # CallableKit
 
+- https://github.com/sidepelican/CallableKit
+
+<!-- _footer: descriptionなにもなくてごめんなさい -->
+
 ---
 
 # CallableKit
@@ -296,7 +300,7 @@ SwiftTypeReaderで読み取った型をCodableToTypeScriptに渡す
 例: 定義ファイル
 
 ```swift
-public protocol EchoService {
+public protocol EchoServiceProtocol {
     func hello(request: EchoHelloRequest) async throws -> EchoHelloResponse
 }
 
@@ -394,7 +398,7 @@ public struct EchoServiceStub: EchoServiceProtocol, Sendable {
 try await echoService.hello(request: .init(name: "Foo"))
 ```
 
-- 現在はHTTPの通信にVaporを利用しているが、直接依存しているわけではないので将来的にVaporを剥がすことが容易
+- 現在はHTTPの通信にVaporを利用しているが、直接依存しているわけではないので将来的にVapor以外のフレームワークにも切り替えられる
 - クライアントではただのprotocolとして見えているため、モック実装などへの差し替えが容易
 
 ---
@@ -451,6 +455,10 @@ export type EchoHelloResponse = {
 
 
 # WasmCallableKit
+
+- https://github.com/sidepelican/WasmCallableKit
+
+<!-- _footer: descriptionなにもなくてごめんなさい -->
 
 ---
 
@@ -543,6 +551,16 @@ swiftランタイム: https://github.com/sidepelican/WasmCallableKit/blob/main/S
 
 ---
 
+## 使用例
+
+Swift Quoridor: https://swiftwasmquoridor.iceman5499.work
+
+- Quoridor（コリドール）というボードゲームとそのAIをSwiftで実装
+- UIだけReact
+- リポジトリ: https://github.com/sidepelican/SwiftWasmQuoridor
+
+---
+
 ## JavaScriptKitとの比較？
 
 - JavaScriptKitはSwiftからJS関数を呼び、SwiftがJSを利用する形になっている。これはReactのような、JSフレームワークからSwiftを利用したい場合に使いづらかった
@@ -556,17 +574,20 @@ swiftランタイム: https://github.com/sidepelican/WasmCallableKit/blob/main/S
 
 ---
 
-## 使用例
-
-Swift Quoridor: https://swiftwasmquoridor.iceman5499.work
-
-- Quoridor（コリドール）というボードゲームとそのAIをSwiftで実装
-- UIだけReact
-- リポジトリ: https://github.com/sidepelican/SwiftWasmQuoridor
+ここまではブラウザからSwiftのWebAPIやWasmのSwift関数を利用していた。
+JS上でSwiftを使いたい需要、他には・・・？
 
 ---
 
 # Cloud Functions for Firebase上でSwift関数を実行
+
+---
+
+# Cloud Functions for Firebase上でSwift関数を実行
+
+- サンプル: https://github.com/sidepelican/CFSwiftWasmExample
+
+例:
 
 ```ts
 export const hello = functions.https.onRequest(async (request, response) => {
@@ -615,3 +636,5 @@ return bindMySwiftLib(swift);
 - 用途はかなり限定されそう
 
 ---
+
+# おわり
