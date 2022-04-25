@@ -89,11 +89,14 @@ SwiftGen以外は全てSwiftSyntaxを用いている
 
 # CodableToTypeScript
 
+https://github.com/omochi/CodableToTypeScript
+
+- Swiftの型定義をTypeScriptの型定義に変換する 
+
 --- 
 
 # CodableToTypeScript
  
-- SwiftのCodableな型をTypeScriptの型に変換する
 
 例1: シンプルなCodable
 
@@ -102,7 +105,7 @@ SwiftGen以外は全てSwiftSyntaxを用いている
 
 ```swift
 public struct Foo: Codable {
-    public var bar: URL?
+    public var bar: Int?
     public var baz: [String]
 }
 ```
@@ -112,7 +115,7 @@ public struct Foo: Codable {
 
 ```typescript
 export type Foo = {
-    bar?: string;
+    bar?: number;
     baz: string[];
 };
 ```
@@ -223,13 +226,15 @@ case "email":
 }
 ```
 
+smart castによってcaseごとの値を型安全に取り出せる
+
 ---
 
 # CodableToTypeScript
 
 - SwiftサーバとTypeScriptクライアントな環境において、Swift側の型定義を変更するだけでTS側もコンパイルエラーになってくれる💪
-    - enumのcaseを型に表したり値付きenumが使えて便利
-    - `.proto`や`.graphql`などの専用の定義ファイルは不要で、Swiftで書ける
+    - enumのcaseをunionにしたり値付きenumが使えたりと、Swiftの表現力をそのまま利用できて便利
+    - `.proto`や`.graphql`などの専用の定義ファイルは不要
 
 - `[T]`を`T[]`に変換したり、`T?`を`T|undefined`として変換できる
 - （ある程度は）Genericsにも対応
@@ -276,8 +281,9 @@ SwiftTypeReaderで読み取った型をCodableToTypeScriptに渡す
 ---
 
 # CallableKit
+https://github.com/sidepelican/CallableKit
 
-- https://github.com/sidepelican/CallableKit
+- サーバ上のSwift関数をクライアントにasync関数として出荷する
 
 <!-- _footer: descriptionなにもなくてごめんなさい -->
 
@@ -285,19 +291,9 @@ SwiftTypeReaderで読み取った型をCodableToTypeScriptに渡す
 
 # CallableKit
 
-- サーバ上のSwift関数をクライアントから実行するためのスタブを生成
-- 定義ファイルから複数のソースを生成
-    - サーバ用のルーティング用コード
-    - クライアント用のリクエスト用コード
-- 雰囲気はgRPCと同じ
-    - gRPCよりはかなり薄くて、通信の詳細などは規定せずあくまでインターフェースを定義するだけ
-- Swift Distributed Actorsのように、サーバ上のasync関数を呼び出せるようにする
+- 定義protocolから、サーバ用コードとクライアント用コードが生成される
 
----
-
-# CallableKit
-
-例: 定義ファイル
+例: 定義protocol
 
 ```swift
 public protocol EchoServiceProtocol {
@@ -318,7 +314,6 @@ public struct EchoHelloResponse: Codable, Sendable {
 # CallableKit
 
 例: サーバ用ルーティング実装（生成コード）
-(VaporかつJSONでやりとりする場合)
 
 ```swift
 import APIDefinition // 定義ファイルはそのままモジュールとしても利用する
@@ -365,7 +360,16 @@ public struct EchoServiceStub: EchoServiceProtocol, Sendable {
 }
 ```
 
+---
+
 - 生成コードの役割は型をつけるだけなので、送信部分の実装詳細には関与していない
+- 雰囲気はgRPCと同じ
+    - gRPCよりはかなり薄くて、通信の詳細などは規定せずあくまでインターフェースを定義するだけ
+- Swift Distributed Actorsのように、サーバ上のasync関数を呼び出せるようにする
+
+```swift
+try await echoService.hello(request: .init(name: "Foo"))
+```
 
 ---
 
@@ -392,14 +396,10 @@ public struct EchoServiceStub: EchoServiceProtocol, Sendable {
 
 ---
 
-- クライアントは普通のasync関数を呼び出すかのようにAPIを叩ける
-
-```swift
-try await echoService.hello(request: .init(name: "Foo"))
-```
-
 - 現在はHTTPの通信にVaporを利用しているが、直接依存しているわけではないので将来的にVapor以外のフレームワークにも切り替えられる
 - クライアントではただのprotocolとして見えているため、モック実装などへの差し替えが容易
+
+サンプルプロジェクト: https://github.com/sidepelican/CallableKit/tree/main/example
 
 ---
 
@@ -455,8 +455,9 @@ export type EchoHelloResponse = {
 
 
 # WasmCallableKit
+https://github.com/sidepelican/WasmCallableKit
 
-- https://github.com/sidepelican/WasmCallableKit
+- Swiftの型をそのままexportできるWasmライブラリを作成
 
 <!-- _footer: descriptionなにもなくてごめんなさい -->
 
@@ -564,17 +565,18 @@ Swift Quoridor: https://swiftwasmquoridor.iceman5499.work
 ## JavaScriptKitとの比較？
 
 - JavaScriptKitはSwiftからJS関数を呼び、SwiftがJSを利用する形になっている。これはReactのような、JSフレームワークからSwiftを利用したい場合に使いづらかった
-- あとは単純にやってみたかった
+- 単純にやってみたかった
 
 ## 課題
 
 - 関数を呼び出すたびにJSON文字列との変換が入るのでめちゃくちゃ遅い
-    - Reactの場合、1ビルド中に100回程度関数を呼び出すとそのオーバヘッドだけで遅延を体感できる
+    - Reactの場合、1ビルド中に100回程度Swift関数を呼び出すとそのオーバヘッドだけで遅延を体感できる
 - シリアライズをより軽量な方法で行う、数値型はそのまま渡す、などの工夫が必要そう
 
 ---
 
-ここまではブラウザからSwiftのWebAPIやWasmのSwift関数を利用していた。
+ここまではブラウザにおける話。
+ブラウザからSwiftのWebAPIやWasmのSwift関数を利用できるようになった。
 JS上でSwiftを使いたい需要、他には・・・？
 
 ---
@@ -584,6 +586,8 @@ JS上でSwiftを使いたい需要、他には・・・？
 ---
 
 # Cloud Functions for Firebase上でSwift関数を実行
+
+- ブラウザのWasmでSwift関数が使えるなら、Nodeでも動かせるはず
 
 - サンプル: https://github.com/sidepelican/CFSwiftWasmExample
 
@@ -634,6 +638,22 @@ return bindMySwiftLib(swift);
     - AsyncHTTPClientなどの基本的なHTTPクライアントが利用できない
 - Firebase Admin SDKのSwift版がないので、大変
 - 用途はかなり限定されそう
+
+---
+
+# まとめ
+
+1. コード生成が気楽にできるようになる（SwiftTypeReader）
+↓
+2. TypeScriptからでもSwiftの型が使えるようになる（CodableToTypeScript）
+3. SwiftのprotocolでAPI定義できるようになる（CallableKit）
+↓
+4. ブラウザからSwift関数を呼べるようになる（CodableToTypeScript × CallableKit）
+5. WasmからSwift関数を呼べるようになる（WasmCallableKit）
+
+<div style="text-align: center; padding-top: 20px">
+Swiftがたくさん書けて嬉しい！
+</div>
 
 ---
 
