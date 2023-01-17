@@ -4,6 +4,18 @@ paginate: true
 size: 16:9
 ---
 
+<style>
+.codegenbox { 
+    display: flex; flex-direction: row; align-items: start; width: 100%; 
+}
+.codegenbox > .code { 
+    flex: 1;
+} 
+.codegenbox > .arrow {
+    padding: 10px; align-self: center;
+}
+</style>
+
 ## わいわいswiftc #39
 
 # Swiftの型をTypeScriptで表す
@@ -11,37 +23,79 @@ size: 16:9
 Twitter @iceman5499
 
 <!-- _footer: 2023年1月20日 -->
-
----
-
+<!-- 
 Swiftにおけるファントムタイプの意味論がTypeScriptにおいて再現できていない #53
 https://github.com/omochi/CodableToTypeScript/issues/53
 の内容
+-->
 
--- 背景・目的
+---
 
-Swiftは良い言語
-いろんなところで使いたい
-サーバサイドではフルパワーで使える
-Webで良い感じに使うためにはTypeScriptとうまく連携する必要がある
-→ Swiftの型をTypeScriptで表したい
+# あらすじ
 
+- Swiftは良い言語
+- いろんなところで使いたい
+- Webで良い感じに使うためにはTypeScriptとうまく連携する必要がある
+    → Swiftの型をTypeScriptで表したい
+    :soon: CodableToTypeScript
+    - https://github.com/omochi/CodableToTypeScript
+    
+---
 
 # 基本的な型の変換
 
 わいわいswiftc #35で紹介しました
 
-<簡単な復習>
-<変換例>
+<div class=codegenbox>
+<div class=code>
 
-今回はその延長線の話です
+```swift
+public enum Item: Codable {
+    case name(String)
+    case email(String)
+}
+```
+</div>
+<p class=arrow>→</p>
+<div class=code>
+
+```typescript
+export type Item = ({
+    kind: "name";
+    name: { _0: string };
+} | {
+    kind: "email";
+    email: { _0: string };
+});
+```
+</div>
+</div>
+
+- switch文で網羅性やType Guards[1]を実現するため、`kind`が追加される様子↑
+
+今回はその延長線の話です。
+
+<!-- _footer: 1: Kotlinではsmart castと呼ばれているやつ -->
+
+--- 
 
 # Swiftの型とTypeScriptの型の違い
 
-Swiftはnominal typing
-TypeScriptはstructual typing
+- Swiftは**nominal typing**
+    - 名前が違えば違う型
+- TypeScriptは**structural typing**
+    - 名前が違ってても、見た目が同じだったら同じ型
+    - 同じでなくても、見た目が十分であればサブタイプ関係が得られる
 
-<Swiftでは区別されるけど、TypeScriptだと区別されない例>
+---
+
+## Swiftでは区別されるけど、TypeScriptだと区別されない例
+
+<div class=codegenbox>
+<div class=code>
+
+Swift
+
 ```swift
 struct User: Codable {
     var id: String
@@ -51,67 +105,88 @@ struct Pet: Codable {
     var id: String
     var name: String
 }
+
+var pet: Pet!
+func useUser(_ user: User) {}
+// useUser(pet) // コンパイルエラー
 ```
 
+</div>
+<p class=arrow></p>
+<div class=code>
+
+TypeScript
+
 ```ts
-export type User = {
+type User = {
     id: string;
     name: string;
 };
-export type Pet = {
+type Pet = {
     id: string;
     name: string;
 };
 
+declare var pet: Pet;
 function useUser(user: User) {}
-function usePet(pet: Pet) {
-    useUser(pet); // ← petがUserとして使えてしまう
-}
+useUser(pet);
+// ↑petがUserとして使えてしまう
 ``` 
 
-これはそういう仕様なのである程度はしょうがない。
+</div>
+</div>
 
-# ファントムタイプを再現したい
+--- 
 
-<Swiftでよく使うファントムタイプの例>
+# 型に込めたの気持ちが漏れるケース
+
+- Swiftにおけるファントムタイプの例
+
 ```swift
-struct GenericID<T>: RawRepresentable { var rawValue: String }
+struct GenericID<T>: RawRepresentable, Codable { var rawValue: String }
 typealias UserID = GenericID<User>
 typealias PetID = GenericID<Pet>
 ```
 
-<TSに変換した例>
+これをTSに変換した場合・・・
+<!-- ここで、GenericIDは正しくrawValueを保持した型に変換されていないが、RawRepresentableに対して特別ルールがあるということにする -->
+
 ```ts
 type GenericID<T> = string;
-type UserID = GenericID<User>; // string型
-type PetID = GenericID<Pet>; // string型
+type UserID = GenericID<User>; // string
+type PetID = GenericID<Pet>; // string
 
-function makePetDetailLink(petID: PetID) {
-    return `/pet/${petID.rawValue}/detail`;
-}
-const user: User = ...;
-makePetDetailLink(user.id); // OK😅
+function usePetID(petID: PetID) {}
+const userID: UserID = user.id;
+usePetID(userID); // OK😅
 ```
+
+Swiftの型に込めた気持ちがTSに表われてなくて嬉しくない
+
+---
 
 # ファントムタイプを再現したい
 
-TypeScriptでファントムタイプを再現する例
+TypeScriptでファントムタイプを再現したい場合、いくつかやり方は存在している。
 
 ```ts
 type UserID = string & {
-	User: never;
+    User: never;
 };
 type PetID = string & {
-	Pet: never;
+    Pet: never;
 };
 
-function useUserID(userID: UserID) {
-}
-const petID = {} as PetID;
+function useUserID(userID: UserID) {}
+declare var petID: PetID;
 useUserID(petID); // Property 'User' is missing in type 'PetID'
 ```
 
-# ジェネリックな場合に対応できない
+↑実際には存在しないが、型定義の上では存在するようなプロパティを定義する例
+
+---
+
+# ジェネリックな対応
 
 先程のファントムタイプをより一般化し、
 `type UserID = GenericID<User>;` と記載できるようにしたい。
@@ -119,46 +194,102 @@ useUserID(petID); // Property 'User' is missing in type 'PetID'
 ```ts
 // こういう感じにしたい
 type GenericID<T> = string & {
-	[Tの名前]: never; 
+    [Tの名前]: never; 
 };
 ```
 
-ダメな例
+---
+
+## 直接やろうとした場合
+
+TypeScriptにはMapped Typeというものがあり、型から別の型のプロパティを宣言することが可能。
 
 ```ts
-type GenericID<T extends string> = string & {
-	T: never; 
+// Mapped Type
+type A = "zero" | "one" | "two";
+type B<T extends string> = {
+    [P in T]: null;
 };
+type C = B<A>;
+// {
+//     zero: null;
+//     one: null;
+//     two: null;
+// };
+```
+
+---
+
+
+`T`にメタタグとしてString Literal Typeを結合することで、メタタグをプロパティに生やす。
+
+- Mapped Typeの機能を無理矢理つかって型が持つString Literal Typeからプロパティを宣言
+
+```ts
 type User = { ... } & "User";
-type UserID = GenericID<User> // string & { T: never; }
+type GenericID<T extends string> = string & {
+    [P in 0 as `${T}`]: never; 
+};
+type UserID = GenericID<User> // string & { User: never; }
 ```
 
-TのString Literal Type部分を取り出せてないのでTということになってしまう
-また`User`の型が自然に生成できない形になって不便。
-（`{ ... } & "foo"`という式は書けないので`as`が必要になる）
+---
 
-型のメタタグを専用プロパティに保持すると解決する
+### 課題
+
+`T`にメタタグとしてString Literal Typeをくっつけると不便が大きい。
 
 ```ts
-// Conditional Typeとinfer演算子を用いた例
-type GenericID<T> = string & { $tag?: "GenericID" } & (
-	T extends { $tag?: infer TAG } 
-		? { $0?: TAG; }
-		: {}
-);
+const user: User = {
+    ...
+} & "User"; // これはできない
+const user: User = {
+    ...
+} as User; // asでキャストはできるけど・・・
+```
 
-type User = { ... } & {
-	$tag?: "User";
-};
-type UserID = GenericID<User>; // string & { $0?: "User"; }
+---
+
+## 型のメタタグを専用プロパティに保持するやり方
+
+プロパティのキーは扱いが難しかったため、値としてメタタグを持たせることにしたい。
+Conditional Typeとinfer演算子を使って、特定のプロパティが持つ型を取り出せる。
+
+```ts
+// Conditional Type
+type A<T> = T extends string ? true : false;
+type B = A<"aaa">; // true
+type C = A<0x0>; // false
+
+// infer
+type D<T> = T extends { value: infer I } ? I : never;
+type E = D<"aaa">; // never
+type F = D<{ value: string }>; // string
+```
+
+---
+
+- 値としてメタタグを持たせた場合
+
+```ts
+type User = { ... } & { $tag?: "User" };
+type GenericID<T> = string &
+    T extends { $tag?: infer TAG } 
+        ? { $0?: TAG; }
+        : {};
+type UserID = GenericID<User>; // string & { $0?: "User" }
 
 // テスト
-type Pet = { } & { $tag?: "Pet" };
+type Pet = { ... } & { $tag?: "Pet" };
 type PetID = GenericID<Pet>;
 function useUserID(userID: UserID) {}
-const petID = {} as PetID;
-useUserID(petID); // Type '"Pet"' is not assignable to type '"User"'.
+declare var petID: PetID;
+useUserID(petID); // Type '"Pet"' is not assignable to type '"User"'.👍
 ```
+
+`$tag`は値として存在しなくても良いので`User`を自然に生成できる。
+
+---
 
 ちょっと一般化して専用の型を作る。
 
@@ -173,7 +304,14 @@ type NestedTag0<Child> = Child extends TagRecord<infer TAG>
 
 ```ts
 type GenericID<T> = string & TagRecord<"GenericID"> & NestedTag0<T>;
+```
 
+---
+
+仮に`User`がジェネリックな型パラを持っていたとしても判別できる！
+<!-- これはあくまで一般化による恩恵で、構造的にはGenericIDと同一 -->
+
+```ts
 type User<Domain> = {
   id: GenericID<User<Domain>>;
   name: string
@@ -181,42 +319,53 @@ type User<Domain> = {
 
 type Server = {} & TagRecord<"Server">;
 type Client = {} & TagRecord<"Client">;
-type ServerUser = User<Server>;
-type ClientUser = User<Client>;
 
-function useServerUser(user: ServerUser) {}
-const clientUser = {} as ClientUser;
-useServerUser(clientUser); // Type '"Client"' is not assignable to type '"Server"'. 👍
+function useServerUser(user: User<Server>) {}
+declare var clientUser: User<Client>;
+useServerUser(clientUser); 
+// ↑ Type '"Client"' is not assignable to type '"Server"'.👍
 ```
+
+---
 
 ただし微妙な抜け穴もある
 
 ```ts
-function useServerUserID(id: GenericID<ServerUser>) {}
+function useServerUserID(id: GenericID<User<Server>>) {}
 useServerUserID(clientUser.id); // OK 😢
 ```
 
-`GenericID<ServerUser>` は `string & { $tag?: "GenericID" } & { $0?: "User" }` であり、`Server`のタグが抜け落ちてしまっている。
+`GenericID<User<Server>>` は `string & { $tag?: "GenericID" } & { $0?: "User" }` であり、`Server`のタグが抜け落ちてしまっている。
 
 → `TagRecord<T>` の時点で再帰的にTのジェネリックパラメータが持つタグも拾っておく必要がある。
+
+---
+
+## 再帰的にメタタグを拾う
+
+`TagRecord<T>`が`T`のタグを拾うようにしたパターン
 
 ```ts
 type TagOf<Type> = Type extends { $tag?: infer TAG } ? TAG : never;
 type TagRecord0<T extends string> = {
-	$tag?: T
+    $tag?: T
 };
 type TagRecord1<T extends string, C0> = {
-	$tag?: T & {
-	  $arg0?: TagOf<C0>;
-  };
+    $tag?: T & {
+        $arg0?: TagOf<C0>;
+    };
 };
 type TagRecord2<T extends string, C0, C1> = {
-	$tag?: T & {
-	  $arg0?: TagOf<C0>;
-	  $arg1?: TagOf<C1>;
-	};
+    $tag?: T & {
+        $arg0?: TagOf<C0>;
+        $arg1?: TagOf<C1>;
+    };
 }; // ...
+```
 
+---
+
+```ts
 type GenericID<T> = string & TagRecord1<"GenericID", T>;
 
 type User<Domain> = {
@@ -226,67 +375,95 @@ type User<Domain> = {
 
 type Server = {} & TagRecord0<"Server">;
 type Client = {} & TagRecord0<"Client">;
-type ServerUser = User<Server>;
-type ClientUser = User<Client>;
 
-function useServerUser(user: ServerUser) {}
-const clientUser = {} as ClientUser;
-useServerUser(clientUser); // Type '"Client"' is not assignable to type '"Server"'. 👍
-function useServerUserID(id: GenericID<ServerUser>) {}
-useServerUserID(clientUser.id); // Type '("User" & { $arg0?: "Client" })' is not assignable to type '("User" & { $arg0?: "Server"; })'.👍
-
-// 展開するとこう
-type ServerUserID = GenericID<ServerUser>; // string & { $tag?: "GenericID" & { $arg0?: "User" & { $arg0?: "Server" } } }
+function useServerUser(user: User<Server>) {}
+declare var clientUser: ClientUser;
+useServerUser(clientUser); // Error 👍
+function useServerUserID(id: GenericID<User<Server>>) {}
+useServerUserID(clientUser.id); // Error 👍
 ```
 
-`TagRecordX`を使うことで型パラ分のタグが事前に展開され、その展開済みのタグを`TagOf`で拾う。
+---
+
+- `TagRecordX`を使うことで型パラメータそれぞれのメタタグが事前に展開され、その展開済みのタグを`TagOf`で拾うことができるようになった
 
 これでかなりいい感じになってきた。
 
+```ts
+// 展開するとこう
+type ServerUserID = GenericID<User<Server>>;
+// string & { $tag?: "GenericID" & { $arg0?: "User" & { $arg0?: "Server" } } }
+```
+
+---
+
+## 型パラメータを可変長にする
+
 `TagRecord0`、`TagRecord1`、`TagRecord2` と型パラの数だけ`TagRecord`が必要になってしまうのが微妙なので、これも改善する。
-Mapped TypeとTuple Typeを組み合わせて、型引数を計算する。
+Mapped TypeのTuple Type拡張を組み合わせて、型パラメータを計算する。
+
+```ts
+// Mapped TypeのTuple Type拡張
+type A = ["zero", "one", "two"];
+type B<T extends string[]> = {
+    [P in keyof T]: Uppercase<T[P]>;
+};
+type C = B<A>; // ["ZERO", "ONE", "TWO"];
+```
+
+---
+
+- こうなる
 
 ```ts
 type TagOf<Type> = Type extends { $tag?: infer TAG } ? TAG : never;
-
 type TagRecord<T extends string, Args extends any[] = []> = Args["length"] extends 0
   ? {
-    $tag?: T
+    $tag?: T;
   } : {
     $tag?: T & {
-      [I in keyof Args]: TagOf<Args[I]>
-    }
+      [I in keyof Args]: TagOf<Args[I]>;
+    };
   };
-  
-type ServerUserID = GenericID<ServerUser>; // string & { $tag?: "GenericID" & ["User" & ["Server"]] }
+type GenericID<T> = string & TagRecord<"GenericID", [T]>;
 ```
 
-Swiftから変換する型全てに`TagRecord`をつけておけば、nominal typingが実現できる。
+- `Args["length"] extends 0`でタプルが空かどうかを判定できる
 
-しかし、Swiftから変換するときにTypeScriptネイティブなジェネリック型に変換されるケースが少なからず存在する。
+```ts
+// 展開するとこう
+type ServerUserID = GenericID<User<Server>>;
+// string & { $tag?: "GenericID" & ["User" & ["Server"]] }
+```
+
+---
+
+- Swiftから変換する型全てに`TagRecord`をつけておけば、nominal typingが実現できるようになった
+- しかし、Swiftから変換するときにTypeScriptネイティブなジェネリック型に変換されるケースが少なからず存在する
 
 | Swift | TypeScript |
-| --- | --- |
+| :---: | :---: |
 | `[T]` | `T[]` | 
-| `T?` | `T | null` |
+| `T?` | `T \| null` |
 | `[String: T]` | `Map<string, T>` |
+
+<!-- _footer: 今のところDictionaryはKeyがStringなものしか対応していない。 -->
+
+---
 
 これらについては、数が限られるので個別に対応した。
 
 ```ts
-type TagOf<Type> = Type extends TagRecord<infer TAG>
+type TagOf<Type> = [Type] extends [TagRecord<infer TAG>]
     ? TAG
     : null extends Type
-        ? "Optional" & TagOf<Exclude<Type, null>>
+        ? "Optional" & [TagOf<Exclude<Type, null>>]
         : Type extends (infer E)[]
-            ? "Array" & TagOf<E>
-            : Type extends Map<string, infer V>
-                ? "Dictionary" & TagOf<V>
+            ? "Array" & [TagOf<E>]
+            : Type extends Map<infer K, infer V>
+                ? "Dictionary" & [K, TagOf<V>]
                 : never;
 ```
-
-
-
 
 ---
 
