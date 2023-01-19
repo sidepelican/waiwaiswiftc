@@ -546,7 +546,62 @@ https://omochi.github.io/CodableToTypeScript/
 - SwiftWasm 5.7.2でビルドターゲットの依存管理が正確になった
     - 今まではPluginにmacos用ターゲットが含まれると正しくビルドできなかった
 
-<!-- _footer: WasmCallableKit: https://github.com/sidepelican/WasmCallableKit -->
+---
+
+# WasmCallableKit
+
+<div class=codegenbox>
+<div class=code style="flex: 1.2">
+
+```swift
+public enum FenceOrientation: String, Codable {
+    case horizontal
+    case vertical
+}
+
+public struct FencePoint: Codable {
+    public var x: Int
+    public var y: Int
+    public var orientation: FenceOrientation
+}
+
+public struct Board: Codable {
+    ...
+    public var fences: [FencePoint]
+}
+
+public class QuoridorGame {
+    private var state: ...
+    public init() {}
+
+    public func putFence(position: FencePoint) throws { 
+        ...
+    }
+    public func currentBoard() -> Board {
+        ...
+    }
+}
+```
+</div>
+<p class=arrow>→</p>
+<div class=code>
+
+クラスをTypsScriptに持ち出せるようになった
+
+```typescript
+const game = new QuoridorGame();
+game.putFence({
+    x: 1, y: 4, orientation: "horizontal"
+});
+const board = game.currentBoard();
+board.fences.map(...);
+
+```
+</div>
+</div>
+
+
+<!-- _footer: https://github.com/sidepelican/WasmCallableKit -->
 
 ---
 
