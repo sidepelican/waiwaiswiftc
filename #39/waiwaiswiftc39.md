@@ -252,7 +252,50 @@ const user: User = {
 
 ## 型のメタタグを専用プロパティに保持するやり方
 
-プロパティのキーは扱いが難しかったため、値としてメタタグを持たせることにしたい。
+プロパティのキーは扱いが難しかったため、値としてメタタグを持たせたい。
+- このような方法でもファントムタイプを実現できる
+
+```ts
+type UserID = string & {
+    $tag?: "User";
+};
+type PetID = string & {
+    $tag?: "Pet";
+};
+
+function useUserID(userID: UserID) {}
+declare var petID: PetID;
+useUserID(petID); // Type '"Pet"' is not assignable to type '"User"'.
+```
+
+---
+
+- 一般化を考えた場合
+
+```ts
+type User = { ... } & { $tag?: "User" };
+type GenericID<T> = string & {
+    $tag?: ????
+};
+type UserID = GenericID<User>;
+```
+
+`????`の部分にTのもつ`$tag`の型を埋め込みたい
+
+<!--  
+```ts
+type TagRecord<T extends string> = {
+    $tag?: T;
+};
+type GenericID<T extends TagRecord<TAG>, TAG extends string = NonNullable<T['$tag']>> = string & {
+    $tag?: TAG;
+};
+```
+こういうやり方もできる
+-->
+
+---
+
 Conditional Typeとinfer演算子を使って、特定のプロパティが持つ型を取り出せる。
 
 ```ts
@@ -275,9 +318,9 @@ type F = D<{ value: string }>; // string
 type User = { ... } & { $tag?: "User" };
 type GenericID<T> = string &
     T extends { $tag?: infer TAG } 
-        ? { $0?: TAG; }
+        ? { $tag?: TAG; }
         : {};
-type UserID = GenericID<User>; // string & { $0?: "User" }
+type UserID = GenericID<User>; // string & { $tag?: "User" }
 
 // テスト
 type Pet = { ... } & { $tag?: "Pet" };
@@ -464,6 +507,46 @@ type TagOf<Type> = [Type] extends [TagRecord<infer TAG>]
                 ? "Dictionary" & [K, TagOf<V>]
                 : never;
 ```
+
+`TagOf<User[]>`は `Array & ["User"]`になる
+
+---
+
+# CodableToTypeScriptで何ができるか
+
+---
+
+# CodableToTypeScriptで何ができるか
+
+- SwiftサーバとWebフレームワーク間の型定義
+    - Swiftの型に込もった気持ちのまま扱える
+    - OpenAPIやgRPCのような専用の型定義言語が主役ではなく、Swiftが主役
+- Swiftの実装をWebの世界に持ち込む
+
+
+---
+
+# CodableToTypeScript on Browser
+
+![](./c2ts_demo.png)
+
+https://omochi.github.io/CodableToTypeScript/
+
+---
+
+# CodableToTypeScript on Browser
+
+最近のテクが詰まった夢のアプリ
+
+- WebAssemblyによって、CodableToTypeScriptがそのままブラウザ上で動作
+    - APIと通信したりしないので爆速
+- SwiftSyntaxは最近Swiftで再実装されたので、Wasmで動かせるようになった
+- ReactとSwift間のやりとりにはWasmCallableKitを利用
+    - WasmCallableKit・・・Swiftの関数やクラスをTSから直接利用できるようにするツール
+- SwiftWasm 5.7.2でビルドターゲットの依存管理が正確になった
+    - 今まではPluginにmacos用ターゲットが含まれると正しくビルドできなかった
+
+<!-- _footer: WasmCallableKit: https://github.com/sidepelican/WasmCallableKit -->
 
 ---
 
